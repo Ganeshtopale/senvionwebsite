@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sustainability — Clean Energy, Low Carbon, Local Impact | Senvion India</title>
+<meta name="description" content="How Senvion India sustably energises neighbourhoods: carbon avoided, circularity, local content and community programmes." />
+<link rel="icon" href="assets/favicon.png" type="image/png" />
+<link rel="apple-touch-icon" href="assets/logo-color.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20261014c" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body class="bgonly" data-bg="1" data-page="sustainability">
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="loader-turbine">
+    <div class="loader-blades"><span></span><span></span><span></span></div>
+    <div class="loader-tower"></div>
+  </div>
+  <p>WE ARE WINDSHAPERS&trade;&hellip;</p>
+  <div class="loader-bar"><div id="loaderFill"></div></div>
+</div>
+
+
+<!-- FIXED 3D CANVAS -->
+<canvas id="webgl"></canvas>
+<div id="photoBg"></div>
+<div id="vignette"></div>
+<div id="grain"></div>
+<div id="scrollProgress"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-badge">
+        <img class="logo-img" src="image/REtech-and-Senvion-Logo.png" alt="REtechnology | Senvion" width="250" height="52" />
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Products</a>
+      <a href="lab.html">3D Lab</a>
+      <a href="services.html">Services</a>
+      <a href="manufacturing.html">Manufacturing</a>
+      <a class="is-active" href="#sustainability">Sustainability</a>
+      <a href="news.html">News</a>
+      <a href="connect.html" class="btn btn-sm btn-glow">Connect</a>
+    </div>
+    <button id="menuBtn" aria-label="menu"><span></span><span></span><span></span></button>
+  </div>
+  <div id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="products.html">Products</a>
+    <a href="lab.html">3D Lab</a>
+    <a href="services.html">Services</a>
+    <a href="manufacturing.html">Manufacturing</a>
+    <a href="about.html#history">History</a>
+    <a class="is-active" href="#sustainability">Sustainability</a>
+    <a href="news.html">News</a>
+    <a href="connect.html">Connect</a>
+  </div>
+</nav>
+<main>
+<!-- ============ ESG ============ -->
+<section id="sustainability" class="panel">
+  <div class="sec-head photo" style="--photo:url('assets/esg-environment.jpg')"><span class="kicker">09 — SUSTAINABILITY · OUR COMMITMENT TO A SUSTAINABLE TOMORROW</span>
+    <h2>Let's drive the future <span class="grad">of clean energy, together.</span></h2>
+    <p>At Senvion India, sustainability is at the core of our mission. We engage with diverse stakeholders to identify ESG-related material topics, drawing insights from customer surveys, industry trends and regulatory agencies. In 2022 we appointed CareEdge Advisory to integrate ESG principles into our processes and conduct our first materiality assessment, reviewed by our ESG Executive Oversight Committee.</p>
+  </div>
+
+  <div class="tbl-wrap glass">
+    <table class="spec-table esg">
+      <thead><tr><th>KPI</th><th>Unit</th><th>2025</th><th>2030</th><th>2040</th></tr></thead>
+      <tbody>
+        <tr><td>Recyclability of turbines &amp; blades</td><td>%</td><td>50%</td><td>75%</td><td>100%</td></tr>
+        <tr><td>Green energy for operations — conventional energy consumed</td><td>kWh</td><td>25% reduction from 2022</td><td>25% reduction from 2025</td><td>25% reduction from 2030</td></tr>
+        <tr><td>Elevate marginalised society — beneficiaries with access to education &amp; healthcare</td><td>No.</td><td>2,500</td><td>5,000</td><td>10,000</td></tr>
+        <tr><td>Globally best-in-class LTIFR</td><td>LTIFR</td><td>&lt; 2</td><td>&lt; 1.5</td><td>&lt; 1</td></tr>
+        <tr><td>Share of women in workforce with equal opportunities</td><td>%</td><td>10%</td><td>15%</td><td>20%</td></tr>
+        <tr><td>Supplier Code of Conduct acceptance</td><td>% of purchased volume</td><td colspan="3">90% · business ethics &amp; compliance training</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="photo-grid">
+    <figure><div class="media"><img src="assets/esg-environment.jpg" alt="Environment"></div><figcaption>01 — Environment</figcaption></figure>
+    <figure><div class="media"><img src="assets/esg-social.jpg" alt="Social"></div><figcaption>02 — Social</figcaption></figure>
+    <figure><div class="media"><img src="assets/esg-governance.jpg" alt="Governance"></div><figcaption>03 — Governance</figcaption></figure>
+    <figure><div class="media"><img src="assets/esg-commitment.jpg" alt="Social commitment"></div><figcaption>04 — Social Commitment</figcaption></figure>
+    <figure><div class="media"><img src="assets/esg-diligence.jpg" alt="Due diligence"></div><figcaption>05 — Due Diligence</figcaption></figure>
+    <figure><div class="media"><img src="assets/impact-1.png" alt="Senvion ESG policy" style="object-fit:contain;padding:24px;background:#0a1322"></div><figcaption>Senvion ESG Policy</figcaption></figure>
+  </div>
+
+  <div class="lab-grid">
+    <div class="lab-card glass"><h3>🔍 ESG evaluation &amp; gap analysis</h3><p class="lead">We identified areas for enhancing and developing the organisation's ESG practices with the help of a comprehensive ESG gap analysis.</p></div>
+    <div class="lab-card glass"><h3>⚖️ Materiality assessment</h3><p class="lead">We determined ESG priorities through a materiality exercise and aligned them with relevant ESG Key Performance Indicators (KPIs) and targets.</p></div>
+    <div class="lab-card glass"><h3>📈 Peer comparison</h3><p class="lead">We gained insights into the ESG practices of our peers and developed a clear roadmap and strategy for Senvion through careful peer benchmarking.</p></div>
+    <div class="lab-card glass"><h3>🗂️ Data collection &amp; calculation</h3><p class="lead">We facilitated the collection of ESG data by providing templates and supported the calculation of emissions, as evidenced in the ESG report.</p></div>
+    <div class="lab-card glass"><h3>🌍 Environment</h3><p class="lead">Decarbonisation of business, recyclable turbine and blade design, green vehicles and green energy for operations across Scope 1 and Scope 3.</p></div>
+    <div class="lab-card glass"><h3>🤝 Social &amp; Governance</h3><p class="lead">Diversity and equal opportunity, LTIFR safety targets, compliance and business-ethics training, and a Supplier Code of Conduct across Tier 1 &amp; 2 vendors.</p></div>
+  </div>
+
+  <div class="sus-glass glass">
+    <div class="sus-nums">
+      <div><strong id="co2count">48,200,000</strong><span>tonnes CO₂ avoided (live ticker)</span></div>
+      <div><strong>100%</strong><span>turbine &amp; blade recyclability target by 2040</span></div>
+      <div><strong>49 °C</strong><span>tropical-ready engineering</span></div>
+    </div>
+    <a href="connect.html" class="btn btn-glow">Get in touch →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-col">
+      <img class="foot-logo" src="image/REtech-and-Senvion-Logo-footer.png" alt="REtechnology | Senvion" width="250" height="52" />
+      <p class="foot-claim">Let's drive the future of clean energy, together!</p>
+      <p>📞 +91 22-6908 0000 · ✉️ info@senvion.in</p>
+    </div>
+    <div class="foot-col">
+      <h4>PRODUCTS</h4>
+      <a href="products.html">2.3M120</a>
+      <a href="products.html">2.7M130</a>
+      <a href="products.html">3.1M130</a>
+      <a href="products.html">4.2M160</a>
+    </div>
+    <div class="foot-col">
+      <h4>SERVICES</h4>
+      <a href="services.html">Operations &amp; Maintenance</a>
+      <a href="services.html">FleetPro®</a>
+      <a href="manufacturing.html">Manufacturing Units</a>
+    </div>
+    <div class="foot-col">
+      <h4>COMPANY</h4>
+      <a href="about.html">About</a>
+      <a href="about.html#history">History</a>
+      <a href="news.html">News</a>
+      <a href="connect.html">Contact</a>
+      <a href="about.html#career">Career</a>
+    </div>
+    <div class="foot-col">
+      <h4>OFFICES</h4>
+      <p><b>INDIA</b><br>501-Wing B, Delphi Hiranandani Business Park, Powai, Mumbai – 400076, Maharashtra</p>
+      <p><b>GERMANY</b><br>Hamburger Straße 11, 22083, Hamburg</p>
+    </div>
+  </div>
+
+  <details class="fraud">
+    <summary>⚠️ Recruitment Fraud Alert</summary>
+    <div>
+      <p>It has come to our notice that certain persons are falsely claiming association with Senvion through fake job postings, spoofed emails and other fraudulent means with the intent to mislead job seekers and solicit payments. Please note:</p>
+      <ul>
+        <li>Senvion never demands payment, deposits, or fees at any stage of the recruitment process.</li>
+        <li>All genuine correspondence will be from official Senvion domains, not free email services such as Gmail, Yahoo, Hotmail or Rediffmail.</li>
+        <li>Senvion has not authorised any consultancy or individual to collect money, issue job offers, or provide internships on its behalf.</li>
+        <li>Senvion accepts no responsibility for any loss or damage suffered by individuals dealing with unauthorised parties. Such dealings are at the individual's own risk.</li>
+        <li>Senvion reserves the right to pursue civil and criminal remedies under applicable Indian laws against any misuse of its name, trademarks or recruitment process.</li>
+        <li>We urge candidates to remain vigilant and verify any recruitment-related communication directly through Senvion's official website or HR contacts.</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="foot-bar">
+    <p>© 2026 Senvion India · All Rights Reserved</p>
+    <div class="foot-links">
+      <a href="connect.html">Policies &amp; Disclosures</a>
+      <a href="connect.html">Privacy Policy</a>
+      <a href="connect.html">Use of terms</a>
+      <a href="connect.html">Code of Conduct</a>
+    </div>
+  </div>
+
+  <p class="disclaimer"><b>Disclaimer:</b> RETechnologies GmbH &amp; Senvion Wind Technology Pvt. Ltd. together with all its affiliates in India including Senvion India Pvt. Ltd. and Senvion India Wind Power Services LLP (collectively “Senvion India”) have rights over trademark SENVION in India. Outside India, this trademark belongs to a third party which is not an affiliate of Senvion India. Content sourced from senvion.in · Interactive 3D concept rebuild.</p>
+</footer>
+
+</main>
+
+<script src="js/data.js?v=20261001h"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="module" src="js/scene.js?v=20261009f"></script>
+<script>
+(function () {
+  if (document.getElementById('webgl')) return;
+  var hide = function () { var p = document.getElementById('preloader'); if (p) p.classList.add('done'); };
+  setTimeout(hide, 1400);
+  addEventListener('load', function () { setTimeout(hide, 250); });
+})();
+</script>
+<script src="js/ui.js?v=20261001h"></script>
+<script>
+/* Image self-heal — if a request fails (dev-server restart, transient network
+   error, stale cache) the image retries instead of staying stuck on alt text. */
+(function () {
+  function heal(img) {
+    var n = +(img.dataset.healed || 0);
+    if (n >= 3 || !img.getAttribute('src')) return;
+    img.dataset.healed = n + 1;
+    setTimeout(function () {
+      var u = new URL(img.currentSrc || img.src, location.href);
+      u.searchParams.set('r', Date.now() + '-' + n);
+      img.src = u.href;
+    }, 700 * (n + 1));
+  }
+  function watch(img) {
+    if (img.dataset.watched) return;
+    img.dataset.watched = '1';
+    img.addEventListener('error', function () { heal(img); });
+    // already failed before this script was parsed
+    if (img.complete && img.naturalWidth === 0) heal(img);
+  }
+  document.querySelectorAll('img').forEach(watch);
+  if (window.MutationObserver) {
+    new MutationObserver(function (muts) {
+      muts.forEach(function (m) {
+        m.addedNodes.forEach(function (n) {
+          if (!n || n.nodeType !== 1) return;
+          if (n.tagName === 'IMG') watch(n);
+          else if (n.querySelectorAll) n.querySelectorAll('img').forEach(watch);
+        });
+      });
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  }
+})();
+</script>
+</body>
+</html>

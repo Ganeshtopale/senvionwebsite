@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Manufacturing — Baramati &amp; Trichy Facilities | Senvion India</title>
+<meta name="description" content="Senvion India manufacturing: blade, nacelle and tower production at Baramati (Maharashtra) and Trichy (Tamil Nadu) with a localised supply chain." />
+<link rel="icon" href="assets/favicon.png" type="image/png" />
+<link rel="apple-touch-icon" href="assets/logo-color.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20261014c" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body class="bgonly" data-bg="1" data-page="manufacturing">
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="loader-turbine">
+    <div class="loader-blades"><span></span><span></span><span></span></div>
+    <div class="loader-tower"></div>
+  </div>
+  <p>WE ARE WINDSHAPERS&trade;&hellip;</p>
+  <div class="loader-bar"><div id="loaderFill"></div></div>
+</div>
+
+
+<!-- FIXED 3D CANVAS -->
+<canvas id="webgl"></canvas>
+<div id="photoBg"></div>
+<div id="vignette"></div>
+<div id="grain"></div>
+<div id="scrollProgress"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-badge">
+        <img class="logo-img" src="image/REtech-and-Senvion-Logo.png" alt="REtechnology | Senvion" width="250" height="52" />
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Products</a>
+      <a href="lab.html">3D Lab</a>
+      <a href="services.html">Services</a>
+      <a class="is-active" href="#manufacturing">Manufacturing</a>
+      <a href="sustainability.html">Sustainability</a>
+      <a href="news.html">News</a>
+      <a href="connect.html" class="btn btn-sm btn-glow">Connect</a>
+    </div>
+    <button id="menuBtn" aria-label="menu"><span></span><span></span><span></span></button>
+  </div>
+  <div id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="products.html">Products</a>
+    <a href="lab.html">3D Lab</a>
+    <a href="services.html">Services</a>
+    <a class="is-active" href="#manufacturing">Manufacturing</a>
+    <a href="about.html#history">History</a>
+    <a href="sustainability.html">Sustainability</a>
+    <a href="news.html">News</a>
+    <a href="connect.html">Connect</a>
+  </div>
+</nav>
+<main>
+<!-- ============ MANUFACTURING ============ -->
+<section id="manufacturing" class="panel">
+  <div class="sec-head photo" style="--photo:url('assets/mfg-01.jpg')">
+    <span class="kicker">05 — MANUFACTURING UNITS</span>
+    <h2>Engineering Excellence <span class="grad">in Action</span></h2>
+  </div>
+
+  <!-- About sub-nav — mirrors senvion.in/about- sections -->
+  <nav class="svc-tabs" aria-label="About sections">
+    <a href="about.html">Profile</a>
+    <a href="about.html#history">History</a>
+    <a href="about.html#management">Management</a>
+    <a href="about.html#corp-strategy">Corporate Strategy</a>
+    <a href="#manufacturing" class="on">Manufacturing Units</a>
+  </nav>
+
+  <div class="mfg-intro">
+    <h3>Our Manufacturing Units</h3>
+    <p>We take immense pride in our state-of-the-art manufacturing units, where groundbreaking wind turbines come to life. Our manufacturing facilities embody a perfect blend of engineering precision, cutting-edge technology, and unwavering commitment to quality.</p>
+  </div>
+
+  <!-- Facility gallery — live senvion.in imagery -->
+  <div class="mfg-gallery">
+    <div class="media"><img src="https://www.senvion.in/wp-content/uploads/2023/07/manufacturing-01-480x300.jpg" alt="Senvion manufacturing facility" /></div>
+    <div class="media"><img src="https://www.senvion.in/wp-content/uploads/2023/08/man-1-480x300.jpg" alt="Senvion manufacturing line" /></div>
+    <div class="media"><img src="https://www.senvion.in/wp-content/uploads/2023/07/manufacturing-03-480x300.jpg" alt="Senvion production hall" /></div>
+    <div class="media"><img src="https://www.senvion.in/wp-content/uploads/2023/07/manufacturing-04-768x480.jpg" alt="Senvion assembly plant" /></div>
+  </div>
+
+  <!-- Unit 01 — Nacelle & Hub -->
+  <div class="mfg-unit">
+    <div class="mfg-media media"><img src="https://www.senvion.in/wp-content/uploads/2023/07/hub-768x511.jpg" alt="Nacelle and Hub plant, Baramati" /><span class="media-tag">BARAMATI · MAHARASHTRA</span></div>
+    <div class="mfg-copy">
+      <span class="kicker">01</span>
+      <h2>Nacelle &amp; Hub</h2>
+      <p>The factory is in Baramati, which is situated approximately 120 km from Pune and 300 km from Mumbai. The facility has access to the JNPT port while Pune is the nearest airport.</p>
+      <details class="mfg-more"><summary class="btn btn-glow btn-sm">Read More →</summary>
+        <div class="mfg-body">
+          <p>The plant is spread over 40 Acres and has scope for future expansion for new products.</p>
+          <p>The plant's capacity is 1GW per year, making it one of the largest nacelle and hub assemble facility in the region.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- Unit 02 — Blades -->
+  <div class="mfg-unit rev">
+    <div class="mfg-media media"><img src="https://www.senvion.in/wp-content/uploads/2026/01/bleds.jpg" alt="Blade plants, Vadodara and Trichy" /><span class="media-tag">VADODARA · TRICHY</span></div>
+    <div class="mfg-copy">
+      <span class="kicker">02</span>
+      <h2>Blades</h2>
+      <p>The two blade plants are in Vadodara and Trichy. Together they operate 5 Production lines with Senvion's own blade moulds. The facility has access to Mundra, Kandla and Tuticorin ports, while Ahmedabad, Vadodara and Madurai are the nearest airports respectively.</p>
+      <details class="mfg-more"><summary class="btn btn-glow btn-sm">Read More →</summary>
+        <div class="mfg-body">
+          <p>The plants are spread over more than 37 Acres. Both the plants together have a capacity of 1 GW per year.</p>
+          <p>The Blade facilities together employs approximately 1500 direct and indirect workers.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- Unit 03 — Tower -->
+  <div class="mfg-unit">
+    <div class="mfg-media media"><img src="https://www.senvion.in/wp-content/uploads/2026/01/about-tower.jpg" alt="Tower factory near Ahmedabad" /><span class="media-tag">AHMEDABAD · GUJARAT</span></div>
+    <div class="mfg-copy">
+      <span class="kicker">03</span>
+      <h2>Tower</h2>
+      <p>The factory is located near Ahmedabad which ensures easy accessibility for transportation and logistics to the wind sites in Gujarat.</p>
+      <details class="mfg-more"><summary class="btn btn-glow btn-sm">Read More →</summary>
+        <div class="mfg-body">
+          <p>The plant is spread over an area of 38 acres. The factory's extensive land area allows for future expansion and growth.</p>
+          <p>The factory's current production capacity of 10 Towers (50 sections per month) showcases its ability to meet market demand effectively.</p>
+          <p>The plant has over 250 highly qualified and multi-skilled personnel in the plant.</p>
+          <p>The plant maintains ISO 9001, ISO 45001, and ISO 14001, the highest quality and HSE standards, as well as international standards for product and productivity, EN ISO 1090, ISO 3834, and MECS.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-col">
+      <img class="foot-logo" src="image/REtech-and-Senvion-Logo-footer.png" alt="REtechnology | Senvion" width="250" height="52" />
+      <p class="foot-claim">Let's drive the future of clean energy, together!</p>
+      <p>📞 +91 22-6908 0000 · ✉️ info@senvion.in</p>
+    </div>
+    <div class="foot-col">
+      <h4>PRODUCTS</h4>
+      <a href="products.html">2.3M120</a>
+      <a href="products.html">2.7M130</a>
+      <a href="products.html">3.1M130</a>
+      <a href="products.html">4.2M160</a>
+    </div>
+    <div class="foot-col">
+      <h4>SERVICES</h4>
+      <a href="services.html">Operations &amp; Maintenance</a>
+      <a href="services.html">FleetPro®</a>
+      <a href="#manufacturing">Manufacturing Units</a>
+    </div>
+    <div class="foot-col">
+      <h4>COMPANY</h4>
+      <a href="about.html">About</a>
+      <a href="about.html#history">History</a>
+      <a href="news.html">News</a>
+      <a href="connect.html">Contact</a>
+      <a href="about.html#career">Career</a>
+    </div>
+    <div class="foot-col">
+      <h4>OFFICES</h4>
+      <p><b>INDIA</b><br>501-Wing B, Delphi Hiranandani Business Park, Powai, Mumbai – 400076, Maharashtra</p>
+      <p><b>GERMANY</b><br>Hamburger Straße 11, 22083, Hamburg</p>
+    </div>
+  </div>
+
+  <details class="fraud">
+    <summary>⚠️ Recruitment Fraud Alert</summary>
+    <div>
+      <p>It has come to our notice that certain persons are falsely claiming association with Senvion through fake job postings, spoofed emails and other fraudulent means with the intent to mislead job seekers and solicit payments. Please note:</p>
+      <ul>
+        <li>Senvion never demands payment, deposits, or fees at any stage of the recruitment process.</li>
+        <li>All genuine correspondence will be from official Senvion domains, not free email services such as Gmail, Yahoo, Hotmail or Rediffmail.</li>
+        <li>Senvion has not authorised any consultancy or individual to collect money, issue job offers, or provide internships on its behalf.</li>
+        <li>Senvion accepts no responsibility for any loss or damage suffered by individuals dealing with unauthorised parties. Such dealings are at the individual's own risk.</li>
+        <li>Senvion reserves the right to pursue civil and criminal remedies under applicable Indian laws against any misuse of its name, trademarks or recruitment process.</li>
+        <li>We urge candidates to remain vigilant and verify any recruitment-related communication directly through Senvion's official website or HR contacts.</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="foot-bar">
+    <p>© 2026 Senvion India · All Rights Reserved</p>
+    <div class="foot-links">
+      <a href="connect.html">Policies &amp; Disclosures</a>
+      <a href="connect.html">Privacy Policy</a>
+      <a href="connect.html">Use of terms</a>
+      <a href="connect.html">Code of Conduct</a>
+    </div>
+  </div>
+
+  <p class="disclaimer"><b>Disclaimer:</b> RETechnologies GmbH &amp; Senvion Wind Technology Pvt. Ltd. together with all its affiliates in India including Senvion India Pvt. Ltd. and Senvion India Wind Power Services LLP (collectively “Senvion India”) have rights over trademark SENVION in India. Outside India, this trademark belongs to a third party which is not an affiliate of Senvion India. Content sourced from senvion.in · Interactive 3D concept rebuild.</p>
+</footer>
+
+</main>
+
+<script src="js/data.js?v=20261001h"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="module" src="js/scene.js?v=20261009f"></script>
+<script>
+(function () {
+  if (document.getElementById('webgl')) return;
+  var hide = function () { var p = document.getElementById('preloader'); if (p) p.classList.add('done'); };
+  setTimeout(hide, 1400);
+  addEventListener('load', function () { setTimeout(hide, 250); });
+})();
+</script>
+<script src="js/ui.js?v=20261001h"></script>
+<script>
+/* Image self-heal — if a request fails (dev-server restart, transient network
+   error, stale cache) the image retries instead of staying stuck on alt text. */
+(function () {
+  function heal(img) {
+    var n = +(img.dataset.healed || 0);
+    if (n >= 3 || !img.getAttribute('src')) return;
+    img.dataset.healed = n + 1;
+    setTimeout(function () {
+      var u = new URL(img.currentSrc || img.src, location.href);
+      u.searchParams.set('r', Date.now() + '-' + n);
+      img.src = u.href;
+    }, 700 * (n + 1));
+  }
+  function watch(img) {
+    if (img.dataset.watched) return;
+    img.dataset.watched = '1';
+    img.addEventListener('error', function () { heal(img); });
+    // already failed before this script was parsed
+    if (img.complete && img.naturalWidth === 0) heal(img);
+  }
+  document.querySelectorAll('img').forEach(watch);
+  if (window.MutationObserver) {
+    new MutationObserver(function (muts) {
+      muts.forEach(function (m) {
+        m.addedNodes.forEach(function (n) {
+          if (!n || n.nodeType !== 1) return;
+          if (n.tagName === 'IMG') watch(n);
+          else if (n.querySelectorAll) n.querySelectorAll('img').forEach(watch);
+        });
+      });
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  }
+})();
+</script>
+<style>
+/* Manufacturing units — mirrors senvion.in/about-manufacturing/ */
+.mfg-intro{max-width:820px;margin-bottom:34px}
+.mfg-intro h3{font-size:clamp(1.5rem,3vw,2.1rem);color:var(--blue);margin-bottom:14px}
+.mfg-intro p{color:var(--mut);line-height:1.75}
+.mfg-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:52px}
+.mfg-gallery .media{margin:0;border:0;border-radius:14px;aspect-ratio:8/5;overflow:hidden}
+.mfg-gallery img{width:100%;height:100%;object-fit:cover;display:block}
+.mfg-unit{display:grid;grid-template-columns:1.05fr 1fr;gap:44px;align-items:center;padding:44px 0;border-top:1px solid var(--line)}
+.mfg-unit:first-of-type{border-top:0;padding-top:0}
+.mfg-unit.rev .mfg-media{order:2}
+.mfg-unit.rev .mfg-copy{order:1}
+.mfg-media{margin:0;border:0;border-radius:16px;aspect-ratio:3/2;overflow:hidden;position:relative}
+.mfg-media img{width:100%;height:100%;object-fit:cover;display:block}
+.mfg-media .media-tag{position:absolute;left:14px;bottom:14px;z-index:2;background:rgba(36,64,136,.92);color:#fff;font-size:.66rem;letter-spacing:.14em;padding:7px 13px;border-radius:99px}
+.mfg-copy h2{font-size:clamp(1.6rem,3vw,2.3rem);color:var(--blue);margin:8px 0 16px}
+.mfg-copy p{color:var(--mut);line-height:1.8;margin-bottom:14px}
+.mfg-more summary{list-style:none;cursor:pointer;display:inline-block}
+.mfg-more summary::-webkit-details-marker{display:none}
+.mfg-more[open] summary{background:var(--blue);color:#fff}
+.mfg-body{padding-top:14px;border-left:3px solid var(--green);padding-left:18px;margin-top:14px;animation:mfgIn .3s ease}
+@keyframes mfgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(max-width:900px){
+  .mfg-gallery{grid-template-columns:1fr 1fr}
+  .mfg-unit,.mfg-unit.rev{grid-template-columns:1fr;gap:22px}
+  .mfg-unit.rev .mfg-media{order:0}
+  .mfg-unit.rev .mfg-copy{order:1}
+}
+</style>
+</body>
+</html>

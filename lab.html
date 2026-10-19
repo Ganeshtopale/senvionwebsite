@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>3D Turbine Lab — Explode, Paint &amp; Stress the Machine | Senvion India</title>
+<meta name="description" content="Interactive 3D wind-turbine lab. Pick a platform, raise the exploded view and read the live engineering figures — tip speed, thrust, capacity factor, annual energy and homes powered." />
+<link rel="icon" href="assets/favicon.png" type="image/png" />
+<link rel="apple-touch-icon" href="assets/logo-color.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20261014c" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body class="" data-page="lab">
+
+<div id="preloader">
+  <div class="loader-turbine">
+    <div class="loader-blades"><span></span><span></span><span></span></div>
+    <div class="loader-tower"></div>
+  </div>
+  <p>WE ARE WINDSHAPERS&trade;&hellip;</p>
+  <div class="loader-bar"><div id="loaderFill"></div></div>
+</div>
+
+
+<canvas id="webgl"></canvas>
+<div id="photoBg"></div>
+<div id="vignette"></div>
+<div id="grain"></div>
+<div id="scrollProgress"></div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-badge">
+        <img class="logo-img" src="image/REtech-and-Senvion-Logo.png" alt="REtechnology | Senvion" width="250" height="52" />
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Products</a>
+      <a class="is-active" href="#lab">3D Lab</a>
+      <a href="services.html">Services</a>
+      <a href="manufacturing.html">Manufacturing</a>
+      <a href="sustainability.html">Sustainability</a>
+      <a href="news.html">News</a>
+      <a href="connect.html" class="btn btn-sm btn-glow">Connect</a>
+    </div>
+    <button id="menuBtn" aria-label="menu"><span></span><span></span><span></span></button>
+  </div>
+  <div id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="products.html">Products</a>
+    <a class="is-active" href="#lab">3D Lab</a>
+    <a href="services.html">Services</a>
+    <a href="manufacturing.html">Manufacturing</a>
+    <a href="about.html#history">History</a>
+    <a href="sustainability.html">Sustainability</a>
+    <a href="news.html">News</a>
+    <a href="connect.html">Connect</a>
+  </div>
+</nav>
+
+<!-- <div id="hud">
+  <div class="hud-item"><label>WIND</label><strong><span id="hudWind">8.5</span> m/s</strong></div>
+  <div class="hud-item"><label>ROTOR</label><strong><span id="hudRpm">11.2</span> rpm</strong></div>
+  <div class="hud-item power"><label>OUTPUT</label><strong><span id="hudPower">2.10</span> MW</strong></div>
+  <div class="hud-live"><span class="pulse"></span>LIVE · <span id="hudModel">2.7M130</span></div>
+</div> -->
+
+<div id="partCard">
+  <button id="partClose">✕</button>
+  <h4 id="partTitle">Nacelle</h4>
+  <p id="partDesc"></p>
+  <div id="partSpecs"></div>
+</div>
+
+<main>
+
+<!--<section id="lab" class="panel lab-split">
+
+  <div class="lab-left">
+    <div class="pcard glass">
+      <span class="pill" id="lpSeries">2XM series</span>
+      <h2 id="lpName">2.7M130</h2>
+      <p id="lpBlurb"></p>
+      <div class="specgrid" id="lpSpecs"></div>
+      <span class="kicker lp-kicker">REFERENCE CASE &middot; 8.2 M/S</span>
+      <div class="specgrid calcgrid" id="lpCalc"></div>
+      <div class="modelchips" data-chips></div>
+      <div class="lp-cta">
+        <a class="btn btn-sm btn-ghost" href="products.html">&larr; All turbines</a>
+        <a class="btn btn-sm btn-glow" href="lab.html">Full-screen 3D Lab &rarr;</a>
+      </div>
+      <p class="mini">Calculated from this platform's own rating, rotor and swept area &middot; cut-in 3 m/s, rated 12 m/s, cut-out 20 m/s, CF 37.9 %, 1,200 kWh per household per year.</p>
+    </div>
+  </div>
+
+
+  <div class="lab-right">
+    <div class="sec-head">
+    <span class="kicker">03 — 3D TURBINE LAB</span>
+    <h2>Dissect the <span class="grad">machine.</span></h2>
+    <p>Everything below drives the <b>same live 3D scene</b> — modelled on the Senvion 2XM, 3XM and 4XM platforms. Paint it, explode it, stress it.</p>
+  </div>
+
+  
+  <div class="lab-control">
+    <div class="hero-control-card glass">
+      <div class="card-head">
+        <h3>⚡ Live Turbine Control</h3>
+        <button id="autoRotateBtn" class="chip active">Auto-orbit ON</button>
+      </div>
+      <div class="platform-bar glass">
+        <span class="kicker">PLATFORM</span>
+      <div class="modelchips" data-chips></div>
+        <p class="mini">Every figure below is recalculated from the selected machine's own rating, rotor and swept area.</p>
+  </div>
+      <div class="ctrl">
+        <div class="ctrl-row"><label>🌬️ Wind speed</label><output id="windOut">8.5 m/s</output></div>
+        <input id="windSlider" type="range" min="0" max="25" step="0.1" value="8.5">
+        <div class="wind-scale"><span>cut-in 3.0</span><span>rated 12.0</span><span>cut-out 20.0</span></div>
+      </div>
+      <div class="ctrl-2col">
+        <button class="chip" data-focus="overview">◈ Overview</button>
+        <button class="chip" data-focus="blades">✦ Blades</button>
+        <button class="chip" data-focus="nacelle">⬣ Nacelle</button>
+        <button class="chip" data-focus="tower">⬒ Tower</button>
+      </div>
+      <div class="ctrl">
+        <div class="ctrl-row"><label>💥 Exploded view</label><output id="explodeOut">0%</output></div>
+        <input id="explodeSlider" type="range" min="0" max="100" value="0">
+        <p class="hint">0% = normal. Slide up and the <b>nacelle housing lifts off</b> and the <b>hub nose swings open</b> to reveal the planetary gearbox, DFIG generator, transformer, control cabinets and the pitch drives.</p>
+      </div>
+      <div class="ctrl-row btns">
+        <button id="dayNightBtn" class="btn btn-ghost btn-sm">🌙 Night mode</button>
+        <button id="spinBurstBtn" class="btn btn-ghost btn-sm">💨 Gust!</button>
+      </div>
+      <p class="hint">💡 Tip: <b>click any part</b> of the 3D turbine — blade, hub, nacelle, gearbox, generator, tower — for real engineering specs from the Senvion 2XM / 3XM / 4XM platforms.</p>
+      <div class="powerbar"><div id="powerFill"></div></div>
+      <div class="power-label"><span>Live output (2.7M130)</span><strong id="powerLabel">— MW</strong></div>
+    </div>
+  </div>
+  <div class="lab-grid">
+    <div class="lab-card glass">
+      <h3>🎨 Finish studio</h3>
+      <div class="swatches">
+        <button class="sw active" data-c1="#f4f7fa" data-c2="#b9c3cf" style="--s:#f4f7fa" aria-label="arctic white"></button>
+        <button class="sw" data-c1="#0b1220" data-c2="#5eead4" style="--s:#0b1220" aria-label="midnight"></button>
+        <button class="sw" data-c1="#e11d48" data-c2="#ffffff" style="--s:#e11d48" aria-label="senvion red"></button>
+        <button class="sw" data-c1="#f59e0b" data-c2="#111827" style="--s:#f59e0b" aria-label="desert amber"></button>
+        <button class="sw" data-c1="#2563eb" data-c2="#bfdbfe" style="--s:#2563eb" aria-label="monsoon blue"></button>
+        <button class="sw" data-c1="#16a34a" data-c2="#dcfce7" style="--s:#16a34a" aria-label="farm green"></button>
+      </div>
+      <div class="ctrl"><div class="ctrl-row"><label>Blade pitch (DC-motor pitch)</label><output id="pitchOut">2°</output></div>
+      <input id="pitchSlider" type="range" min="0" max="30" value="2"></div>
+      <div class="ctrl"><div class="ctrl-row"><label>Yaw (nacelle)</label><output id="yawOut">0°</output></div>
+      <input id="yawSlider" type="range" min="-60" max="60" value="0"></div>
+    </div>
+    <div class="lab-card glass">
+      <h3>🌦️ Environment</h3>
+      <div class="env-btns">
+        <button class="chip env active" data-env="day">☀️ Day</button>
+        <button class="chip env" data-env="sunset">🌇 Sunset</button>
+        <button class="chip env" data-env="night">🌌 Night</button>
+        <button class="chip env" data-env="storm">⛈️ Monsoon</button>
+      </div>
+      <div class="ctrl"><div class="ctrl-row"><label>Wind particles</label><output id="partOut">70%</output></div>
+      <input id="partSlider" type="range" min="0" max="100" value="70"></div>
+      <label class="toggle"><input type="checkbox" id="birdsToggle" checked><span></span> Birds &amp; clouds</label>
+      <label class="toggle"><input type="checkbox" id="farmToggle" checked><span></span> Background wind farm</label>
+    </div>
+    <div class="lab-card glass">
+      <h3>📐 Engineering readout</h3>
+      <div class="readout">
+        <div><span>Live output</span><b id="rOut">—</b></div>
+        <div><span>Swept area</span><b id="rSwept">—</b></div>
+        <div><span>Tip speed</span><b id="rTip">—</b></div>
+        <div><span>Tip-speed ratio</span><b id="rTsr">—</b></div>
+        <div><span>Thrust</span><b id="rThrust">—</b></div>
+        <div><span>Capacity factor</span><b id="rCf">—</b></div>
+        <div><span>Annual energy</span><b id="rAep">—</b></div>
+        <div><span>Homes powered</span><b id="rHomes">—</b></div>
+      </div>
+      <canvas id="powerChart" width="300" height="110"></canvas>
+      <p class="mini">Power curve for <b id="chartModel">2.7M130</b> — live dot = current wind. Cut-in 3 m/s, rated 12 m/s, cut-out 20 m/s.</p>
+    </div>
+  </div>
+</section> -->
+
+<section id="lab" class="panel lab-split">
+<style>
+  #lab.lab-split{ 
+    display:block !important; 
+    width:100% !important; max-width:100% !important;
+    margin:0 !important;
+    padding:110px 30px 40px !important; 
+    box-sizing:border-box; overflow:visible !important;
+    background:transparent !important;
+  }
+  #lab .lab-top-heading{
+    width:100%; max-width:840px; margin:0 0 24px 0 !important;
+    pointer-events:auto;
+  }
+  #lab .lab-top-heading .kicker{
+    color:var(--blue); font-size:.74rem; letter-spacing:.18em; font-weight:700; display:block; margin-bottom:8px;
+  }
+  #lab .lab-top-heading h2{
+    font-family:'Space Grotesk',sans-serif; font-size:2.4rem; color:#252525; line-height:1.1; margin:0 0 10px;
+  }
+  #lab .lab-top-heading p{color:var(--mut); max-width:720px; font-size:1.02rem; line-height:1.5; margin:0}
+
+  /* Default Standard Mode: cards on left side, turbine on right */
+  #lab .lab-columns{
+    display:flex !important; flex-direction:row !important;
+    justify-content:flex-start !important;
+    gap:24px !important;
+    align-items:flex-start !important;
+    width:100% !important; max-width:100% !important; margin:0 !important;
+    box-sizing:border-box !important;
+    transition:all .35s ease;
+  }
+  #lab .lab-left-col{
+    width:380px !important; min-width:380px !important; max-width:380px !important;
+    display:flex; flex-direction:column; gap:20px;
+    flex-shrink:0;
+  }
+  #lab .lab-mid-col, #lab .lab-right-col{
+    width:430px !important; min-width:430px !important; max-width:430px !important;
+    display:flex; flex-direction:column; gap:20px;
+    flex-shrink:0; position:sticky; top:90px;
+  }
+
+  /* Full-Screen 3D Mode: Turbine centered, cards on far left and far right corners */
+  body.lab-fullscreen #lab .lab-columns{
+    justify-content:space-between !important;
+    pointer-events:none;
+  }
+  body.lab-fullscreen #lab .lab-left-col,
+  body.lab-fullscreen #lab .lab-mid-col,
+  body.lab-fullscreen #lab .lab-right-col{
+    pointer-events:auto;
+  }
+
+  #lab .pcard.glass, #lab .lab-card.glass, #lab .hero-control-card.glass, #lab .platform-bar.glass{
+    width:100% !important; box-sizing:border-box;
+    background:rgba(255,255,255,.94) !important; 
+    border:1px solid rgba(11,33,116,.14);
+    border-radius:20px; padding:20px;
+    box-shadow:0 12px 36px rgba(11,33,116,.08);
+    backdrop-filter:blur(14px);
+  }
+  #lab #lpName{font-size:2rem !important; color:var(--blue); line-height:1.1; word-break:normal; white-space:normal}
+  #lab #lpBlurb, #lab .mini, #lab p{white-space:normal !important; word-break:normal !important; line-height:1.6 !important}
+  #lab .specgrid{display:grid !important; grid-template-columns:1fr 1fr !important; gap:10px !important}
+  #lab .specgrid > div{padding:10px; border-radius:12px; border:1px solid rgba(11,33,116,.1); background:#f8f9ff}
+  #lab .pill, #lab .chip{background:#f1f3f9; color:#0B2174; border:1px solid rgba(11,33,116,.14)}
+  #lab .chip.active, #lab .btn-glow{background:#0B2174 !important; color:#fff !important}
+  #lab .swatches{display:flex; gap:8px; flex-wrap:wrap}
+  #lab .sw{width:32px; height:32px; border-radius:50%; border:2px solid #fff; box-shadow:0 0 0 1px rgba(11,33,116,.15)}
+
+  @media(max-width:1100px){
+    #lab .lab-columns{flex-direction:column !important; justify-content:flex-start !important; gap:24px !important}
+    #lab .lab-left-col, #lab .lab-mid-col, #lab .lab-right-col{width:100% !important; min-width:100% !important; max-width:100% !important; position:static !important}
+  }
+</style>
+
+  <div class="lab-top-heading">
+    <span class="kicker">03 — 3D TURBINE LAB</span>
+    <h2>Dissect the <span class="grad">machine.</span></h2>
+    <p>Everything below drives the <b>same live 3D scene</b> — modelled on the Senvion 2XM, 3XM and 4XM platforms. Paint it, explode it, stress it.</p>
+  </div>
+
+  <div class="lab-columns">
+    <!-- LEFT COLUMN - 2XM SPECS + FINISH + ENVIRONMENT -->
+    <div class="lab-left-col">
+      <div class="pcard glass">
+        <span class="pill" id="lpSeries">2XM series</span>
+        <h2 id="lpName">2.3M120</h2>
+        <p id="lpBlurb">The compact 2XM workhorse for medium-wind sites. 58.7 m blades on a 120 m rotor, rated for hot-climate operation up to 50 °C.</p>
+        <div class="specgrid" id="lpSpecs"></div>
+        <span class="kicker lp-kicker">REFERENCE CASE · 8.2 M/S</span>
+        <div class="specgrid calcgrid" id="lpCalc"></div>
+        <div class="modelchips" data-chips></div>
+        <div class="lp-cta" style="display:flex;gap:10px;margin-top:10px">
+          <a class="btn btn-sm btn-ghost" href="products.html">← All turbines</a>
+          <a class="btn btn-sm btn-glow" href="javascript:void(0)" id="fullLabBtn">Full-screen 3D Lab →</a>
+        </div>
+        <p class="mini">Calculated from this platform's own rating, rotor and swept area · cut-in 3 m/s, rated 12 m/s, cut-out 20 m/s, CF 37.9 %, 1,200 kWh per household per year.</p>
+      </div>
+
+      <div class="lab-card glass">
+        <h3>🎨 Finish studio</h3>
+        <div class="swatches">
+          <button class="sw active" data-c1="#f4f7fa" data-c2="#b9c3cf" style="--s:#f4f7fa"></button>
+          <button class="sw" data-c1="#0b1220" data-c2="#5eead4" style="--s:#0b1220"></button>
+          <button class="sw" data-c1="#e11d48" data-c2="#ffffff" style="--s:#e11d48"></button>
+          <button class="sw" data-c1="#f59e0b" data-c2="#111827" style="--s:#f59e0b"></button>
+          <button class="sw" data-c1="#2563eb" data-c2="#bfdbfe" style="--s:#2563eb"></button>
+          <button class="sw" data-c1="#16a34a" data-c2="#dcfce7" style="--s:#16a34a"></button>
+        </div>
+        <div class="ctrl"><div class="ctrl-row"><label>Blade pitch (DC-motor pitch)</label><output id="pitchOut">2°</output></div><input id="pitchSlider" type="range" min="0" max="30" value="2"></div>
+        <div class="ctrl"><div class="ctrl-row"><label>Yaw (nacelle)</label><output id="yawOut">0°</output></div><input id="yawSlider" type="range" min="-60" max="60" value="0"></div>
+      </div>
+
+      <div class="lab-card glass">
+        <h3>🌦 Environment</h3>
+        <div class="env-btns" style="display:flex;flex-wrap:wrap;gap:8px">
+          <button class="chip env active" data-env="day">☀ Day</button>
+          <button class="chip env" data-env="sunset">🌇 Sunset</button>
+          <button class="chip env" data-env="night">🌌 Night</button>
+          <button class="chip env" data-env="storm">⛈ Monsoon</button>
+        </div>
+        <div class="ctrl"><div class="ctrl-row"><label>Wind particles</label><output id="partOut">70%</output></div><input id="partSlider" type="range" min="0" max="100" value="70"></div>
+        <label class="toggle"><input type="checkbox" id="birdsToggle" checked><span></span> Birds & clouds</label>
+        <label class="toggle"><input type="checkbox" id="farmToggle" checked><span></span> Background wind farm</label>
+      </div>
+    </div>
+
+    <!-- CONTROLS COLUMN (Beside specs in standard view, right corner in full-screen) -->
+    <div class="lab-mid-col lab-right-col">
+      <div class="hero-control-card glass">
+        <div class="card-head" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <h3>⚡ Live Turbine Control</h3>
+          <button id="autoRotateBtn" class="chip active">Auto-orbit ON</button>
+        </div>
+        <div class="platform-bar glass" style="padding:12px;border-radius:12px;background:#f8f9ff;margin-bottom:12px">
+          <span class="kicker">PLATFORM</span>
+          <div class="modelchips" data-chips></div>
+          <p class="mini">Every figure below is recalculated from the selected machine's own rating, rotor and swept area.</p>
+        </div>
+        <div class="ctrl"><div class="ctrl-row"><label>🌬 Wind speed</label><output id="windOut">8.5 m/s</output></div><input id="windSlider" type="range" min="0" max="25" step="0.1" value="8.5"></div>
+        <div class="ctrl-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0"><button class="chip" data-focus="overview">◈ Overview</button><button class="chip" data-focus="blades">✦ Blades</button><button class="chip" data-focus="nacelle">⬣ Nacelle</button><button class="chip" data-focus="tower">⬒ Tower</button></div>
+        <div class="ctrl"><div class="ctrl-row"><label>💥 Exploded view</label><output id="explodeOut">0%</output></div><input id="explodeSlider" type="range" min="0" max="100" value="0"><p class="hint">0% = normal. Slide up and the <b>nacelle housing lifts off</b> and the <b>hub nose swings open</b>.</p></div>
+        <div class="ctrl-row btns" style="display:flex;gap:8px;margin:10px 0"><button id="dayNightBtn" class="btn btn-ghost btn-sm">🌙 Night mode</button><button id="spinBurstBtn" class="btn btn-ghost btn-sm">💨 Gust!</button></div>
+        <div class="powerbar" style="height:6px;background:rgba(11,33,116,.12);border-radius:99px;margin-top:12px"><div id="powerFill" style="height:100%;width:60%;background:#0B2174;border-radius:99px"></div></div>
+        <div class="power-label" style="display:flex;justify-content:space-between;margin-top:6px;font-size:.78rem"><span>Live output (2.3M120)</span><strong id="powerLabel">— MW</strong></div>
+      </div>
+
+      <div class="lab-card glass">
+        <h3>📐 Engineering readout</h3>
+        <div class="readout"><div><span>Live output</span><b id="rOut">—</b></div><div><span>Swept area</span><b id="rSwept">—</b></div><div><span>Tip speed</span><b id="rTip">—</b></div><div><span>Tip-speed ratio</span><b id="rTsr">—</b></div><div><span>Thrust</span><b id="rThrust">—</b></div><div><span>Capacity factor</span><b id="rCf">—</b></div><div><span>Annual energy</span><b id="rAep">—</b></div><div><span>Homes powered</span><b id="rHomes">—</b></div></div>
+        <canvas id="powerChart" width="300" height="110"></canvas>
+        <p class="mini">Power curve for <b id="chartModel">2.7M130</b> — live dot = current wind.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="howitworks" class="panel">
+  <div class="sec-head photo" style="--photo:url('assets/banner-02.jpg')">
+    <span class="kicker">HOW THE MACHINE WORKS &middot; 2XM / 3XM / 4XM</span>
+    <h2>From invisible wind to <span class="grad">usable power.</span></h2>
+    <p>At Senvion we are captivated by wind energy&rsquo;s limitless potential and inspired to create a brighter future for future generations by utilising this invisible power, wind. Six systems turn moving air into grid-compliant electricity &mdash; click any of them in the model above, or raise the exploded view, to read the engineering data behind each one.</p>
+  </div>
+  <div class="tech-grid">
+    <div class="tech glass"><div class="tico">&#127744;</div><h3>Rotor &amp; blades</h3><p>Three GFRP blades &mdash; 58.7 m, 63.7 m or 78.5 m &mdash; sweep 11,310 m&sup2; up to 20,106 m&sup2;. Triple-row roller blade bearings cut friction at the root while the electrical pitch system feathers each blade to hold rated power or stop the machine.</p></div>
+    <div class="tech glass"><div class="tico">&#9881;</div><h3>Drivetrain</h3><p>Main bearing, forged main shaft and a two-stage gearbox step roughly 10 rpm at the hub up to generator speed, with a high-speed shaft coupling and disc brake in between.</p></div>
+    <div class="tech glass"><div class="tico">&#9889;</div><h3>Generator &amp; converter</h3><p>DFIG with a frequency converter and DC link on the 2XM and 3XM machines, partial-converter DFIG on the 4XM &mdash; separate P/Q control, wide speed range, full Indian grid-code compliance.</p></div>
+    <div class="tech glass"><div class="tico">&#129517;</div><h3>Yaw &amp; pitch</h3><p>DC-motor pitch drives feather every blade independently while the yaw system keeps the nacelle square to the wind. Both are commanded by the condition-monitoring controller.</p></div>
+    <div class="tech glass"><div class="tico">&#128330;</div><h3>Tower &amp; foundation</h3><p>Tubular steel towers from 117 m to 140 m, plus a 170 m timber or concrete-hybrid option on the 4.2M160 &mdash; hub height tuned to the site&rsquo;s wind shear.</p></div>
+    <div class="tech glass"><div class="tico">&#128225;</div><h3>Control &amp; FleetPro&reg;</h3><p>On-board SCADA streams every turbine to FleetPro&reg; &mdash; state-of-the-art analytics, performance diagnostics and remote diagnostics that keep availability high across the fleet.</p></div>
+  </div>
+</section>
+
+<section id="techlead" class="panel">
+  <div class="sec-head">
+    <span class="kicker">IMPACT &middot; CUSTOMISED SOLUTIONS FOR INDIVIDUAL SUCCESS</span>
+    <h2>Technology leadership, <span class="grad">high performance.</span></h2>
+    <p>Deliver world class technology with German heritage &mdash; and back it with asset management, performance diagnostic and state-of-the-art analytics.</p>
+  </div>
+  <div class="tech-grid">
+    <div class="tech glass"><div class="tico">&#127465;&#127466;</div><h3>German heritage</h3><p>Deliver world class technology with German heritage &mdash; platforms engineered in Germany and proven on Indian sites.</p></div>
+    <div class="tech glass"><div class="tico">&#127981;</div><h3>Robust local manufacturing</h3><p>Nacelle and hub plant at Baramati, blades and towers from Indian plants, with a high level of localisation across the supply chain.</p></div>
+    <div class="tech glass"><div class="tico">&#128200;</div><h3>High performance</h3><p>Asset management, performance diagnostic and state-of-the-art analytics keep every machine producing what the yield report promised.</p></div>
+    <div class="tech glass"><div class="tico">&#128260;</div><h3>Continuous improvement</h3><p>Customer feedback loops and the local R&amp;O setup feed every service campaign straight back into the next turbine.</p></div>
+    <div class="tech glass"><div class="tico">&#128161;</div><h3>Technology leadership</h3><p>2XM, 3XM and 4XM platforms &mdash; the same machines you are flying around in the lab above.</p></div>
+    <div class="tech glass"><div class="tico">&#127758;</div><h3>High level of localisation</h3><p>Off-the-shelf parts from top suppliers, local supply chain integration and a local service organisation in every state we operate in.</p></div>
+  </div>
+</section>
+
+<section id="labservices" class="panel">
+  <div class="sec-head photo" style="--photo:url('assets/banner-01.jpg')">
+    <span class="kicker">OUR SERVICES &middot; HARNESSING THE POWER OF FLEXIBILITY</span>
+    <h2>Proven in-house O&amp;M, <span class="grad">prioritising availability.</span></h2>
+    <p>Senvion India has a proven in-house Operations and Maintenance (O&amp;M) team. Our services are designed to prioritise performance and machine availability, ensuring that you get the most out of your wind energy investment.</p>
+  </div>
+  <div class="tech-grid">
+    <div class="tech glass"><div class="tico">&#128295;</div><h3>Operation and Maintenance (O&amp;M)</h3><p>In-house crews, guaranteed response times, scheduled and unscheduled maintenance, spares and warranty management across 47 sites in 5 states.</p></div>
+    <div class="tech glass"><div class="tico">&#128202;</div><h3>FleetPro&reg;</h3><p>Remote monitoring, condition-based alerts and performance diagnostics for the whole fleet &mdash; one dashboard, every turbine, around the clock.</p></div>
+  </div>
+  <p class="mini">1,600 MW under service &middot; 629 turbines operational &middot; 47 sites across 5 states in India &middot; 300 service technicians. Source: senvion.in</p>
+  </div>
+</section>
+<footer>
+  <div class="foot-inner">
+    <div class="foot-col">
+      <img class="foot-logo" src="image/REtech-and-Senvion-Logo-footer.png" alt="REtechnology | Senvion" width="250" height="52" />
+      <p class="foot-claim">Let's drive the future of clean energy, together!</p>
+      <p>📞 +91 22-6908 0000 · ✉️ info@senvion.in</p>
+    </div>
+    <div class="foot-col">
+      <h4>PRODUCTS</h4>
+      <a href="products.html">2.3M120</a>
+      <a href="products.html">2.7M130</a>
+      <a href="products.html">3.1M130</a>
+      <a href="products.html">4.2M160</a>
+    </div>
+    <div class="foot-col">
+      <h4>SERVICES</h4>
+      <a href="services.html">Operations &amp; Maintenance</a>
+      <a href="services.html">FleetPro®</a>
+      <a href="manufacturing.html">Manufacturing Units</a>
+    </div>
+    <div class="foot-col">
+      <h4>COMPANY</h4>
+      <a href="about.html">About</a>
+      <a href="about.html#history">History</a>
+      <a href="news.html">News</a>
+      <a href="connect.html">Contact</a>
+      <a href="about.html#career">Career</a>
+    </div>
+    <div class="foot-col">
+      <h4>OFFICES</h4>
+      <p><b>INDIA</b><br>501-Wing B, Delphi Hiranandani Business Park, Powai, Mumbai – 400076, Maharashtra</p>
+      <p><b>GERMANY</b><br>Hamburger Straße 11, 22083, Hamburg</p>
+    </div>
+  </div>
+
+  <details class="fraud">
+    <summary>⚠️ Recruitment Fraud Alert</summary>
+    <div>
+      <p>It has come to our notice that certain persons are falsely claiming association with Senvion through fake job postings, spoofed emails and other fraudulent means with the intent to mislead job seekers and solicit payments. Please note:</p>
+      <ul>
+        <li>Senvion never demands payment, deposits, or fees at any stage of the recruitment process.</li>
+        <li>All genuine correspondence will be from official Senvion domains, not free email services such as Gmail, Yahoo, Hotmail or Rediffmail.</li>
+        <li>Senvion has not authorised any consultancy or individual to collect money, issue job offers, or provide internships on its behalf.</li>
+        <li>Senvion accepts no responsibility for any loss or damage suffered by individuals dealing with unauthorised parties. Such dealings are at the individual's own risk.</li>
+        <li>Senvion reserves the right to pursue civil and criminal remedies under applicable Indian laws against any misuse of its name, trademarks or recruitment process.</li>
+        <li>We urge candidates to remain vigilant and verify any recruitment-related communication directly through Senvion's official website or HR contacts.</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="foot-bar">
+    <p>© 2026 Senvion India · All Rights Reserved</p>
+    <div class="foot-links">
+      <a href="connect.html">Policies &amp; Disclosures</a>
+      <a href="connect.html">Privacy Policy</a>
+      <a href="connect.html">Use of terms</a>
+      <a href="connect.html">Code of Conduct</a>
+    </div>
+  </div>
+
+  <p class="disclaimer"><b>Disclaimer:</b> RETechnologies GmbH &amp; Senvion Wind Technology Pvt. Ltd. together with all its affiliates in India including Senvion India Pvt. Ltd. and Senvion India Wind Power Services LLP (collectively “Senvion India”) have rights over trademark SENVION in India. Outside India, this trademark belongs to a third party which is not an affiliate of Senvion India. Content sourced from senvion.in · Interactive 3D concept rebuild.</p>
+</footer>
+
+</main>
+
+<script src="js/data.js?v=20261001h"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="module" src="js/scene.js?v=20261009f"></script>
+<script src="js/labpanel.js?v=20261001h"></script>
+<script>
+(function () {
+  if (document.getElementById('webgl')) return;
+  var hide = function () { var p = document.getElementById('preloader'); if (p) p.classList.add('done'); };
+  setTimeout(hide, 1400);
+  addEventListener('load', function () { setTimeout(hide, 250); });
+})();
+</script>
+<script src="js/ui.js?v=20261001h"></script>
+<script>
+/* Full-screen 3D Lab toggle handler */
+(function() {
+  var fullBtn = document.getElementById('fullLabBtn');
+  function updateQueryParam(key, val) {
+    try {
+      var u = new URL(window.location.href);
+      if (val) u.searchParams.set(key, val);
+      else u.searchParams.delete(key);
+      window.history.replaceState(null, '', u.href);
+    } catch(e) {}
+  }
+
+  function setMode(isFull) {
+    if (isFull) {
+      document.body.classList.add('lab-fullscreen');
+      if (fullBtn) fullBtn.textContent = '← Standard View';
+      updateQueryParam('view', 'fullscreen');
+    } else {
+      document.body.classList.remove('lab-fullscreen');
+      if (fullBtn) fullBtn.textContent = 'Full-screen 3D Lab →';
+      updateQueryParam('view', null);
+    }
+    // Refresh 3D scene camera & viewport dimensions
+    window.dispatchEvent(new Event('resize'));
+  }
+
+  if (fullBtn) {
+    fullBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      var isCurrentlyFull = document.body.classList.contains('lab-fullscreen');
+      setMode(!isCurrentlyFull);
+    });
+  }
+
+  // Load in fullscreen mode if specified in URL, otherwise default to split/standard view
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('view') === 'fullscreen' || window.location.hash === '#fullscreen') {
+    setMode(true);
+  } else {
+    setMode(false);
+  }
+})();
+</script>
+<script>
+
+(function () {
+  function heal(img) {
+    var n = +(img.dataset.healed || 0);
+    if (n >= 3 || !img.getAttribute('src')) return;
+    img.dataset.healed = n + 1;
+    setTimeout(function () {
+      var u = new URL(img.currentSrc || img.src, location.href);
+      u.searchParams.set('r', Date.now() + '-' + n);
+      img.src = u.href;
+    }, 700 * (n + 1));
+  }
+  function watch(img) {
+    if (img.dataset.watched) return;
+    img.dataset.watched = '1';
+    img.addEventListener('error', function () { heal(img); });
+    if (img.complete && img.naturalWidth === 0) heal(img);
+  }
+  document.querySelectorAll('img').forEach(watch);
+  if (window.MutationObserver) {
+    new MutationObserver(function (muts) {
+      muts.forEach(function (m) {
+        m.addedNodes.forEach(function (n) {
+          if (!n || n.nodeType !== 1) return;
+          if (n.tagName === 'IMG') watch(n);
+          else if (n.querySelectorAll) n.querySelectorAll('img').forEach(watch);
+        });
+      });
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Connect — Schedule an Appointment | Senvion India</title>
+<meta name="description" content="Talk to Senvion India: headquarters in Mumbai, corporate office in Hamburg, R&amp;D in Bengaluru and manufacturing at Baramati and Trichy. Five offices, one map, one form." />
+<link rel="icon" href="assets/favicon.png" type="image/png" />
+<link rel="apple-touch-icon" href="assets/logo-color.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20261014c" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body class="bgonly" data-bg="1" data-page="connect">
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="loader-turbine">
+    <div class="loader-blades"><span></span><span></span><span></span></div>
+    <div class="loader-tower"></div>
+  </div>
+  <p>WE ARE WINDSHAPERS&trade;&hellip;</p>
+  <div class="loader-bar"><div id="loaderFill"></div></div>
+</div>
+
+
+<!-- FIXED 3D CANVAS -->
+<canvas id="webgl"></canvas>
+<div id="photoBg"></div>
+<div id="vignette"></div>
+<div id="grain"></div>
+<div id="scrollProgress"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-badge">
+        <img class="logo-img" src="image/REtech-and-Senvion-Logo.png" alt="REtechnology | Senvion" width="250" height="52" />
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Products</a>
+      <a href="lab.html">3D Lab</a>
+      <a href="services.html">Services</a>
+      <a href="manufacturing.html">Manufacturing</a>
+      <a href="sustainability.html">Sustainability</a>
+      <a href="news.html">News</a>
+      <a href="#contact" class="btn btn-sm btn-glow is-active">Connect</a>
+    </div>
+    <button id="menuBtn" aria-label="menu"><span></span><span></span><span></span></button>
+  </div>
+  <div id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="products.html">Products</a>
+    <a href="lab.html">3D Lab</a>
+    <a href="services.html">Services</a>
+    <a href="manufacturing.html">Manufacturing</a>
+    <a href="about.html#history">History</a>
+    <a href="sustainability.html">Sustainability</a>
+    <a href="news.html">News</a>
+    <a class="is-active" href="#contact">Connect</a>
+  </div>
+</nav>
+<main>
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="panel">
+  <div class="contact-grid">
+    <div>
+      <span class="kicker">12 — CONNECT · SCHEDULE AN APPOINTMENT</span>
+      <h2>Have A Project? <span class="grad">Let's Make Something Great Together!</span></h2>
+      <p class="lead">Tell us your site, wind regime and capacity. Our engineers reply with layout, yield and availability.</p>
+
+      <div class="contact-lines">
+        <div class="icon-line"><img src="assets/icon-phone.png" alt=""><span><b>CALL US</b> · +91 22-6908 0000</span></div>
+        <div class="icon-line"><img src="assets/icon-mail.png" alt=""><span><b>EMAIL US</b> · info@senvion.in</span></div>
+      </div>
+
+      <div class="addr-grid">
+        <div class="addr glass"><span class="kicker"><img class="addr-ico" src="assets/icon-loc-1.png" alt=""> HEADQUARTERS</span><p><b>Senvion Wind Technology Private Limited</b><br>501-Wing B, Delphi Hiranandani Business Park, Powai, Mumbai - 400076, Maharashtra, India</p></div>
+        <div class="addr glass"><span class="kicker"><img class="addr-ico" src="assets/icon-loc-2.png" alt=""> CORPORATE OFFICE</span><p><b>RETechnologies GmbH</b><br>Hamburger Straße 11,<br>22083<br>Hamburg, Germany</p></div>
+        <div class="addr glass"><span class="kicker"><img class="addr-ico" src="assets/icon-loc-1.png" alt=""> R &amp; D</span><p><b>Senvion India Pvt Ltd</b><br>SJR I PARK, Tower- 2, 5th Floor,<br>No 13, 14 &amp; 15, EPIP Zone,<br>Whitefield, Bengaluru – 560066,<br>Karnataka, India</p></div>
+        <div class="addr glass"><span class="kicker"><img class="addr-ico" src="assets/icon-loc-2.png" alt=""> MANUFACTURING</span><p><b>Senvion Wind Technology Private Limited</b><br>Plot no-B15/1 MIDC<br>Baramati – 413 133<br>Maharashtra, India</p></div>
+        <div class="addr glass"><span class="kicker"><img class="addr-ico" src="assets/icon-loc-1.png" alt=""> MANUFACTURING - TRICHY</span><p><b>Senvion Wind Technology Pvt Ltd.</b><br>Unit 7 Boothakudi,<br>Viramalai Road, ILUPPUR<br>Tiruchirappalli, 621316</p></div>
+      </div>
+
+      <div class="map-wrap glass">
+        <div class="map-head">
+          <span class="kicker"><img class="addr-ico" src="assets/icon-loc-2.png" alt=""> HEADQUATERS — MUMBAI · FIND US ON THE MAP</span>
+          <a class="map-link" href="https://www.google.com/maps?q=12.981494908015383,77.72730796596753" target="_blank" rel="noopener">Open in Google Maps →</a>
+        </div>
+        
+          <iframe class="gmap" title="Senvion R&amp;D office — SJR I PARK, Whitefield, Bengaluru" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4677.7744754530995!2d72.90917019999999!3d19.1205044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c7d11a77e59d%3A0x3d03624af26e9b3f!2sSenvion%20Wind%20Technology%20Pvt.%20Limited!5e1!3m2!1sen!2sin!4v1791980424096!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+
+          
+        <p class="mini map-addr"><b>501-Delphi, Wing 'B'</b>, Hiranandani Business Park, Main St, Hiranandani Gardens, Sainath Nagar, Powai, Mumbai, Maharashtra 400076</p>
+      </div>
+    </div>
+
+    <form id="quoteForm" class="glass">
+      <div class="frow"><input required placeholder="Name" id="fName"><input required placeholder="Company" id="fCo"></div>
+      <div class="frow"><input required type="email" placeholder="Work email" id="fMail"><input placeholder="Mean wind (m/s)" type="number" step="0.1" id="fWind"></div>
+      <select id="fModel"><option>2.3M120 — 2.3 MW</option><option selected>2.7M130 — 2.7 MW</option><option>3.1M130 — 3.1 MW</option><option>4.2M160 — 4.2 MW</option></select>
+      <textarea placeholder="Site location, terrain, number of turbines…" rows="3"></textarea>
+      <button class="btn btn-glow" type="submit">Request quote ⚡</button>
+      <p id="formMsg"></p>
+      <p class="mini">By submitting you agree to be contacted by Senvion India regarding your enquiry.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-col">
+      <img class="foot-logo" src="image/REtech-and-Senvion-Logo-footer.png" alt="REtechnology | Senvion" width="250" height="52" />
+      <p class="foot-claim">Let's drive the future of clean energy, together!</p>
+      <p>📞 +91 22-6908 0000 · ✉️ info@senvion.in</p>
+    </div>
+    <div class="foot-col">
+      <h4>PRODUCTS</h4>
+      <a href="products.html">2.3M120</a>
+      <a href="products.html">2.7M130</a>
+      <a href="products.html">3.1M130</a>
+      <a href="products.html">4.2M160</a>
+    </div>
+    <div class="foot-col">
+      <h4>SERVICES</h4>
+      <a href="services.html">Operations &amp; Maintenance</a>
+      <a href="services.html">FleetPro®</a>
+      <a href="manufacturing.html">Manufacturing Units</a>
+    </div>
+    <div class="foot-col">
+      <h4>COMPANY</h4>
+      <a href="about.html">About</a>
+      <a href="about.html#history">History</a>
+      <a href="news.html">News</a>
+      <a href="#contact">Contact</a>
+      <a href="about.html#career">Career</a>
+    </div>
+    <div class="foot-col">
+      <h4>OFFICES</h4>
+      <p><b>INDIA</b><br>501-Wing B, Delphi Hiranandani Business Park, Powai, Mumbai – 400076, Maharashtra</p>
+      <p><b>GERMANY</b><br>Hamburger Straße 11, 22083, Hamburg</p>
+    </div>
+  </div>
+
+  <details class="fraud">
+    <summary>⚠️ Recruitment Fraud Alert</summary>
+    <div>
+      <p>It has come to our notice that certain persons are falsely claiming association with Senvion through fake job postings, spoofed emails and other fraudulent means with the intent to mislead job seekers and solicit payments. Please note:</p>
+      <ul>
+        <li>Senvion never demands payment, deposits, or fees at any stage of the recruitment process.</li>
+        <li>All genuine correspondence will be from official Senvion domains, not free email services such as Gmail, Yahoo, Hotmail or Rediffmail.</li>
+        <li>Senvion has not authorised any consultancy or individual to collect money, issue job offers, or provide internships on its behalf.</li>
+        <li>Senvion accepts no responsibility for any loss or damage suffered by individuals dealing with unauthorised parties. Such dealings are at the individual's own risk.</li>
+        <li>Senvion reserves the right to pursue civil and criminal remedies under applicable Indian laws against any misuse of its name, trademarks or recruitment process.</li>
+        <li>We urge candidates to remain vigilant and verify any recruitment-related communication directly through Senvion's official website or HR contacts.</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="foot-bar">
+    <p>© 2026 Senvion India · All Rights Reserved</p>
+    <div class="foot-links">
+      <a href="#contact">Policies &amp; Disclosures</a>
+      <a href="#contact">Privacy Policy</a>
+      <a href="#contact">Use of terms</a>
+      <a href="#contact">Code of Conduct</a>
+    </div>
+  </div>
+
+  <p class="disclaimer"><b>Disclaimer:</b> RETechnologies GmbH &amp; Senvion Wind Technology Pvt. Ltd. together with all its affiliates in India including Senvion India Pvt. Ltd. and Senvion India Wind Power Services LLP (collectively “Senvion India”) have rights over trademark SENVION in India. Outside India, this trademark belongs to a third party which is not an affiliate of Senvion India. Content sourced from senvion.in · Interactive 3D concept rebuild.</p>
+</footer>
+
+</main>
+
+<script src="js/data.js?v=20261001h"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="module" src="js/scene.js?v=20261009f"></script>
+<script>
+(function () {
+  if (document.getElementById('webgl')) return;
+  var hide = function () { var p = document.getElementById('preloader'); if (p) p.classList.add('done'); };
+  setTimeout(hide, 1400);
+  addEventListener('load', function () { setTimeout(hide, 250); });
+})();
+</script>
+<script src="js/ui.js?v=20261001h"></script>
+<script>
+/* Image self-heal — if a request fails (dev-server restart, transient network
+   error, stale cache) the image retries instead of staying stuck on alt text. */
+(function () {
+  function heal(img) {
+    var n = +(img.dataset.healed || 0);
+    if (n >= 3 || !img.getAttribute('src')) return;
+    img.dataset.healed = n + 1;
+    setTimeout(function () {
+      var u = new URL(img.currentSrc || img.src, location.href);
+      u.searchParams.set('r', Date.now() + '-' + n);
+      img.src = u.href;
+    }, 700 * (n + 1));
+  }
+  function watch(img) {
+    if (img.dataset.watched) return;
+    img.dataset.watched = '1';
+    img.addEventListener('error', function () { heal(img); });
+    // already failed before this script was parsed
+    if (img.complete && img.naturalWidth === 0) heal(img);
+  }
+  document.querySelectorAll('img').forEach(watch);
+  if (window.MutationObserver) {
+    new MutationObserver(function (muts) {
+      muts.forEach(function (m) {
+        m.addedNodes.forEach(function (n) {
+          if (!n || n.nodeType !== 1) return;
+          if (n.tagName === 'IMG') watch(n);
+          else if (n.querySelectorAll) n.querySelectorAll('img').forEach(watch);
+        });
+      });
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>News &amp; Press | Senvion India</title>
+<meta name="description" content="Latest announcements, project commissions and milestones from Senvion India." />
+<link rel="icon" href="assets/favicon.png" type="image/png" />
+<link rel="apple-touch-icon" href="assets/logo-color.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20261014c" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body class="bgonly" data-bg="1" data-page="news">
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="loader-turbine">
+    <div class="loader-blades"><span></span><span></span><span></span></div>
+    <div class="loader-tower"></div>
+  </div>
+  <p>WE ARE WINDSHAPERS&trade;&hellip;</p>
+  <div class="loader-bar"><div id="loaderFill"></div></div>
+</div>
+
+
+<!-- FIXED 3D CANVAS -->
+<canvas id="webgl"></canvas>
+<div id="photoBg"></div>
+<div id="vignette"></div>
+<div id="grain"></div>
+<div id="scrollProgress"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-badge">
+        <img class="logo-img" src="image/REtech-and-Senvion-Logo.png" alt="REtechnology | Senvion" width="250" height="52" />
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Products</a>
+      <a href="lab.html">3D Lab</a>
+      <a href="services.html">Services</a>
+      <a href="manufacturing.html">Manufacturing</a>
+      <a href="sustainability.html">Sustainability</a>
+      <a class="is-active" href="#news">News</a>
+      <a href="connect.html" class="btn btn-sm btn-glow">Connect</a>
+    </div>
+    <button id="menuBtn" aria-label="menu"><span></span><span></span><span></span></button>
+  </div>
+  <div id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="products.html">Products</a>
+    <a href="lab.html">3D Lab</a>
+    <a href="services.html">Services</a>
+    <a href="manufacturing.html">Manufacturing</a>
+    <a href="about.html#history">History</a>
+    <a href="sustainability.html">Sustainability</a>
+    <a class="is-active" href="#news">News</a>
+    <a href="connect.html">Connect</a>
+  </div>
+</nav>
+<main>
+<!-- ============ NEWS ============ -->
+<section id="news" class="panel">
+  <!-- Hero banner — 985x500, same ratio and artwork as senvion.in/news/ -->
+  <div class="news-hero">
+    <img src="https://www.senvion.in/wp-content/uploads/2024/02/news-5.jpg" alt="Senvion wind turbines in India" />
+    <div class="copy">
+      <span class="kicker">08 — NEWSROOM · WIND ENERGY NEWS &amp; INSIGHTS</span>
+      <h1>STAY UP-TO-DATE WITH <span class="grad">WIND ENERGY</span></h1>
+    </div>
+  </div>
+
+  <!-- Year Filter Dropdown -->
+  <div class="news-filter" style="display:flex;align-items:center;gap:12px;margin-bottom:24px;justify-content:center;flex-wrap:wrap;">
+    <span style="font-size:.9rem;color:var(--mut);font-weight:500;">News Archive</span>
+    <select id="yearFilter" class="year-filter" style="padding:10px 36px 10px 14px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--txt);font-family:inherit;font-size:.9rem;cursor:pointer;appearance:none;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23244088' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E\");background-repeat:no-repeat;background-position:right 12px center;">
+      <option value="all">All Years</option>
+      <option value="2026">2026</option>
+      <option value="2025">2025</option>
+      <option value="2024">2024</option>
+      <option value="2023">2023</option>
+      <option value="2022">2022</option>
+      <option value="2021">2021</option>
+      <option value="2020">2020</option>
+    </select>
+  </div>
+
+  <div class="news-grid">
+
+    <article class="news-card" data-year="2026">
+      <div class="media"><span class="news-no">01</span><img src="https://www.senvion.in/wp-content/uploads/2026/07/69A7931-1.jpg" alt="alfanar group announces additional direct capital funding in Senvion" /></div>
+      <div class="news-body">
+        <span class="pill hot">Aug 25, 2026</span>
+        <h3>alfanar group Announces Additional direct capital funding of USD 100 Million (~INR 950 Crore) in Senvion to Accelerate Next Phase of Growth</h3>
+        <p>Growth capital to expand manufacturing and delivery capacity in India.</p>
+        <div class="news-full">
+  <h4>alfanar group Announces Additional direct capital funding of USD 100 Million (~INR 950 Crore) in Senvion to Accelerate Next Phase of Growth</h4>
+  <p><strong>Mumbai, India | August 25, 2026</strong> – alfanar group today announced an additional direct capital funding of USD 100 million (~INR 320 Cr.) received in August 2026 and the rest of the direct capital funding to be completed in couple of weeks' time, to support the company's next phase of technology-led and manufacturing-driven growth.</p>
+  <p>The funding will support strategic priorities including development of Senvion's long-term product roadmap, growth capital to support and drive Senvion's growing business in India and global markets and accelerating the development of its project pipeline through the 'Senvion Certified Sites' offering.</p>
+  <p>The funding reinforces alfanar group's long-term commitment to the "Make in India" initiative and its confidence in India's emergence as a global hub for renewable energy manufacturing, innovation, and technology development.</p>
+  <p><strong>Jamal Wadi, Chairman of Senvion and President of Alfanar Projects, said:</strong> "India is central to alfanar group's renewable energy strategy, and Senvion is a key part of our long-term vision for wind energy. This funding reflects our confidence in Senvion's leadership, engineering capabilities, and technology roadmap. By combining Senvion's wind engineering expertise with alfanar group's strengths in power systems, grid infrastructure, and energy storage, we are well positioned to develop the next generation of integrated renewable energy solutions and deliver long-term value for customers in India and international markets."</p>
+  <p><strong>Shreyas B. Suvarna, CEO, Senvion, said:</strong> "We thank our shareholders and the Board for reaffirming their trust in Senvion. This funding strengthens the foundations of our business where it matters most. We will deepen our R&D capabilities to deliver more reliable and higher-performing turbine platforms, accelerate the introduction of new technologies, and enhance our ability to support customers throughout the 25-year lifecycle of their assets. We will also continue investing in our people by developing talent and creating a world-class workplace that combines leading market practices with alfanar group's globally recognized human capital excellence refined over 40 years. Our objective is clear: to build globally competitive technology platforms from India and become the partner of choice for customers, employees, and stakeholders across India and international markets."</p>
+  <p><strong>About Senvion India</strong></p>
+  <p>Senvion is one of the leading wind turbine manufacturers in India, with operations in the country since 2016. The company has established a strong presence through a world-class in-house R&D setup, a manufacturing capacity of ~1.5 GW/annum, and an operational fleet exceeding 1.6 GW nationwide.</p>
+  <p>Senvion plays a key role in the development and execution of wind energy projects across the country, with a strong focus on innovation, localisation, specialised project development and sustainability. The company has deployed advanced turbine technologies, including 120m, 130m, and 160m rotor platforms, with power ratings ranging from 2.3 MW to 4.2 MW, designed to optimise performance for global wind regimes.</p>
+  <p>Committed to clean energy and sustainable growth, Senvion continues to support India's transition to a greener future.</p>
+  <p>For more information, visit: <a href="https://www.senvion.in/" target="_blank">https://www.senvion.in/</a></p>
+</div>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2026">
+      <div class="media"><span class="news-no">02</span><img src="assets/news-01.jpg" alt="alfanar and Senvion reaffirm commitment to localisation and Make in India" /></div>
+      <div class="news-body">
+        <span class="pill">Jul 3, 2026</span>
+        <h3>alfanar and Senvion Reaffirm Commitment to Localisation and ‘Make in India’ at Powering The Next Era</h3>
+        <p>Deepening localisation across the supply chain and product portfolio.</p>
+        <div class="news-full">
+  <h4>alfanar and Senvion Reaffirm Commitment to Localisation and 'Make in India' at Powering The Next Era</h4>
+  <p><strong>Mumbai, India | June 30, 2026</strong>: At Powering The Next Era, a leadership and stakeholder engagement event hosted recently in Mumbai, alfanar and Senvion have reaffirmed their commitment to strengthening India's domestic wind energy ecosystem.</p>
+  <p>The event brought together customers, partners, senior leadership from alfanar and Senvion, and key stakeholders from both companies. The discussions highlighted the company's continued focus on developing wind turbine solutions that are designed, engineered, and manufactured in India. These solutions are also supported throughout their operational lifecycle. The approach aligns with the broader vision of building solutions "in India, for India and global markets."</p>
+  <p>With this renewed focus, Senvion has also marked a new phase for the wind turbine OEM under the leadership of Shreyas B. Suvarna, CEO, Senvion India.</p>
+  <p><strong>Shreyas B. Suvarna, newly appointed CEO of Senvion India, stated,</strong> "India has built a strong manufacturing base. The next step is to move up the value chain by strengthening design and innovation capabilities. At Senvion, this transition is already underway, supported by our R&D teams in India and Germany. Our focus is to design and build in India, for both domestic and global markets, while ensuring long-term reliability and lifecycle support. This is key to positioning India as a global hub for wind energy innovation."</p>
+  <p><strong>Jamal Wadi, Chairman of Senvion and President of alfanar, added,</strong> "India is an important market in the global renewable energy transition. Senvion's growth reflects our long-term commitment to building strong local capabilities. As part of alfanar's renewable energy and manufacturing ecosystem, the company is well-positioned to support India's wind energy value chain through technology, scale, and execution strength. We will continue to invest in localisation and capability building to support India's clean energy ambitions."</p>
+  <p>Senvion became part of alfanar's global renewable energy ecosystem in 2021, following its full acquisition. The acquisition was carried out through Global Renewable Energy Development Holding Company Limited (GREDHCL), an entity established by alfanar's promoters. This integration has enabled Senvion to leverage alfanar's capabilities across renewable energy solutions, EPC, electrical systems, grid infrastructure, battery energy storage systems (BESS), sustainable fuels, and industrial manufacturing, while deepening its local presence in India.</p>
+  <p>The company's turbines are manufactured in India and supported by in-house R&D teams based in India and Germany, currently operating a manufacturing capacity of approximately 1.5 GW per annum, with facilities across Tamil Nadu, Maharashtra, and Gujarat. To date, Senvion has installed around 1.7 GW of wind energy capacity, of which nearly 1.6 GW is operational.</p>
+  <p><strong>About Senvion India</strong></p>
+  <p>Senvion India has been operational since 2016 and has a fully operation factory in India. It has localized its turbines upto 85% thus creating Indian jobs and opportunity to ancillary industry related to wind power. Senvion recently installed its 130m rotor turbine which is one of the finest technology for Indian wind regime. Senvion also has a world class R&D center in India which will continue to develop new technologies for the market and its customers.</p>
+  <p>Our CEO & MD Mr. Amit Kansal is recognized as Most Promising Business Leader of Asia 2020-21 at The Economic Times Asian Business Leaders Conclave 2020.</p>
+</div>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2026">
+      <div class="media"><span class="news-no">03</span><img src="assets/about-tower.jpg" alt="Senvion wind turbine tower — 83.7 MW repeat order from Tata Power Renewables" /></div>
+      <div class="news-body">
+        <span class="pill">2025</span>
+        <h3>Senvion India Wins 83.7 MW Repeat Order from Tata Power Renewables</h3>
+        <p>Continued trust from one of India's leading independent power producers.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2025">
+      <div class="media"><span class="news-no">04</span><img src="https://www.senvion.in/wp-content/uploads/2025/12/Screenshot-2025-12-31-13-48-24.jpg" alt="MNRE ALMM (Wind) listing certificate for the Senvion 4.2M160" /></div>
+      <div class="news-body">
+        <span class="pill">2025</span>
+        <h3>Senvion India’s 4.2M160 Wind Turbine Receives MNRE ALMM (Wind) Listing</h3>
+        <p>Flagship 4XM platform cleared for deployment at hub heights up to 140 m.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2025">
+      <div class="media"><span class="news-no">05</span><img src="https://www.senvion.in/wp-content/uploads/2025/10/Cabinet-Ministernew.jpg" alt="Senvion India and KP Group framework agreement signing" /></div>
+      <div class="news-body">
+        <span class="pill">2025</span>
+        <h3>Senvion India and KP Group Sign Framework Agreement to Develop Up to 2,000 MW Wind and Wind–Solar Hybrid Projects Across India</h3>
+        <p>One of the largest framework agreements in the Indian wind sector.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2020">
+      <div class="media"><span class="news-no">06</span><img src="assets/home-banner.jpg" alt="Senvion India operations" /></div>
+      <div class="news-body">
+        <span class="pill">Dec 3, 2020</span>
+        <h3>Acquisition of Senvion GmbH's India operations</h3>
+        <p>The foundation of Senvion as an independent India-focused wind business.</p>
+        <div class="news-full">
+  <h4>ACQUISITION OF SENVION GMBH'S INDIA OPERATIONS</h4>
+  <p><strong>3rd December 2020, Germany/Mumbai</strong>: Senvion GmbH has entered into contractual agreements for the sale of 100% of its Indian operations ("Senvion India") on 01 December 2020. Senvion had previously ringfenced the Senvion India business, which is a full-fledged Wind OEM and in the business of WTG manufacturing, turnkey EPC solutions with project development, O&M; and Asset Management, from its self-administration process.</p>
+  <p>The transaction envisages the transfer of complete ownership of Senvion India along with all assets such as the factory, installed base of O&M; and current ongoing projects, intellectual property rights relevant for the Indian market and its strong 300+ team size.</p>
+  <p>The acquiring entity, GREDHCL (Global Renewable Energy Development Holding Company Limited) is a fund based out of the Dubai International Financial Centre and subject to regulatory approvals, the sale is proposed to close in Q1-2021. EY acts as financial advisor to GREDHCL and Rothschild & Co acts as financial advisors to Senvion GmbH in this transaction.</p>
+  <p><strong>Amit Kansal, CEO and MD of Senvion India, said:</strong> "Senvion India has been a key participant in the Indian Renewable energy sector since its inception in 2016. Senvion aligned itself to the government goals of localization and Make-in-India at a very early stage and now makes more than 85% of its turbine parts in India thus generating local employment and innovations. Senvion firmly believes that Wind Power generation is critical in the energy mix to achieve the 450 GW of renewable power by 2030. Senvion India is committed to relentlessly work to develop innovative technologies to attain the goals of delivering competitive wind power."</p>
+  <p><strong>About GREDHCL</strong></p>
+  <p>GREDHCL is a DIFC-UAE based entity and its Promoters are seasoned professionals with decades of experience in energy infra sector. They own & manage multiple businesses in MENA, Europe, UK and Asia in the field of electrical manufacturing, project management & development and O&M services.</p>
+  <p><strong>About Senvion India:</strong> Senvion India has been operational since 2016 and has a fully operation factory in India. It has localized its turbines upto 85% thus creating Indian jobs and opportunity to ancillary industry related to wind power. Senvion recently installed its 130m rotor turbine which is one of the finest technology for Indian wind regime. Senvion also has a world class R&D center in India which will continue to develop new technologies for the market and its customers.</p>
+  <p>Our CEO & MD Mr. Amit Kansal is recognized as Most Promising Business Leader of Asia 2020-21 at The Economic Times Asian Business Leaders Conclave 2020.</p>
+</div>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <!-- 2026 Additional News -->
+    <article class="news-card" data-year="2026">
+      <div class="media"><span class="news-no">07</span><img src="assets/pr-renew.jpg" alt="Senvion India Wins 83.7 MW Repeat Order from Tata Power Renewables" /></div>
+      <div class="news-body">
+        <span class="pill">2026</span>
+        <h3>Senvion India Wins 83.7 MW Repeat Order from Tata Power Renewables</h3>
+        <p>Continued trust from one of India's leading independent power producers.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2026">
+      <div class="media"><span class="news-no">08</span><img src="assets/cl-alfanar.png" alt="Senvion India signs MoU with Integrum for up to 50 4.2M160 wind turbines" /></div>
+      <div class="news-body">
+        <span class="pill">2026</span>
+        <h3>Senvion India signs MoU with Integrum for up to 50 4.2M160 wind turbines across five Indian states</h3>
+        <p>Strategic partnership for large-scale wind energy deployment.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2026">
+      <div class="media"><span class="news-no">09</span><img src="assets/about-tower.jpg" alt="Hon'ble Cabinet Minister Shri Pralhad Joshi inaugurates Senvion India's 4.2M160 prototype" /></div>
+      <div class="news-body">
+        <span class="pill">2026</span>
+        <h3>Hon'ble Cabinet Minister Shri Pralhad Joshi inaugurates Senvion India's engineered-in-India 4.2M160 prototype at Windergy India 2025</h3>
+        <p>Flagship turbine platform showcased at premier wind energy event.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2026">
+      <div class="media"><span class="news-no">10</span><img src="assets/pr-continuum.jpg" alt="Senvion India announces firm order from Continuum Green Energy for 4.2M160" /></div>
+      <div class="news-body">
+        <span class="pill">2026</span>
+        <h3>Senvion India announces firm order from Continuum Green Energy for its 4.2M160 Wind Turbine Generators</h3>
+        <p>Major order win for flagship 4XM platform.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2025">
+      <div class="media"><span class="news-no">11</span><img src="assets/p-3-1m130.jpg" alt="Senvion India launches 3.1M130 Wind Turbine with RLMM entry" /></div>
+      <div class="news-body">
+        <span class="pill">2025</span>
+        <h3>Senvion India launches 3.1M130 Wind Turbine with RLMM entry</h3>
+        <p>New 3MW+ platform certified for Indian wind conditions.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2025">
+      <div class="media"><span class="news-no">12</span><img src="assets/banner-01.jpg" alt="Senvion in India crosses 1 GW commissioned WTGs milestone" /></div>
+      <div class="news-body">
+        <span class="pill">2025</span>
+        <h3>Senvion in India crosses 1 GW commissioned WTGs milestone</h3>
+        <p>Significant achievement in India's wind energy journey.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2025">
+      <div class="media"><span class="news-no">13</span><img src="assets/esg-commitment.jpg" alt="RE Technologies GmbH and HASSLACHER Partner for Sustainable Timber-Hybrid Towers" /></div>
+      <div class="news-body">
+        <span class="pill">2025</span>
+        <h3>RE Technologies GmbH and HASSLACHER Green Tower GmbH Partner for Sustainable Timber-Hybrid Towers in Europe</h3>
+        <p>Innovative sustainable tower technology partnership.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2025">
+      <div class="media"><span class="news-no">14</span><img src="assets/blades.jpg" alt="Senvion India Partners with Voodin Blade Technology for Wooden Wind Turbine Blades" /></div>
+      <div class="news-body">
+        <span class="pill">2025</span>
+        <h3>Senvion India Partners with Voodin Blade Technology for Wooden Wind Turbine Blades</h3>
+        <p>Sustainable blade technology collaboration.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2025">
+      <div class="media"><span class="news-no">15</span><img src="assets/graph-4-2.jpg" alt="Senvion's Credit Rating Upgraded to BBB (Stable)" /></div>
+      <div class="news-body">
+        <span class="pill">2025</span>
+        <h3>Senvion's Credit Rating Upgraded to BBB (Stable)</h3>
+        <p>Financial strength recognized by rating agencies.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2025">
+      <div class="media"><span class="news-no">16</span><img src="assets/pr-continuum.jpg" alt="Senvion India Secures 121.5 MW Order from Continuum Green Energy" /></div>
+      <div class="news-body">
+        <span class="pill">2025</span>
+        <h3>Senvion India Secures 121.5 MW Order from Continuum Green Energy</h3>
+        <p>Another major order from long-term partner.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <!-- 2024 News -->
+    <article class="news-card" data-year="2024">
+      <div class="media"><span class="news-no">17</span><img src="assets/p-4-2m160.jpg" alt="RE Technologies GmbH launches the advanced 4.2M160 wind turbine generator" /></div>
+      <div class="news-body">
+        <span class="pill">2024</span>
+        <h3>RE Technologies GmbH launches the advanced 4.2M160 wind turbine generator</h3>
+        <p>Next-generation turbine platform launch.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2024">
+      <div class="media"><span class="news-no">18</span><img src="assets/p-3-1m130.jpg" alt="Senvion India achieves milestone with 3.1M130 turbine installation" /></div>
+      <div class="news-body">
+        <span class="pill">2024</span>
+        <h3>Senvion India achieves a significant milestone with the installation of its 3.1M130 turbine</h3>
+        <p>Key installation milestone for 3MW+ platform.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2024">
+      <div class="media"><span class="news-no">19</span><img src="assets/pr-continuum.jpg" alt="Senvion secures repeat order of 86.4 MW from Continuum Green Energy" /></div>
+      <div class="news-body">
+        <span class="pill">2024</span>
+        <h3>Senvion secures a repeat order of 86.4 MW from Continuum Green Energy, total intake reaches 270 MW</h3>
+        <p>Cumulative order book grows significantly.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2024">
+      <div class="media"><span class="news-no">20</span><img src="https://www.senvion.in/wp-content/uploads/2025/12/Screenshot-2025-12-31-13-48-24.jpg" alt="Senvion receives launch order for 4.2M160 from Continuum Green Energy" /></div>
+      <div class="news-body">
+        <span class="pill">2024</span>
+        <h3>Senvion receives the launch order (conditional) for the new 4.2M160 wind turbine generators from Continuum Green Energy</h3>
+        <p>Launch customer secured for flagship platform.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <!-- 2023 News -->
+    <article class="news-card" data-year="2023">
+      <div class="media"><span class="news-no">21</span><img src="assets/about-tower.jpg" alt="First Turbine Begins Generation at JSW Tuticorin site" /></div>
+      <div class="news-body">
+        <span class="pill">2023</span>
+        <h3>First Turbine Begins Generation at JSW Tuticorin site</h3>
+        <p>First power generation at JSW project site.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2023">
+      <div class="media"><span class="news-no">22</span><img src="assets/banner-02.jpg" alt="O2 Power Awards 121 MW Order to Senvion" /></div>
+      <div class="news-body">
+        <span class="pill">2023</span>
+        <h3>O2 Power Awards 121 MW Order to Senvion</h3>
+        <p>New customer win for 121 MW project.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2023">
+      <div class="media"><span class="news-no">23</span><img src="assets/blades.jpg" alt="SENVION INDIA flags off first set of blades from Trichy Blade Factory" /></div>
+      <div class="news-body">
+        <span class="pill">2023</span>
+        <h3>SENVION INDIA flags off first set of blades from Trichy Blade Factory</h3>
+        <p>Manufacturing milestone at Trichy facility.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <!-- 2022 News -->
+    <article class="news-card" data-year="2022">
+      <div class="media"><span class="news-no">24</span><img src="assets/cl-tata.jpg" alt="SENVION INDIA wins 102.6 MW firm order from Tata Power" /></div>
+      <div class="news-body">
+        <span class="pill">2022</span>
+        <h3>SENVION INDIA wins 102.6 MW firm order from Tata Power</h3>
+        <p>Major order from Tata Power Renewables.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2022">
+      <div class="media"><span class="news-no">25</span><img src="assets/pr-renew.jpg" alt="SENVION INDIA wins 48.6MW order from Fourth Partner Energy" /></div>
+      <div class="news-body">
+        <span class="pill">2022</span>
+        <h3>SENVION INDIA wins 48.6MW order from Fourth Partner Energy (4PEL)</h3>
+        <p>Order from Fourth Partner Energy.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2022">
+      <div class="media"><span class="news-no">26</span><img src="assets/pr-continuum.jpg" alt="SENVION INDIA wins 119 MW firm order from CONTINUUM GREEN ENERGY" /></div>
+      <div class="news-body">
+        <span class="pill">2022</span>
+        <h3>SENVION INDIA wins 119 MW firm order from CONTINUUM GREEN ENERGY</h3>
+        <p>Another major order from Continuum.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2022">
+      <div class="media"><span class="news-no">27</span><img src="assets/about-tower.jpg" alt="SENVION FLAGS OFF FIRST NACELLE FOR 2.7MW TURBINE" /></div>
+      <div class="news-body">
+        <span class="pill">2022</span>
+        <h3>SENVION FLAGS OFF FIRST NACELLE FOR 2.7MW TURBINE</h3>
+        <p>First nacelle roll-out for 2.7MW platform.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2022">
+      <div class="media"><span class="news-no">28</span><img src="assets/p-2-3-m120.jpg" alt="Senvion India announces Type Certification and RLMM Listing of 2.3M130/2.7MW" /></div>
+      <div class="news-body">
+        <span class="pill">2022</span>
+        <h3>Senvion India announces Type Certification and RLMM Listing of its new machine 2.3M130/2.7MW</h3>
+        <p>Certification achieved for 2MW+ platform.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2022">
+      <div class="media"><span class="news-no">29</span><img src="assets/pr-renew.jpg" alt="Senvion India Secures Long Term Service Contract Renewal with Malpani Group" /></div>
+      <div class="news-body">
+        <span class="pill">2022</span>
+        <h3>Senvion India Secures Long Term Service Contract Renewal with Malpani Group</h3>
+        <p>Long-term O&M contract renewal.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <!-- 2021 News -->
+    <article class="news-card" data-year="2021">
+      <div class="media"><span class="news-no">30</span><img src="assets/cl-alfanar.png" alt="Alfanar successfully completes 100% acquisition of Wind Turbine OEM Senvion India" /></div>
+      <div class="news-body">
+        <span class="pill">2021</span>
+        <h3>Alfanar successfully completes 100% acquisition of Wind Turbine OEM Senvion India</h3>
+        <p>Acquisition completed, new chapter begins.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2021">
+      <div class="media"><span class="news-no">31</span><img src="assets/cl-jsw.jpg" alt="SENVION INDIA wins 591 MW firm order from JSW Energy" /></div>
+      <div class="news-body">
+        <span class="pill">2021</span>
+        <h3>SENVION INDIA wins 591 MW firm order from JSW Energy</h3>
+        <p>Largest single order in company history.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+    <article class="news-card" data-year="2021">
+      <div class="media"><span class="news-no">32</span><img src="assets/home-banner.jpg" alt="ACQUISITION OF SENVION GMBH'S INDIA OPERATIONS" /></div>
+      <div class="news-body">
+        <span class="pill">2021</span>
+        <h3>ACQUISITION OF SENVION GMBH'S INDIA OPERATIONS</h3>
+        <p>Formal acquisition of Senvion India operations.</p>
+        <a class="btn btn-glow btn-sm news-expand-btn" href="#">Know More →</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-col">
+      <img class="foot-logo" src="image/REtech-and-Senvion-Logo-footer.png" alt="REtechnology | Senvion" width="250" height="52" />
+      <p class="foot-claim">Let's drive the future of clean energy, together!</p>
+      <p>📞 +91 22-6908 0000 · ✉️ info@senvion.in</p>
+    </div>
+    <div class="foot-col">
+      <h4>PRODUCTS</h4>
+      <a href="products.html">2.3M120</a>
+      <a href="products.html">2.7M130</a>
+      <a href="products.html">3.1M130</a>
+      <a href="products.html">4.2M160</a>
+    </div>
+    <div class="foot-col">
+      <h4>SERVICES</h4>
+      <a href="services.html">Operations &amp; Maintenance</a>
+      <a href="services.html">FleetPro®</a>
+      <a href="manufacturing.html">Manufacturing Units</a>
+    </div>
+    <div class="foot-col">
+      <h4>COMPANY</h4>
+      <a href="about.html">About</a>
+      <a href="about.html#history">History</a>
+      <a href="#news">News</a>
+      <a href="connect.html">Contact</a>
+      <a href="about.html#career">Career</a>
+    </div>
+    <div class="foot-col">
+      <h4>OFFICES</h4>
+      <p><b>INDIA</b><br>501-Wing B, Delphi Hiranandani Business Park, Powai, Mumbai – 400076, Maharashtra</p>
+      <p><b>GERMANY</b><br>Hamburger Straße 11, 22083, Hamburg</p>
+    </div>
+  </div>
+
+  <details class="fraud">
+    <summary>⚠️ Recruitment Fraud Alert</summary>
+    <div>
+      <p>It has come to our notice that certain persons are falsely claiming association with Senvion through fake job postings, spoofed emails and other fraudulent means with the intent to mislead job seekers and solicit payments. Please note:</p>
+      <ul>
+        <li>Senvion never demands payment, deposits, or fees at any stage of the recruitment process.</li>
+        <li>All genuine correspondence will be from official Senvion domains, not free email services such as Gmail, Yahoo, Hotmail or Rediffmail.</li>
+        <li>Senvion has not authorised any consultancy or individual to collect money, issue job offers, or provide internships on its behalf.</li>
+        <li>Senvion accepts no responsibility for any loss or damage suffered by individuals dealing with unauthorised parties. Such dealings are at the individual's own risk.</li>
+        <li>Senvion reserves the right to pursue civil and criminal remedies under applicable Indian laws against any misuse of its name, trademarks or recruitment process.</li>
+        <li>We urge candidates to remain vigilant and verify any recruitment-related communication directly through Senvion's official website or HR contacts.</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="foot-bar">
+    <p>© 2026 Senvion India · All Rights Reserved</p>
+    <div class="foot-links">
+      <a href="connect.html">Policies &amp; Disclosures</a>
+      <a href="connect.html">Privacy Policy</a>
+      <a href="connect.html">Use of terms</a>
+      <a href="connect.html">Code of Conduct</a>
+    </div>
+  </div>
+
+  <p class="disclaimer"><b>Disclaimer:</b> RETechnologies GmbH &amp; Senvion Wind Technology Pvt. Ltd. together with all its affiliates in India including Senvion India Pvt. Ltd. and Senvion India Wind Power Services LLP (collectively “Senvion India”) have rights over trademark SENVION in India. Outside India, this trademark belongs to a third party which is not an affiliate of Senvion India. Content sourced from senvion.in · Interactive 3D concept rebuild.</p>
+</footer>
+
+</main>
+
+<script src="js/data.js?v=20261001h"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="module" src="js/scene.js?v=20261009f"></script>
+<script>
+(function () {
+  if (document.getElementById('webgl')) return;
+  var hide = function () { var p = document.getElementById('preloader'); if (p) p.classList.add('done'); };
+  setTimeout(hide, 1400);
+  addEventListener('load', function () { setTimeout(hide, 250); });
+})();
+</script>
+<script src="js/ui.js?v=20261001h"></script>
+<script>
+/* Image self-heal — if a request fails (dev-server restart, transient network
+   error, stale cache) the image retries instead of staying stuck on alt text. */
+(function () {
+  function heal(img) {
+    var n = +(img.dataset.healed || 0);
+    if (n >= 3 || !img.getAttribute('src')) return;
+    img.dataset.healed = n + 1;
+    setTimeout(function () {
+      var u = new URL(img.currentSrc || img.src, location.href);
+      u.searchParams.set('r', Date.now() + '-' + n);
+      img.src = u.href;
+    }, 700 * (n + 1));
+  }
+  function watch(img) {
+    if (img.dataset.watched) return;
+    img.dataset.watched = '1';
+    img.addEventListener('error', function () { heal(img); });
+    // already failed before this script was parsed
+    if (img.complete && img.naturalWidth === 0) heal(img);
+  }
+  document.querySelectorAll('img').forEach(watch);
+  if (window.MutationObserver) {
+    new MutationObserver(function (muts) {
+      muts.forEach(function (m) {
+        m.addedNodes.forEach(function (n) {
+          if (!n || n.nodeType !== 1) return;
+          if (n.tagName === 'IMG') watch(n);
+          else if (n.querySelectorAll) n.querySelectorAll('img').forEach(watch);
+        });
+      });
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  }
+})();
+</script>
+<style>
+.news-card.open{
+  border-top: 3px solid var(--green);
+}
+.news-card .news-full{display:none}
+.news-card.open .news-full{display:block}
+.news-card.open .news-body p{display:none}
+</style>
+<script>
+// News card expand/collapse + Year filter
+document.addEventListener('DOMContentLoaded', function() {
+  // Expand/collapse
+  document.querySelectorAll('.news-expand-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      var card = btn.closest('.news-card');
+      card.classList.toggle('open');
+      btn.innerText = card.classList.contains('open') ? 'Close ←' : 'Know More →';
+    });
+  });
+
+  // Year filter
+  var filter = document.getElementById('yearFilter');
+  if (filter) {
+    filter.addEventListener('change', function() {
+      var year = this.value;
+      document.querySelectorAll('.news-card').forEach(function(card) {
+        var cardYear = card.getAttribute('data-year');
+        if (year === 'all' || cardYear === year) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  }
+});
+</script>
+</body>
+</html>

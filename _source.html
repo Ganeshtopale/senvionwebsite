@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Senvion India — We make wind perform | Wind Turbines, O&amp;M &amp; FleetPro</title>
+<meta name="description" content="Senvion India — windshapers™ sustainably energising neighbourhoods. 2.3M120, 2.7M130, 3.1M130 and 4.2M160 wind turbines, in-house O&M, FleetPro® SCADA, manufacturing across India. Explore the interactive 3D turbine." />
+<link rel="icon" href="assets/favicon.png" type="image/png" />
+<link rel="apple-touch-icon" href="assets/logo-color.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20261013a" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="loader-turbine">
+    <div class="loader-blades"><span></span><span></span><span></span></div>
+    <div class="loader-tower"></div>
+  </div>
+  <p>WE ARE WINDSHAPERS™…</p>
+  <div class="loader-bar"><div id="loaderFill"></div></div>
+</div>
+
+<!-- FIXED 3D CANVAS -->
+<canvas id="webgl"></canvas>
+<div id="photoBg"></div>
+<div id="vignette"></div>
+<div id="grain"></div>
+<div id="scrollProgress"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="logo">
+      <span class="logo-badge">
+        <img class="logo-img" src="image/REtech-and-Senvion-Logo.png" alt="REtechnology | Senvion" width="250" height="52" />
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#products">Products</a>
+      <a href="#lab">3D Lab</a>
+      <a href="#services">Services</a>
+      <a href="#manufacturing">Manufacturing</a>
+      <a href="#sustainability">Sustainability</a>
+      <a href="#news">News</a>
+      <a href="#contact" class="btn btn-sm btn-glow">Connect</a>
+    </div>
+    <button id="menuBtn" aria-label="menu"><span></span><span></span><span></span></button>
+  </div>
+  <div id="mobileMenu">
+    <a href="#about">About</a>
+    <a href="#products">Products</a>
+    <a href="#lab">3D Lab</a>
+    <a href="#services">Services</a>
+    <a href="#manufacturing">Manufacturing</a>
+    <a href="#history">History</a>
+    <a href="#sustainability">Sustainability</a>
+    <a href="#news">News</a>
+    <a href="#contact">Connect</a>
+  </div>
+</nav>
+
+<!-- LIVE HUD -->
+<!-- <div id="hud">
+  <div class="hud-item"><label>WIND</label><strong><span id="hudWind">8.5</span> m/s</strong></div>
+  <div class="hud-item"><label>ROTOR</label><strong><span id="hudRpm">11.2</span> rpm</strong></div>
+  <div class="hud-item power"><label>OUTPUT</label><strong><span id="hudPower">2.10</span> MW</strong></div>
+  <div class="hud-live"><span class="pulse"></span>LIVE · <span id="hudModel">2.7M130</span></div>
+</div> -->
+
+<!-- PART INSPECTOR -->
+<div id="partCard">
+  <button id="partClose">✕</button>
+  <h4 id="partTitle">Nacelle</h4>
+  <p id="partDesc"></p>
+  <div id="partSpecs"></div>
+</div>
+
+<main>
+<!-- ============ HERO ============ -->
+<section id="hero" class="panel">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div class="badge"><span class="dot"></span> INTERACTIVE 3D — DRAG THE TURBINE · CLICK PARTS · SCROLL TO FLY</div>
+      <h1>We are<br><span class="grad">windshapers™</span></h1>
+      <p class="lead"><b>Sustainably energising neighbourhoods.</b> Customised solutions for individual success — your preferred technology partner for wind energy projects, with our powerful wind turbines. <b>Grab the live 2.7M130</b> behind this text: spin it, explode it, inspect it.</p>
+      <div class="hero-cta">
+        <a href="#lab" class="btn btn-glow">◉ Open 3D Turbine Lab</a>
+        <a href="#products" class="btn btn-ghost">Our turbines ↓</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong data-count="1600" data-dec="0">0</strong><span>MW total commissioned capacity under service*</span></div>
+        <div><strong data-count="629" data-dec="0">0</strong><span>turbines operational</span></div>
+        <div><strong data-count="47" data-dec="0">0</strong><span>sites across 5 states in India</span></div>
+      </div>
+      <p class="mini">*Service portfolio as of July 2026 · Source: senvion.in</p>
+    </div>
+    <div class="hero-control-card glass">
+      <div class="card-head">
+        <h3>⚡ Live Turbine Control</h3>
+        <button id="autoRotateBtn" class="chip active">Auto-orbit ON</button>
+      </div>
+      <div class="ctrl">
+        <div class="ctrl-row"><label>🌬️ Wind speed</label><output id="windOut">8.5 m/s</output></div>
+        <input id="windSlider" type="range" min="0" max="25" step="0.1" value="8.5">
+        <div class="wind-scale"><span>cut-in 3.0</span><span>rated 12.0</span><span>cut-out 20.0</span></div>
+      </div>
+      <div class="ctrl-2col">
+        <button class="chip" data-focus="overview">◈ Overview</button>
+        <button class="chip" data-focus="blades">✦ Blades</button>
+        <button class="chip" data-focus="nacelle">⬣ Nacelle</button>
+        <button class="chip" data-focus="tower">⬒ Tower</button>
+      </div>
+      <div class="ctrl">
+        <div class="ctrl-row"><label>💥 Exploded view</label><output id="explodeOut">0%</output></div>
+        <input id="explodeSlider" type="range" min="0" max="100" value="0">
+        <p class="hint">0% = normal. Slide up and the <b>nacelle housing lifts off</b> and the <b>hub nose swings open</b> to reveal the planetary gearbox, DFIG generator, transformer, control cabinets and the pitch drives.</p>
+      </div>
+      <div class="ctrl-row btns">
+        <button id="dayNightBtn" class="btn btn-ghost btn-sm">🌙 Night mode</button>
+        <button id="spinBurstBtn" class="btn btn-ghost btn-sm">💨 Gust!</button>
+      </div>
+      <p class="hint">💡 Tip: <b>click any part</b> of the 3D turbine — blade, hub, nacelle, gearbox, generator, tower — for real engineering specs from the Senvion 2XM / 3XM / 4XM platforms.</p>
+      <div class="powerbar"><div id="powerFill"></div></div>
+      <div class="power-label"><span>Live output (2.7M130)</span><strong id="powerLabel">— MW</strong></div>
+    </div>
+  </div>
+  <div class="scroll-hint">SCROLL<span></span></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee"><div class="marquee-track">
+  <span>WE MAKE WIND PERFORM ✦ 2.3M120 ✦ 2.7M130 ✦ 3.1M130 ✦ 4.2M160 ✦ 1600 MW UNDER SERVICE ✦ 629 TURBINES OPERATIONAL ✦ 47 SITES · 5 STATES ✦ 300 SERVICE TECHNICIANS ✦ 1000+ RESOURCES ACROSS THE VALUE CHAIN ✦&nbsp;</span>
+  <span>WE MAKE WIND PERFORM ✦ 2.3M120 ✦ 2.7M130 ✦ 3.1M130 ✦ 4.2M160 ✦ 1600 MW UNDER SERVICE ✦ 629 TURBINES OPERATIONAL ✦ 47 SITES · 5 STATES ✦ 300 SERVICE TECHNICIANS ✦ 1000+ RESOURCES ACROSS THE VALUE CHAIN ✦&nbsp;</span>
+</div></div>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="panel">
+  <div class="sec-head photo" style="--photo:url('assets/about-tower.jpg')">
+    <span class="kicker">01 — ABOUT US · PERFORMANCE FUELED BY PASSION</span>
+    <h2>Captivated by wind's <span class="grad">limitless potential.</span></h2>
+    <p>At Senvion, we are captivated by wind energy's limitless potential and inspired to create a brighter future for future generations by utilising this invisible power — wind.</p>
+  </div>
+
+  <div class="about-intro glass">
+    <div>
+      <div class="media ratio"><img src="assets/hub.jpg" alt="Senvion nacelle and hub"><span class="media-tag">NACELLE &amp; HUB · BARAMATI</span></div>
+      <h3>Empowering the future of wind energy</h3>
+      <p>Welcome to Senvion, your trusted partner in the wind industry. With a legacy of engineering excellence spanning over <b>25 years</b>, we are proud to be one of the fastest-growing firms in the Indian wind industry. Our journey began in Bengaluru in early 2015 with a dedicated R&amp;D setup, and today we have expanded our operations to engage <b>over 1000 direct and indirect resources</b> across the value chain in India.</p>
+      <p>We believe in making wind perform. With a commitment to engineering innovation and customer satisfaction, we are driven to push the boundaries of what is possible in the renewable energy sector.</p>
+    </div>
+    <div class="about-scope">
+      <div class="scope-box">
+        <span class="kicker">OUR SCOPE</span>
+        <p>Our mission at Senvion is to empower the future of wind energy — driving the transition towards sustainable power generation, empowering communities and industries with clean, reliable and efficient wind energy solutions. Through our expertise in developing, manufacturing, assembling, installing and marketing technologically advanced Wind Turbine Generators (WTGs), we strive to provide project-specific solutions that meet the diverse needs of our customers.</p>
+      </div>
+      <div class="scope-box">
+        <span class="kicker">OBJECTIVE</span>
+        <p>We aim to ensure that our turbines remain efficient throughout their entire service life — from conception to realisation, commissioning and service. Over numerous years our wind turbines have built up a proven track record of reliability and efficiency, so we are able to give you a contractual guarantee regarding performance curve and technical availability. We are certified under <b>ISO 9001:2015</b>.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tech-grid">
+    <div class="tech glass"><div class="tico">🌬️</div><h3>windshapers™</h3><p>Sustainably energising neighbourhoods with customised solutions for individual success.</p></div>
+    <div class="tech glass"><div class="tico">🔬</div><h3>German heritage, Indian R&amp;D</h3><p>Dedicated R&amp;D in Bengaluru since 2015 with engineering depth across the value chain and 25+ years of technology lineage.</p></div>
+    <div class="tech glass"><div class="tico">🏭</div><h3>Robust local manufacturing</h3><p>Nacelle &amp; hub plant in Baramati, blade plants at Vadodara &amp; Trichy and a tower works near Ahmedabad — 1 GW per year each.</p></div>
+    <div class="tech glass"><div class="tico">🤝</div><h3>Preferred technology partner</h3><p>Trusted by JSW Energy, Tata Power, Continuum Energy, Engie, ReNew and India's leading IPPs.</p></div>
+  </div>
+
+  <div class="statstrip glass">
+    <div><strong data-count="1600" data-dec="0">0</strong><span>MW total commissioned capacity under service</span></div>
+    <div><strong data-count="629" data-dec="0">0</strong><span>number of turbines operational</span></div>
+    <div><strong data-count="47" data-dec="0">0</strong><span>sites located across India</span></div>
+    <div><strong data-count="5" data-dec="0">0</strong><span>states in India</span></div>
+    <div><strong data-count="300" data-dec="0">0</strong><span>service technicians</span></div>
+  </div>
+</section>
+
+<!-- ============ PRODUCTS ============ -->
+<section id="products" class="panel">
+  <div class="sec-head photo" style="--photo:url('assets/banner-01.jpg')">
+    <span class="kicker">02 — OUR PRODUCTS · WE MAKE WIND PERFORM</span>
+    <h2>On land, at sea, in high winds, under harsh conditions, <span class="grad">in just about any location.</span></h2>
+    <p>The power of wind can be awe-inspiring. On land and at sea, in high winds, under harsh conditions and in just about any location, we have proven just how competitive this clean power source can be. Click <b>“View in 3D”</b> — the live turbine morphs to that model's real rotor size &amp; rating.</p>
+  </div>
+
+  <div class="cards4">
+    <article class="tcard glass" data-model="m120">
+      <div class="media sq"><img src="assets/p-2-3-m120.jpg" alt="Senvion 2.3M120 wind turbine"><span class="media-tag">2.3M120</span></div>
+      <div class="tcard-top"><span class="pill">2XM SERIES</span><span class="mw">2.3 MW</span></div>
+      <h3>2.3M120</h3>
+      <p class="tag">Optimised for Medium Wind Sites</p>
+      <p>Our 2MW M120 series wind turbine, with a hub height of 120 m, has been optimised for higher yields at medium wind sites. With an operating temperature range of up to 50&nbsp;°C it can also be used in tropical climates, and it meets all Indian grid code requirements.</p>
+      <ul><li><b>120.0 m</b> rotor Ø</li><li><b>11,310 m²</b> rotor area</li><li><b>58.7 m</b> LM 58.7 blade</li></ul>
+      <div class="cardcalc" data-calc="m120"></div>
+      <div class="tcard-foot"><button class="btn btn-glow btn-sm view3d" data-model="m120">View in 3D ◉</button><span class="price">2330 kW · IEC S</span></div>
+    </article>
+
+    <article class="tcard glass featured" data-model="m130">
+      <div class="media sq"><img src="assets/p-2-7-m130.jpg" alt="Senvion 2.7M130 wind turbine"><span class="media-tag">2.7M130</span></div>
+      <div class="tcard-top"><span class="pill hot">2XM SERIES · PROVEN</span><span class="mw">2.7 MW</span></div>
+      <h3>2.7M130</h3>
+      <p class="tag">Highest efficiency at ultra-low wind speed</p>
+      <p>Our 2MW platform is optimised for higher yields at low-wind sites with hub heights of up to 140 metres. Off-the-shelf parts from top suppliers, local supply chain integration and an operating range up to 49&nbsp;°C — meeting all Indian grid code requirements.</p>
+      <ul><li><b>130.0 m</b> rotor Ø</li><li><b>13,273 m²</b> rotor area</li><li><b>63.7 m</b> SE 63.7 GFRP blade</li></ul>
+      <div class="cardcalc" data-calc="m130"></div>
+      <div class="tcard-foot"><button class="btn btn-glow btn-sm view3d" data-model="m130">View in 3D ◉</button><span class="price">2700 kW · DFIG</span></div>
+    </article>
+
+    <article class="tcard glass" data-model="m131">
+      <div class="media sq"><img src="assets/p-3-1m130.jpg" alt="Senvion 3.1M130 wind turbine"><span class="media-tag">3.1M130</span></div>
+      <div class="tcard-top"><span class="pill">3XM SERIES</span><span class="mw">3.1 MW</span></div>
+      <h3>3.1M130</h3>
+      <p class="tag">Highest efficiency at ultra-low wind speed</p>
+      <p>Our new 3MW+ series WTG with a hub height of 130 m is optimised for higher yields at medium–low wind sites. With an operating temperature range of up to 49&nbsp;°C it can also be operated in tropical climates. The supply chain is localised and the 3.XM series is fully compliant with Indian grid code requirements.</p>
+      <ul><li><b>130.0 m</b> rotor Ø</li><li><b>3100 kW</b> nominal power</li><li><b>49 °C</b> tropicalised</li></ul>
+      <div class="cardcalc" data-calc="m131"></div>
+      <div class="tcard-foot"><button class="btn btn-glow btn-sm view3d" data-model="m131">View in 3D ◉</button><span class="price">Up to 140 m tower</span></div>
+    </article>
+
+    <article class="tcard glass flagship" data-model="m160">
+      <div class="media sq"><img src="assets/p-4-2m160.jpg" alt="Senvion 4.2M160 wind turbine"><span class="media-tag">4.2M160</span></div>
+      <div class="tcard-top"><span class="pill hot">4XM · NEW PLATFORM</span><span class="mw">4.2 MW</span></div>
+      <h3>4.2M160</h3>
+      <p class="tag">Optimised for Low and Medium Wind Segment</p>
+      <p>Introducing our new 4XM wind turbine platform, optimised for higher yields at low-wind sites with hub heights of up to 140 metres. An innovative design using off-the-shelf parts from top suppliers and local supply chain integration.</p>
+      <ul><li><b>160.0 m</b> rotor Ø</li><li><b>20,106 m²</b> rotor area</li><li><b>78.5 m</b> ReT 78.5 blade</li></ul>
+      <div class="cardcalc" data-calc="m160"></div>
+      <div class="tcard-foot"><button class="btn btn-glow btn-sm view3d" data-model="m160">View in 3D ◉</button><span class="price">3.8 / 3.99 / 4.2 / 4.4 MW</span></div>
+    </article>
+  </div>
+
+  <div class="specstrip glass">
+    <div><span>Selected model</span><b id="specRated">2.7 MW</b></div>
+    <div><span>Series</span><b id="specSeries">2XM series</b></div>
+    <div><span>Rotor Ø</span><b id="specRotor">130 m</b></div>
+    <div><span>Swept area</span><b id="specSwept">13,273 m²</b></div>
+    <div><span>Blade length</span><b id="specBlade">63.7 m</b></div>
+    <div><span>Reference temp.</span><b id="specTemp">up to 49 °C</b></div>
+    <div><span>Cut-in / Rated / Cut-out</span><b>3.0 / 12.0 / 20.0 m/s</b></div>
+    <div><span>Generator</span><b>DFIG · IP54</b></div>
+    <div><span>Operation</span><b>−10 °C to +49 °C</b></div>
+    <div><span>Tower</span><b>Tubular steel · to 140 m</b></div>
+  </div>
+
+  <h3 class="tbl-title">Technical data — full comparison</h3>
+  <div class="tbl-wrap glass">
+    <table class="spec-table">
+      <thead><tr><th>Specification</th><th>2.3M120</th><th>2.7M130</th><th>3.1M130</th><th>4.2M160</th></tr></thead>
+      <tbody>
+        <tr><td>Nominal power</td><td>2330 kW</td><td>2700 kW</td><td>3100 kW</td><td>4200 kW</td></tr>
+        <tr><td>Power modes</td><td>—</td><td>—</td><td>—</td><td>3.8 / 3.99 / 4.2 / 4.4</td></tr>
+        <tr><td>Cut-in / Nominal / Cut-out wind speed</td><td>3.0 / 11.0 / 20.0 m/s</td><td>3.0 / 12.0 / 20.0 m/s</td><td>3.0 / 12.0 / 20.0 m/s</td><td>2.5 / 11.0 / 25.0 m/s</td></tr>
+        <tr><td>Operating temperature range</td><td>−10 to +40 °C</td><td>−10 to +49 °C</td><td>−10 to +49 °C</td><td>−20 to +50 °C</td></tr>
+        <tr><td>Survival temperature range</td><td>−20 to +50 °C</td><td>−20 to +50 °C</td><td>−20 to +50 °C</td><td>−30 to +50 °C</td></tr>
+        <tr><td>Generator</td><td>Electrically excited synchronous</td><td>DFIG</td><td>DFIG</td><td>Partial converter DFIG</td></tr>
+        <tr><td>Converter type</td><td>Full power conversion with IGBT</td><td>Frequency converter for DFIG with DC link</td><td>Frequency converter for DFIG with DC link</td><td>Partial converter DFIG</td></tr>
+        <tr><td>Generator protection class</td><td>IP 54</td><td>IP 54</td><td>IP 54</td><td>IP 54</td></tr>
+        <tr><td>Wind class</td><td>IEC S</td><td>IEC S</td><td>IEC S</td><td>IEC S</td></tr>
+        <tr><td>Type testing</td><td>IEC 61400-22</td><td>IEC 61400-22</td><td>IEC 61400-22</td><td>IEC 61400-22 / IECRE</td></tr>
+        <tr><td>Rotor diameter</td><td>120.0 m</td><td>130.0 m</td><td>130.0 m</td><td>160.0 m</td></tr>
+        <tr><td>Rotor area</td><td>11,310 m²</td><td>13,273 m²</td><td>13,273 m²</td><td>20,106 m²</td></tr>
+        <tr><td>Blade length / profile</td><td>58.7 m · LM 58.7</td><td>63.7 m · SE 63.7</td><td>63.7 m · SE 63.7</td><td>78.5 m · ReT 78.5</td></tr>
+        <tr><td>Blade material</td><td>GFRP</td><td>GFRP</td><td>GFRP</td><td>GFRP</td></tr>
+        <tr><td>Power control</td><td colspan="4">Electrical pitch system</td></tr>
+        <tr><td>Tower</td><td>Tubular steel · 120 m</td><td>Tubular steel · up to 140 m</td><td>Tubular steel · up to 140 m</td><td>117 m / 140 m steel · 170 m timber or concrete hybrid</td></tr>
+        <tr><td>Additional standards</td><td>—</td><td>—</td><td>—</td><td>OD 501 · DIBt 2012</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mini">Design data as published on senvion.in · Nominal power frequency 50 Hz · All platforms fully compliant with Indian grid code requirements.</p>
+
+  <h3 class="tbl-title">Power curves</h3>
+  <div class="graph-strip">
+    <div class="media"><img src="assets/graph-2-3.jpg" alt="2.3M120 power curve"><span class="media-tag">2.3M120</span></div>
+    <div class="media"><img src="assets/graph-2-7.jpg" alt="2.7M130 power curve"><span class="media-tag">2.7M130</span></div>
+    <div class="media"><img src="assets/graph-3-1.jpg" alt="3.1M130 power curve"><span class="media-tag">3.1M130</span></div>
+    <div class="media"><img src="assets/graph-4-2.jpg" alt="4.2M160 power curve"><span class="media-tag">4.2M160</span></div>
+  </div>
+
+  <h3 class="tbl-title">Reference projects</h3>
+  <div class="cards3">
+    <div class="proj glass"><div class="media ratio"><img src="assets/pr-continuum.jpg" alt="Continuum Energy project"></div><span class="pill">2.7M130</span><h3>Continuum Energy</h3><p>Bhavnagar, Gujarat · 44 WTG; 118 MW · Commissioned Q2-2023</p></div>
+    <div class="proj glass"><div class="media ratio"><img src="assets/pr-jsw.jpg" alt="JSW Energy project"></div><span class="pill">2.7M130</span><h3>Tata Power</h3><p>Osmanabad, Maharashtra · 38 WTG; 100 MW</p></div>
+    <div class="proj glass"><div class="media ratio"><img src="assets/pr-renew.jpg" alt="ReNew Power project"></div><span class="pill">2.7M130</span><h3>JSW Energy</h3><p>Tamil Nadu · 22 WTG; 50 MW · Commissioned Q3-2019</p></div>
+    <div class="proj glass"><div class="media ratio"><img src="assets/p-2-3-m120.jpg" alt="2.3M120 turbine"></div><span class="pill">2.3M120</span><h3>ReNew Power</h3><p>Bhuvad, Gujarat · 27 WTG; 62 MW · Commissioned Q1-2020</p></div>
+    <div class="proj glass"><div class="media ratio"><img src="assets/home-banner.jpg" alt="Wind farm in Gujarat"></div><span class="pill">2.3M120</span><h3>Engie</h3><p>Tithwa, Gujarat · 13 WTG; 30 MW · Commissioned Q3-2019</p></div>
+    <div class="proj glass"><div class="media ratio"><img src="assets/banner-02.jpg" alt="Wind farm in Gujarat"></div><span class="pill">2.3M120</span><h3>Alfanar Energy</h3><p>Nakhatrana, Gujarat · 22 WTG; 50 MW</p></div>
+  </div>
+</section>
+
+<!-- ============ 3D LAB ============ -->
+<section id="lab" class="panel">
+  <div class="sec-head">
+    <span class="kicker">03 — 3D TURBINE LAB</span>
+    <h2>Dissect the <span class="grad">machine.</span></h2>
+    <p>Everything below drives the <b>same live 3D scene</b> — modelled on the Senvion 2XM, 3XM and 4XM platforms. Paint it, explode it, stress it.</p>
+  </div>
+  <div class="platform-bar glass">
+    <span class="kicker">PLATFORM</span>
+    <div class="modelchips" data-chips></div>
+    <p class="mini">Every figure below is recalculated from the selected machine's own rating, rotor and swept area.</p>
+  </div>
+  <div class="lab-grid">
+    <div class="lab-card glass">
+      <h3>🎨 Finish studio</h3>
+      <div class="swatches">
+        <button class="sw active" data-c1="#f4f7fa" data-c2="#b9c3cf" style="--s:#f4f7fa" aria-label="arctic white"></button>
+        <button class="sw" data-c1="#0b1220" data-c2="#5eead4" style="--s:#0b1220" aria-label="midnight"></button>
+        <button class="sw" data-c1="#e11d48" data-c2="#ffffff" style="--s:#e11d48" aria-label="senvion red"></button>
+        <button class="sw" data-c1="#f59e0b" data-c2="#111827" style="--s:#f59e0b" aria-label="desert amber"></button>
+        <button class="sw" data-c1="#2563eb" data-c2="#bfdbfe" style="--s:#2563eb" aria-label="monsoon blue"></button>
+        <button class="sw" data-c1="#16a34a" data-c2="#dcfce7" style="--s:#16a34a" aria-label="farm green"></button>
+      </div>
+      <div class="ctrl"><div class="ctrl-row"><label>Blade pitch (DC-motor pitch)</label><output id="pitchOut">2°</output></div>
+      <input id="pitchSlider" type="range" min="0" max="30" value="2"></div>
+      <div class="ctrl"><div class="ctrl-row"><label>Yaw (nacelle)</label><output id="yawOut">0°</output></div>
+      <input id="yawSlider" type="range" min="-60" max="60" value="0"></div>
+    </div>
+    <div class="lab-card glass">
+      <h3>🌦️ Environment</h3>
+      <div class="env-btns">
+        <button class="chip env active" data-env="day">☀️ Day</button>
+        <button class="chip env" data-env="sunset">🌇 Sunset</button>
+        <button class="chip env" data-env="night">🌌 Night</button>
+        <button class="chip env" data-env="storm">⛈️ Monsoon</button>
+      </div>
+      <div class="ctrl"><div class="ctrl-row"><label>Wind particles</label><output id="partOut">70%</output></div>
+      <input id="partSlider" type="range" min="0" max="100" value="70"></div>
+      <label class="toggle"><input type="checkbox" id="birdsToggle" checked><span></span> Birds &amp; clouds</label>
+      <label class="toggle"><input type="checkbox" id="farmToggle" checked><span></span> Background wind farm</label>
+    </div>
+    <div class="lab-card glass">
+      <h3>📐 Engineering readout</h3>
+      <div class="readout">
+        <div><span>Live output</span><b id="rOut">—</b></div>
+        <div><span>Swept area</span><b id="rSwept">—</b></div>
+        <div><span>Tip speed</span><b id="rTip">—</b></div>
+        <div><span>Tip-speed ratio</span><b id="rTsr">—</b></div>
+        <div><span>Thrust</span><b id="rThrust">—</b></div>
+        <div><span>Capacity factor</span><b id="rCf">—</b></div>
+        <div><span>Annual energy</span><b id="rAep">—</b></div>
+        <div><span>Homes powered</span><b id="rHomes">—</b></div>
+      </div>
+      <canvas id="powerChart" width="300" height="110"></canvas>
+      <p class="mini">Power curve for <b id="chartModel">2.7M130</b> — live dot = current wind. Cut-in 3 m/s, rated 12 m/s, cut-out 20 m/s.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services" class="panel">
+  <div class="sec-head photo" style="--photo:url('assets/o-m.jpg')">
+    <span class="kicker">04 — SERVICES · HARNESSING THE POWER OF FLEXIBILITY</span>
+    <h2>O&amp;M that keeps you <span class="grad">spinning.</span></h2>
+    <p>Senvion India has a highly efficient in-house Operations and Maintenance (O&amp;M) team actively managing wind farm power projects in multiple Indian states, serving a prestigious clientele including the industry's leading Independent Power Producers (IPPs). Our services are designed to prioritise performance and machine availability — ensuring you get the most out of your wind energy investment.</p>
+  </div>
+
+  <div class="lab-grid">
+    <div class="lab-card glass"><h3>🔧 Operations &amp; Maintenance</h3>
+      <div class="media ratio"><img src="assets/o-m.jpg" alt="Senvion O&amp;M technicians"><span class="media-tag">O&amp;M</span></div>
+      <ul class="ticks">
+        <li><b>Over a decade</b> of expertise in O&amp;M of wind turbines</li>
+        <li>Comprehensive and customised contracts from <b>10 to 25 years</b></li>
+        <li>Performance-driven approach maximising asset yield and <b>ROI</b></li>
+        <li>Genuine <b>original spare parts</b> with regional stock at every site</li>
+        <li>Dedicated in-house maintenance team &amp; <b>craneless</b> solutions</li>
+        <li>Lost Production Factor tracked continuously against contract</li>
+      </ul>
+    </div>
+    <div class="lab-card glass"><h3>📡 FleetPro®</h3>
+      <div class="media ratio"><img src="assets/fleetpro.jpg" alt="FleetPro SCADA dashboard"><span class="media-tag">SCADA</span></div>
+      <p class="lead">Senvion India's own proprietary SCADA system — a web-based human-machine interface for wind turbine process data acquisition, monitoring, remote control and data integration. No additional hardware installation or administration required.</p>
+      <ul class="ticks"><li><img class="tick-ico" src="assets/data-analytics.png" alt="">Data analytics &amp; diagnostics tool</li><li><img class="tick-ico" src="assets/dashboard.png" alt="">Performance dashboards</li><li><img class="tick-ico" src="assets/diagnostic.png" alt="">Diagnostics reports</li><li><img class="tick-ico" src="assets/historical.png" alt="">Historical performance analysis</li></ul>
+    </div>
+    <div class="lab-card glass"><h3>🏭 Turbine Control Centre</h3>
+      <div class="media ratio"><img src="assets/wind-farm.png" alt="Wind farm monitoring" style="object-fit:contain;padding:14px;background:#0a1322"><span class="media-tag">24/7 TCC</span></div>
+      <ul class="ticks">
+        <li>Dedicated <b>TCC in Baramati</b> for 24/7 asset monitoring</li>
+        <li>In-house <b>repair centre</b> for electronic spare parts</li>
+        <li>Dedicated blade technician team with manlifts for up-tower work</li>
+        <li><b>ISO 45001 &amp; ISO 14001</b> aligned QHSE: PTW, TBT, LOTO</li>
+        <li>Safety-first culture with a clear goal: <b>Zero Harm</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="tbl-title">Service results</h3>
+  <div class="tbl-wrap glass">
+    <table class="spec-table">
+      <thead><tr><th>Maintenance</th><th>Quantity</th><th>MW</th><th>Comment</th></tr></thead>
+      <tbody>
+        <tr><td>Total combined capacity under service</td><td>629</td><td>1600</td><td>As of July 2026</td></tr>
+        <tr><td>Service technicians</td><td>300</td><td>—</td><td>In-house, pan-India</td></tr>
+        <tr><td>Markets with service presence</td><td>47</td><td>—</td><td>47 sites located in 5 states of India</td></tr>
+        <tr><td>Lost Time Injuries Rate (LTIR)</td><td colspan="3">Safety-first culture · Zero Harm goal · ISO 45001 / 14001 aligned</td></tr>
+        <tr><td>Lost Production Factor (LPF)</td><td colspan="3">Continuously monitored from the Turbine Control Centre, Baramati</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ MANUFACTURING ============ -->
+<section id="manufacturing" class="panel">
+  <div class="sec-head photo" style="--photo:url('assets/mfg-01.jpg')">
+    <span class="kicker">05 — MANUFACTURING UNITS · ENGINEERING EXCELLENCE IN ACTION</span>
+    <h2>Where groundbreaking turbines <span class="grad">come to life.</span></h2>
+    <p>We take immense pride in our state-of-the-art manufacturing units, where groundbreaking wind turbines come to life. Our facilities embody a perfect blend of engineering precision, cutting-edge technology and an unwavering commitment to quality.</p>
+  </div>
+  <div class="lab-grid">
+    <div class="lab-card glass"><h3>⚙️ Nacelle &amp; Hub — Baramati</h3>
+      <div class="media ratio"><img src="assets/mfg-unit.jpg" alt="Senvion nacelle and hub plant"><span class="media-tag">BARAMATI</span></div>
+      <ul class="ticks">
+        <li>Baramati, ~120 km from Pune and 300 km from Mumbai, with <b>JNPT port</b> access</li>
+        <li>Spread over <b>40 acres</b>, with scope for future expansion</li>
+        <li>Capacity <b>1 GW per year</b> — one of the largest nacelle &amp; hub assembly facilities in the region</li>
+        <li>100+ direct and indirect employees</li>
+        <li>Continuous <b>Q-Wall</b> across sourcing and production</li>
+        <li>Production equipment and test bench mostly <b>imported from Germany</b></li>
+      </ul>
+    </div>
+    <div class="lab-card glass"><h3>🌀 Blades — Vadodara &amp; Trichy</h3>
+      <div class="media ratio"><img src="assets/blades.jpg" alt="Senvion blade manufacturing"><span class="media-tag">VADODARA · TRICHY</span></div>
+      <ul class="ticks">
+        <li>Two blade plants running <b>5 production lines</b> with Senvion's own moulds</li>
+        <li>Access to <b>Mundra, Kandla and Tuticorin</b> ports</li>
+        <li>More than <b>37 acres</b> combined · <b>1 GW per year</b> capacity</li>
+        <li>Approximately <b>1,500</b> direct and indirect workers</li>
+        <li>Continuous Q-Wall and calibrated critical quality checks</li>
+        <li>Senvion India oversees SOPs, WIs and manuals as manufacturing standards</li>
+      </ul>
+    </div>
+    <div class="lab-card glass"><h3>🗼 Tower — near Ahmedabad</h3>
+      <div class="media ratio"><img src="assets/about-tower.jpg" alt="Senvion tower section"><span class="media-tag">AHMEDABAD</span></div>
+      <ul class="ticks">
+        <li>Located near Ahmedabad for easy transport to <b>Gujarat wind sites</b></li>
+        <li>Spread over <b>38 acres</b>, allowing room for expansion</li>
+        <li>Current capacity <b>10 towers (50 sections) per month</b></li>
+        <li>Over <b>250</b> highly qualified, multi-skilled personnel</li>
+        <li>Certified to <b>ISO 9001, ISO 45001, ISO 14001</b></li>
+        <li>Also compliant with <b>EN ISO 1090, ISO 3834 and MECS</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HISTORY ============ -->
+<section id="history" class="panel">
+  <div class="sec-head photo" style="--photo:url('assets/home-banner.jpg')"><span class="kicker">06 — A LEGACY OF ENGINEERING EXCELLENCE</span><h2>Our wind <span class="grad">energy journey.</span></h2></div>
+  <div class="timeline">
+    <div class="tline"><b>2001</b><span>REpower established in Germany</span></div>
+    <div class="tline"><b>2014</b><span>REpower re-branded as Senvion</span></div>
+    <div class="tline"><b>2016</b><span>Senvion India commences operations</span></div>
+    <div class="tline"><b>2017</b><span>Acquisition of Kenersys technology &amp; nacelle plant · first order awarded to Senvion by Engie</span></div>
+    <div class="tline"><b>2018</b><span>Order book touches 1 GW · launch of new product for commercial sale in India</span></div>
+    <div class="tline"><b>2019</b><span>Senvion India carved out as an independent entity · prototype installed in Gujarat</span></div>
+    <div class="tline"><b>2021</b><span>alfanar completes acquisition of Senvion India · largest order of 591 MW from JSW Energy · M130 rating upgraded to 2.7 MW</span></div>
+    <div class="tline"><b>2022</b><span>First state-of-the-art blade factory in Trichy · 2.7M130 added to RLMM · 100 MW Tata Power order · backlog crosses 1 GW</span></div>
+    <div class="tline"><b>2023</b><span>Operational fleet crosses 500 MW · first 140 m hub height M130 commissioned · 100th 2.7M130 dispatched</span></div>
+    <div class="tline"><b>2024</b><span>M130 uprated to 3.1 MW · 4XM platform launched · operational fleet crosses 750 MW</span></div>
+    <div class="tline hot"><b>2025</b><span>4XM for commercial sale in India &amp; low-wind international markets · operational fleet crosses 1000 MW (as on March 2025)</span></div>
+  </div>
+</section>
+
+<!-- ============ IMPACT ============ -->
+<section id="impact" class="panel">
+  <div class="sec-head photo" style="--photo:url('assets/banner-02.jpg')"><span class="kicker">07 — IMPACT</span><h2>Customised solutions for <span class="grad">individual success.</span></h2></div>
+  <div class="lab-grid">
+    <div class="lab-card glass">
+      <h3>🎯 Continuous improvement</h3>
+      <ul class="ticks">
+        <li><b>Customer feedback</b> embedded into product and service loops</li>
+        <li><b>Local R&amp;O setup</b> for fast engineering response</li>
+        <li><b>Robust local manufacturing</b> across four facilities</li>
+        <li><b>High level of localisation</b> in the supply chain</li>
+        <li><b>Diversity footprint</b> across the workforce</li>
+      </ul>
+    </div>
+    <div class="lab-card glass">
+      <h3>🏆 Technology leadership</h3>
+      <p class="lead">Deliver world-class technology with German heritage — proven platforms engineered for Indian site conditions and grid codes.</p>
+      <ul class="ticks"><li>2XM, 3XM and 4XM turbine platforms</li><li>IEC 61400-22 type-tested designs</li><li>ISO 9001:2015 certified processes</li></ul>
+    </div>
+    <div class="lab-card glass">
+      <h3>📊 High performance asset management</h3>
+      <ul class="ticks">
+        <li><b>Performance diagnostic</b> against contractual indicators</li>
+        <li><b>State-of-the-art analytics</b> on the FleetPro® SCADA platform</li>
+        <li>24/7 monitoring from the Turbine Control Centre</li>
+        <li>Regular maintenance audits for every asset</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEWS ============ -->
+<section id="news" class="panel">
+  <div class="sec-head photo" style="--photo:url('assets/news-01.jpg')"><span class="kicker">08 — NEWSROOM · WIND ENERGY NEWS &amp; INSIGHTS</span><h2>Momentum, <span class="grad">measured in MW.</span></h2></div>
+  <div class="proj-grid">
+    <div class="proj glass"><span class="pill hot">Aug 25, 2026</span><h3>alfanar group announces additional direct capital funding of USD 100 Million (~INR 950 Crore) in Senvion to accelerate next phase of growth</h3><p>Growth capital to expand manufacturing and delivery capacity in India.</p></div>
+    <div class="proj glass"><span class="pill">Jul 3, 2026</span><h3>alfanar and Senvion reaffirm commitment to localisation and ‘Make in India’ at Powering The Next Era</h3><p>Deepening localisation across the supply chain and product portfolio.</p></div>
+    <div class="proj glass"><span class="pill">2025</span><h3>Senvion India wins 83.7 MW repeat order from Tata Power Renewables</h3><p>Continued trust from one of India's leading independent power producers.</p></div>
+    <div class="proj glass"><span class="pill">2025</span><h3>Senvion India's 4.2M160 wind turbine receives MNRE ALMM (Wind) listing</h3><p>Flagship 4XM platform cleared for deployment at hub heights up to 140 m.</p></div>
+    <div class="proj glass"><span class="pill">2025</span><h3>Senvion India and KP Group sign framework agreement for up to 2,000 MW of wind and wind–solar hybrid projects across India</h3><p>One of the largest framework agreements in the Indian wind sector.</p></div>
+    <div class="proj glass"><span class="pill">Dec 3, 2020</span><h3>Acquisition of Senvion GmbH's India operations</h3><p>The foundation of Senvion as an independent India-focused wind business.</p></div>
+  </div>
+</section>
+
+<!-- ============ ESG ============ -->
+<section id="sustainability" class="panel">
+  <div class="sec-head photo" style="--photo:url('assets/esg-environment.jpg')"><span class="kicker">09 — SUSTAINABILITY · OUR COMMITMENT TO A SUSTAINABLE TOMORROW</span>
+    <h2>Let's drive the future <span class="grad">of clean energy, together.</span></h2>
+    <p>At Senvion India, sustainability is at the core of our mission. We engage with diverse stakeholders to identify ESG-related material topics, drawing insights from customer surveys, industry trends and regulatory agencies. In 2022 we appointed CareEdge Advisory to integrate ESG principles into our processes and conduct our first materiality assessment, reviewed by our ESG Executive Oversight Committee.</p>
+  </div>
+
+  <div class="tbl-wrap glass">
+    <table class="spec-table esg">
+      <thead><tr><th>KPI</th><th>Unit</th><th>2025</th><th>2030</th><th>2040</th></tr></thead>
+      <tbody>
+        <tr><td>Recyclability of turbines &amp; blades</td><td>%</td><td>50%</td><td>75%</td><td>100%</td></tr>
+        <tr><td>Green energy for operations — conventional energy consumed</td><td>kWh</td><td>25% reduction from 2022</td><td>25% reduction from 2025</td><td>25% reduction from 2030</td></tr>
+        <tr><td>Elevate marginalised society — beneficiaries with access to education &amp; healthcare</td><td>No.</td><td>2,500</td><td>5,000</td><td>10,000</td></tr>
+        <tr><td>Globally best-in-class LTIFR</td><td>LTIFR</td><td>&lt; 2</td><td>&lt; 1.5</td><td>&lt; 1</td></tr>
+        <tr><td>Share of women in workforce with equal opportunities</td><td>%</td><td>10%</td><td>15%</td><td>20%</td></tr>
+        <tr><td>Supplier Code of Conduct acceptance</td><td>% of purchased volume</td><td colspan="3">90% · business ethics &amp; compliance training</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="photo-grid">
+    <figure><div class="media"><img src="assets/esg-environment.jpg" alt="Environment"></div><figcaption>01 — Environment</figcaption></figure>
+    <figure><div class="media"><img src="assets/esg-social.jpg" alt="Social"></div><figcaption>02 — Social</figcaption></figure>
+    <figure><div class="media"><img src="assets/esg-governance.jpg" alt="Governance"></div><figcaption>03 — Governance</figcaption></figure>
+    <figure><div class="media"><img src="assets/esg-commitment.jpg" alt="Social commitment"></div><figcaption>04 — Social Commitment</figcaption></figure>
+    <figure><div class="media"><img src="assets/esg-diligence.jpg" alt="Due diligence"></div><figcaption>05 — Due Diligence</figcaption></figure>
+    <figure><div class="media"><img src="assets/impact-1.png" alt="Senvion ESG policy" style="object-fit:contain;padding:24px;background:#0a1322"></div><figcaption>Senvion ESG Policy</figcaption></figure>
+  </div>
+
+  <div class="lab-grid">
+    <div class="lab-card glass"><h3>🔍 ESG evaluation &amp; gap analysis</h3><p class="lead">We identified areas for enhancing and developing the organisation's ESG practices with the help of a comprehensive ESG gap analysis.</p></div>
+    <div class="lab-card glass"><h3>⚖️ Materiality assessment</h3><p class="lead">We determined ESG priorities through a materiality exercise and aligned them with relevant ESG Key Performance Indicators (KPIs) and targets.</p></div>
+    <div class="lab-card glass"><h3>📈 Peer comparison</h3><p class="lead">We gained insights into the ESG practices of our peers and developed a clear roadmap and strategy for Senvion through careful peer benchmarking.</p></div>
+    <div class="lab-card glass"><h3>🗂️ Data collection &amp; calculation</h3><p class="lead">We facilitated the collection of ESG data by providing templates and supported the calculation of emissions, as evidenced in the ESG report.</p></div>
+    <div class="lab-card glass"><h3>🌍 Environment</h3><p class="lead">Decarbonisation of business, recyclable turbine and blade design, green vehicles and green energy for operations across Scope 1 and Scope 3.</p></div>
+    <div class="lab-card glass"><h3>🤝 Social &amp; Governance</h3><p class="lead">Diversity and equal opportunity, LTIFR safety targets, compliance and business-ethics training, and a Supplier Code of Conduct across Tier 1 &amp; 2 vendors.</p></div>
+  </div>
+
+  <div class="sus-glass glass">
+    <div class="sus-nums">
+      <div><strong id="co2count">48,200,000</strong><span>tonnes CO₂ avoided (live ticker)</span></div>
+      <div><strong>100%</strong><span>turbine &amp; blade recyclability target by 2040</span></div>
+      <div><strong>49 °C</strong><span>tropical-ready engineering</span></div>
+    </div>
+    <a href="#contact" class="btn btn-glow">Get in touch →</a>
+  </div>
+</section>
+
+<!-- ============ CLIENTELE ============ -->
+<section id="clientele" class="panel">
+  <div class="sec-head photo" style="--photo:url('assets/hero-banner.jpg')"><span class="kicker">10 — CLIENTELE</span><h2>Wind energy solutions <span class="grad">that the industry trusts.</span></h2></div>
+  <div class="logo-strip glass">
+    <img src="assets/cl-tata.jpg" alt="Tata Power">
+    <img src="assets/cl-jsw.jpg" alt="JSW Energy">
+    <img src="assets/cl-continuum.png" alt="Continuum Green Energy">
+    <img src="assets/cl-renew.png" alt="ReNew Power">
+    <img src="assets/cl-engie.png" alt="Engie">
+    <img src="assets/cl-alfanar.png" alt="alfanar">
+    <img src="assets/cl-kp.png" alt="KP Group">
+    <img src="assets/cl-sembcorp.png" alt="Sembcorp">
+    <img src="assets/cl-icc.png" alt="ICC">
+    <img src="assets/cl-german.png" alt="German TMT">
+  </div>
+  <p class="mini">Clientele logos served locally from senvion.in · Illustrative of Senvion India's served customer base.</p>
+
+  <div class="tech-grid">
+    <div class="tech glass"><div class="tico">⚡</div><h3>JSW Energy</h3><p>Record 591 MW order · Tuticorin 324 MW · 120 × 2.7M130 turning in Tamil Nadu.</p></div>
+    <div class="tech glass"><div class="tico">🔆</div><h3>Tata Power Renewables</h3><p>83.7 MW repeat order · 38 WTG / 100 MW commissioned at Osmanabad, Maharashtra.</p></div>
+    <div class="tech glass"><div class="tico">🌊</div><h3>Continuum Energy</h3><p>44 WTG · 118 MW at Bhavnagar, Gujarat — commissioned Q2-2023.</p></div>
+    <div class="tech glass"><div class="tico">🏛️</div><h3>Engie &amp; ReNew</h3><p>First order awarded to Senvion by Engie · ReNew 27 WTG / 62 MW at Bhuvad, Gujarat.</p></div>
+  </div>
+</section>
+
+<!-- ============ CAREER ============ -->
+<section id="career" class="panel">
+  <div class="sec-head photo" style="--photo:url('assets/life-senvion.jpg')"><span class="kicker">11 — CAREER · SHAPE THE FUTURE</span>
+    <h2>Windshapers <span class="grad">wanted.</span></h2>
+    <p>Senvion is committed to a thriving workplace that values engagement, diversity and women's empowerment. Through the <b>Senvion One Team Concept</b> we encourage cross-functional cooperation, ensuring every team member's skill and expertise is utilised effectively.</p>
+  </div>
+  <div class="tech-grid">
+    <div class="tech glass"><div class="media sq"><img src="assets/people-senvion.jpg" alt="Senvion team"></div><h3>One Team Concept</h3><p>Cross-functional cooperation and communication in a supportive, cohesive environment where ideas are shared freely.</p></div>
+    <div class="tech glass"><div class="media sq"><img src="assets/life-senvion.jpg" alt="Life at Senvion"></div><h3>Global workforce</h3><p>Individuals from diverse backgrounds and cultures bringing a wide range of perspectives to the table.</p></div>
+    <div class="tech glass"><div class="media sq"><img src="assets/openings.jpg" alt="Careers at Senvion"></div><h3>Women @ Wind</h3><p>Mentorship programmes, leadership development opportunities and networking events to support growth.</p></div>
+    <div class="tech glass"><div class="media sq"><img src="assets/about-02.jpg" alt="Skill development"></div><h3>Skill development</h3><p>Technical workshops and soft-skills training so employees have the tools to reach their full potential.</p></div>
+  </div>
+  <div class="hero-cta" style="margin-top:22px">
+    <a href="#contact" class="btn btn-glow">Explore opportunities →</a>
+    <a href="#about" class="btn btn-ghost">Life @Senvion</a>
+  </div>
+</section>
+
+<!-- ============ PHOTO BAND ============ -->
+<div class="band" style="--photo:url('assets/hero-banner.jpg')">
+  <div class="band-inner">
+    <span class="kicker">WE ARE WINDSHAPERS™</span>
+    <h2>Let's drive the future <span class="grad">of clean energy, together.</span></h2>
+    <p>Sustainably energising neighbourhoods — your preferred technology partner for wind energy projects, with customised solutions for individual success.</p>
+    <div class="band-cta">
+      <a href="#lab" class="btn btn-glow">◉ Open 3D Turbine Lab</a>
+      <a href="#contact" class="btn btn-ghost">Schedule an appointment →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="panel">
+  <div class="contact-grid">
+    <div>
+      <span class="kicker">12 — CONNECT · SCHEDULE AN APPOINTMENT</span>
+      <h2>Let's make something <span class="grad">great together.</span></h2>
+      <p class="lead">Tell us your site, wind regime and capacity. Our engineers reply with layout, yield and availability.</p>
+
+      <div class="contact-lines">
+        <div class="icon-line"><img src="assets/icon-phone.png" alt=""><span><b>CALL US</b> · +91 22-6908 0000</span></div>
+        <div class="icon-line"><img src="assets/icon-mail.png" alt=""><span><b>EMAIL US</b> · info@senvion.in</span></div>
+      </div>
+
+      <div class="addr-grid">
+        <div class="addr glass"><span class="kicker"><img class="addr-ico" src="assets/icon-loc-1.png" alt=""> HEADQUARTERS</span><p><b>Senvion Wind Technology Private Limited</b><br>501-Wing B, Delphi Hiranandani Business Park, Powai, Mumbai - 400076, Maharashtra, India</p></div>
+        <div class="addr glass"><span class="kicker"><img class="addr-ico" src="assets/icon-loc-2.png" alt=""> CORPORATE OFFICE</span><p><b>RETechnologies GmbH</b><br>Hamburger Straße 11,<br>22083<br>Hamburg, Germany</p></div>
+        <div class="addr glass"><span class="kicker"><img class="addr-ico" src="assets/icon-loc-1.png" alt=""> R &amp; D</span><p><b>Senvion India Pvt Ltd</b><br>SJR I PARK, Tower- 2, 5th Floor,<br>No 13, 14 &amp; 15, EPIP Zone,<br>Whitefield, Bengaluru – 560066,<br>Karnataka, India</p></div>
+        <div class="addr glass"><span class="kicker"><img class="addr-ico" src="assets/icon-loc-2.png" alt=""> MANUFACTURING</span><p><b>Senvion Wind Technology Private Limited</b><br>Plot no-B15/1 MIDC<br>Baramati – 413 133<br>Maharashtra, India</p></div>
+        <div class="addr glass"><span class="kicker"><img class="addr-ico" src="assets/icon-loc-1.png" alt=""> MANUFACTURING - TRICHY</span><p><b>Senvion Wind Technology Pvt Ltd.</b><br>Unit 7 Boothakudi,<br>Viramalai Road, ILUPPUR<br>Tiruchirappalli, 621316</p></div>
+      </div>
+
+      <div class="map-wrap glass">
+        <div class="map-head">
+          <span class="kicker"><img class="addr-ico" src="assets/icon-loc-2.png" alt=""> R &amp; D — BENGALURU · FIND US ON THE MAP</span>
+          <a class="map-link" href="https://www.google.com/maps?q=12.981494908015383,77.72730796596753" target="_blank" rel="noopener">Open in Google Maps →</a>
+        </div>
+        <iframe class="gmap" title="Senvion R&amp;D office — SJR I PARK, Whitefield, Bengaluru" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=12.981494908015383,77.72730796596753&z=16&output=embed"></iframe>
+        <p class="mini map-addr"><b>SJR I PARK</b>, 9th Rd, KIADB Export Promotion Industrial Area, Whitefield, Bengaluru, Karnataka 560066</p>
+      </div>
+    </div>
+
+    <form id="quoteForm" class="glass">
+      <div class="frow"><input required placeholder="Name" id="fName"><input required placeholder="Company" id="fCo"></div>
+      <div class="frow"><input required type="email" placeholder="Work email" id="fMail"><input placeholder="Mean wind (m/s)" type="number" step="0.1" id="fWind"></div>
+      <select id="fModel"><option>2.3M120 — 2.3 MW</option><option selected>2.7M130 — 2.7 MW</option><option>3.1M130 — 3.1 MW</option><option>4.2M160 — 4.2 MW</option></select>
+      <textarea placeholder="Site location, terrain, number of turbines…" rows="3"></textarea>
+      <button class="btn btn-glow" type="submit">Request quote ⚡</button>
+      <p id="formMsg"></p>
+      <p class="mini">By submitting you agree to be contacted by Senvion India regarding your enquiry.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-col">
+      <img class="foot-logo" src="image/REtech-and-Senvion-Logo-footer.png" alt="REtechnology | Senvion" width="250" height="52" />
+      <p class="foot-claim">Let's drive the future of clean energy, together!</p>
+      <p>📞 +91 22-6908 0000 · ✉️ info@senvion.in</p>
+    </div>
+    <div class="foot-col">
+      <h4>PRODUCTS</h4>
+      <a href="#products">2.3M120</a>
+      <a href="#products">2.7M130</a>
+      <a href="#products">3.1M130</a>
+      <a href="#products">4.2M160</a>
+    </div>
+    <div class="foot-col">
+      <h4>SERVICES</h4>
+      <a href="#services">Operations &amp; Maintenance</a>
+      <a href="#services">FleetPro®</a>
+      <a href="#manufacturing">Manufacturing Units</a>
+    </div>
+    <div class="foot-col">
+      <h4>COMPANY</h4>
+      <a href="#about">About</a>
+      <a href="#history">History</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+      <a href="#career">Career</a>
+    </div>
+    <div class="foot-col">
+      <h4>OFFICES</h4>
+      <p><b>INDIA</b><br>501-Wing B, Delphi Hiranandani Business Park, Powai, Mumbai – 400076, Maharashtra</p>
+      <p><b>GERMANY</b><br>Hamburger Straße 11, 22083, Hamburg</p>
+    </div>
+  </div>
+
+  <details class="fraud">
+    <summary>⚠️ Recruitment Fraud Alert</summary>
+    <div>
+      <p>It has come to our notice that certain persons are falsely claiming association with Senvion through fake job postings, spoofed emails and other fraudulent means with the intent to mislead job seekers and solicit payments. Please note:</p>
+      <ul>
+        <li>Senvion never demands payment, deposits, or fees at any stage of the recruitment process.</li>
+        <li>All genuine correspondence will be from official Senvion domains, not free email services such as Gmail, Yahoo, Hotmail or Rediffmail.</li>
+        <li>Senvion has not authorised any consultancy or individual to collect money, issue job offers, or provide internships on its behalf.</li>
+        <li>Senvion accepts no responsibility for any loss or damage suffered by individuals dealing with unauthorised parties. Such dealings are at the individual's own risk.</li>
+        <li>Senvion reserves the right to pursue civil and criminal remedies under applicable Indian laws against any misuse of its name, trademarks or recruitment process.</li>
+        <li>We urge candidates to remain vigilant and verify any recruitment-related communication directly through Senvion's official website or HR contacts.</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="foot-bar">
+    <p>© 2026 Senvion India · All Rights Reserved</p>
+    <div class="foot-links">
+      <a href="#contact">Policies &amp; Disclosures</a>
+      <a href="#contact">Privacy Policy</a>
+      <a href="#contact">Use of terms</a>
+      <a href="#contact">Code of Conduct</a>
+    </div>
+  </div>
+
+  <p class="disclaimer"><b>Disclaimer:</b> RETechnologies GmbH &amp; Senvion Wind Technology Pvt. Ltd. together with all its affiliates in India including Senvion India Pvt. Ltd. and Senvion India Wind Power Services LLP (collectively “Senvion India”) have rights over trademark SENVION in India. Outside India, this trademark belongs to a third party which is not an affiliate of Senvion India. Content sourced from senvion.in · Interactive 3D concept rebuild.</p>
+</footer>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="module" src="js/scene.js?v=20261009f"></script>
+<script src="js/ui.js?v=20261001a"></script>
+<script>
+/* Image self-heal — if a request fails (dev-server restart, transient network
+   error, stale cache) the image retries instead of staying stuck on alt text. */
+(function () {
+  function heal(img) {
+    var n = +(img.dataset.healed || 0);
+    if (n >= 3 || !img.getAttribute('src')) return;
+    img.dataset.healed = n + 1;
+    setTimeout(function () {
+      var u = new URL(img.currentSrc || img.src, location.href);
+      u.searchParams.set('r', Date.now() + '-' + n);
+      img.src = u.href;
+    }, 700 * (n + 1));
+  }
+  function watch(img) {
+    if (img.dataset.watched) return;
+    img.dataset.watched = '1';
+    img.addEventListener('error', function () { heal(img); });
+    // already failed before this script was parsed
+    if (img.complete && img.naturalWidth === 0) heal(img);
+  }
+  document.querySelectorAll('img').forEach(watch);
+  if (window.MutationObserver) {
+    new MutationObserver(function (muts) {
+      muts.forEach(function (m) {
+        m.addedNodes.forEach(function (n) {
+          if (!n || n.nodeType !== 1) return;
+          if (n.tagName === 'IMG') watch(n);
+          else if (n.querySelectorAll) n.querySelectorAll('img').forEach(watch);
+        });
+      });
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  }
+})();
+</script>
+</body>
+</html>

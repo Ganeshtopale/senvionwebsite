@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About Senvion India — History, Impact, Clients &amp; Careers</title>
+<meta name="description" content="Who we are: Senvion India history since 2014, installation milestones, the clients who trust us and the careers we are hiring for." />
+<link rel="icon" href="assets/favicon.png" type="image/png" />
+<link rel="apple-touch-icon" href="assets/logo-color.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20261014c" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body class="bgonly" data-bg="1" data-page="about">
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="loader-turbine">
+    <div class="loader-blades"><span></span><span></span><span></span></div>
+    <div class="loader-tower"></div>
+  </div>
+  <p>WE ARE WINDSHAPERS&trade;&hellip;</p>
+  <div class="loader-bar"><div id="loaderFill"></div></div>
+</div>
+
+
+<!-- FIXED 3D CANVAS -->
+<canvas id="webgl"></canvas>
+<div id="photoBg"></div>
+<div id="vignette"></div>
+<div id="grain"></div>
+<div id="scrollProgress"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-badge">
+        <img class="logo-img" src="image/REtech-and-Senvion-Logo.png" alt="REtechnology | Senvion" width="250" height="52" />
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a class="is-active" href="#about">About</a>
+      <a href="products.html">Products</a>
+      <a href="lab.html">3D Lab</a>
+      <a href="services.html">Services</a>
+      <a href="manufacturing.html">Manufacturing</a>
+      <a href="sustainability.html">Sustainability</a>
+      <a href="news.html">News</a>
+      <a href="connect.html" class="btn btn-sm btn-glow">Connect</a>
+    </div>
+    <button id="menuBtn" aria-label="menu"><span></span><span></span><span></span></button>
+  </div>
+  <div id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a class="is-active" href="#about">About</a>
+    <a href="products.html">Products</a>
+    <a href="lab.html">3D Lab</a>
+    <a href="services.html">Services</a>
+    <a href="manufacturing.html">Manufacturing</a>
+    <a href="#history">History</a>
+    <a href="sustainability.html">Sustainability</a>
+    <a href="news.html">News</a>
+    <a href="connect.html">Connect</a>
+  </div>
+</nav>
+<main>
+<!-- ============ ABOUT ============ -->
+<section id="about" class="panel">
+  <div class="sec-head photo" style="--photo:url('assets/about-tower.jpg')">
+    <span class="kicker">01 — ABOUT US · PERFORMANCE FUELED BY PASSION</span>
+    <h2>Empowering The Future Of <span class="grad">Wind Energy</span></h2>
+    <p>Welcome to Senvion, your trusted partner in the wind industry.</p>
+  </div>
+
+  <!-- About sub-nav — mirrors senvion.in/about- sections -->
+  <nav class="svc-tabs" aria-label="About sections">
+    <a href="#about" class="on">Profile</a>
+    <a href="#management">Management</a>
+    <a href="#history">History</a>
+    <a href="#impact">Corporate Strategy</a>
+    <a href="manufacturing.html">Manufacturing Units</a>
+  </nav>
+
+  <div class="about-intro glass">
+    <div>
+      <div class="media ratio"><img src="assets/hub.jpg" alt="Senvion nacelle and hub"><span class="media-tag">NACELLE &amp; HUB · BARAMATI</span></div>
+      <h3>About Senvion</h3>
+      <p>Welcome to Senvion, your trusted partner in the wind industry. With a legacy of engineering excellence spanning over <b>25 years</b>, we are proud to be one of the fastest-growing firms in the Indian wind industry. Our journey began in Bengaluru in early 2015 with a dedicated R&amp;D setup, and today, we have expanded our operations to engage <b>over 1000 direct and indirect resources</b> across the value chain in India.</p>
+      <p>We believe in making wind perform. With a commitment to engineering innovation and customer satisfaction, we are driven to push the boundaries of what is possible in the renewable energy sector.</p>
+    </div>
+    <div class="about-scope">
+      <div class="scope-box">
+        <span class="kicker">Our Scope</span>
+        <p>Our mission at Senvion is to empower the future of wind energy. We are dedicated to driving the transition towards sustainable power generation, empowering communities and industries with clean, reliable, and efficient wind energy solutions. Through our expertise in developing, manufacturing, assembling, installing, and marketing technologically advanced Wind Turbine Generators (WTGs), we strive to provide project-specific solutions that meet the diverse needs of our customers. By harnessing the power of nature, we aim to create a greener world for generations to come.</p>
+      </div>
+      <div class="scope-box">
+        <span class="kicker">Our Objective</span>
+        <p>We aim to ensure that our turbines remain efficient throughout their entire service life, starting from the moment of conception to realization, commissioning, and service. Over numerous years our wind turbines have built up a proven track record of reliability and efficiency, so that we are able to give you a contractual guarantee regarding performance curve and technical availability. We are certified under <b>ISO 9001: 2015</b>.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tech-grid">
+    <div class="tech glass"><div class="tico">🌬️</div><h3>windshapers™</h3><p>Sustainably energising neighbourhoods with customised solutions for individual success.</p></div>
+    <div class="tech glass"><div class="tico">🔬</div><h3>German heritage, Indian R&amp;D</h3><p>Dedicated R&amp;D in Bengaluru since 2015 with engineering depth across the value chain and 25+ years of technology lineage.</p></div>
+    <div class="tech glass"><div class="tico">🏭</div><h3>Robust local manufacturing</h3><p>Nacelle &amp; hub plant in Baramati, blade plants at Vadodara &amp; Trichy and a tower works near Ahmedabad — 1 GW per year each.</p></div>
+    <div class="tech glass"><div class="tico">🤝</div><h3>Preferred technology partner</h3><p>Trusted by JSW Energy, Tata Power, Continuum Energy, Engie, ReNew and India's leading IPPs.</p></div>
+  </div>
+
+  <div class="statstrip glass">
+    <div><strong data-count="1600" data-dec="0">0</strong><span>MW total commissioned capacity under service</span></div>
+    <div><strong data-count="629" data-dec="0">0</strong><span>number of turbines operational</span></div>
+    <div><strong data-count="47" data-dec="0">0</strong><span>sites located across India</span></div>
+    <div><strong data-count="5" data-dec="0">0</strong><span>states in India</span></div>
+    <div><strong data-count="300" data-dec="0">0</strong><span>service technicians</span></div>
+  </div>
+</section>
+
+<!-- ============ MANAGEMENT ============ -->
+<section id="management" class="panel">
+  <div class="sec-head photo" style="--photo:url('assets/people-senvion.jpg')"><span class="kicker">02 — MANAGEMENT</span><h2>Exceptional Leadership Guiding our <span class="grad">Wind Energy Innovations</span></h2></div>
+
+  <h3 style="text-align:center;margin-bottom:28px;color:var(--blue);">Board Of Directors</h3>
+
+  <div class="lab-grid" style="grid-template-columns:repeat(3,1fr);">
+
+    <div class="lab-card glass mgmt-card">
+      <div class="media" style="margin-top:0;"><img src="https://www.senvion.in/wp-content/uploads/2023/09/jamal.jpg" alt="Jamal Wadi" style="width:100%;height:320px;object-fit:cover;"></div>
+      <h3 style="font-size:1rem;margin-top:16px;">Jamal Wadi</h3>
+      <p style="color:var(--green-ink);font-weight:600;font-size:.85rem;margin-bottom:8px;">Chairman, Senvion Wind Technology Pvt. Ltd.<br>President, Alfanar</p>
+      <details class="mgmt-bio"><summary class="btn btn-ghost btn-sm">Read Bio →</summary><div class="acc-body"><p>Having been with the business for more than three decades, Jamal has been instrumental in leading the growth and transformation of the project development business. He is also the Managing Director of Alfanar Global Development – our project development arm with landmark projects around the world.</p></div></details>
+    </div>
+
+    <div class="lab-card glass mgmt-card">
+      <div class="media" style="margin-top:0;"><img src="https://www.senvion.in/wp-content/uploads/2023/09/wasim.jpg" alt="Wasim Al Mallouhi" style="width:100%;height:320px;object-fit:cover;"></div>
+      <h3 style="font-size:1rem;margin-top:16px;">Wasim Al Mallouhi</h3>
+      <p style="color:var(--green-ink);font-weight:600;font-size:.85rem;margin-bottom:8px;">Managing Director, Senvion Wind Technology Pvt. Ltd.<br>Chief Executive Office, Alfanar Global Development</p>
+      <details class="mgmt-bio"><summary class="btn btn-ghost btn-sm">Read Bio →</summary><div class="acc-body"><p>As the head of the growth &amp; strategy teams, Waseem advocated for sustainable development, which is now a driving force in the company's diversification into new markets. Additionally, he is also the Chief Executive Officer of Alfanar Global Development, and is constantly identifying new and feasible business opportunities.</p></div></details>
+    </div>
+
+    <div class="lab-card glass mgmt-card">
+      <div class="media" style="margin-top:0;"><img src="https://www.senvion.in/wp-content/uploads/2026/06/shreyas-v2.jpg.jpeg" alt="Shreyas B Suvarna" style="width:100%;height:320px;object-fit:cover;"></div>
+      <h3 style="font-size:1rem;margin-top:16px;">Shreyas B Suvarna</h3>
+      <p style="color:var(--green-ink);font-weight:600;font-size:.85rem;margin-bottom:8px;">Chief Executive Officer and Additional Director,<br>Senvion Wind Technology Pvt. Ltd.</p>
+      <details class="mgmt-bio"><summary class="btn btn-ghost btn-sm">Read Bio →</summary><div class="acc-body"><p>Shreyas is the Chief Executive Officer at Senvion India and brings over 27 years of experience in the renewable energy industry. He has previously held senior sales roles at Enercon GmbH and Vestas, and has provided consulting support to several international companies entering the Indian market. Earlier in his career, he also worked in senior sales positions at reputed firms such as Thermax and Alfa Laval.</p></div></details>
+    </div>
+
+    <div class="lab-card glass mgmt-card">
+      <div class="media" style="margin-top:0;"><img src="https://www.senvion.in/wp-content/uploads/2023/09/imad.jpg" alt="Emad Shalola" style="width:100%;height:320px;object-fit:cover;"></div>
+      <h3 style="font-size:1rem;margin-top:16px;">Emad Shalola</h3>
+      <p style="color:var(--green-ink);font-weight:600;font-size:.85rem;margin-bottom:8px;">VP, Finance &amp; Business Support,<br>Alfanar Projects,<br>Board Member, Senvion Wind Technology Private Limited</p>
+      <details class="mgmt-bio"><summary class="btn btn-ghost btn-sm">Read Bio →</summary><div class="acc-body"><p>Emad is leading the finance &amp; business support department at Alfanar Projects including several business units in 10+ countries. He has over 22 years of experience in the finance and controlling &amp; accounting domains in the manufacturing, construction, and services fields. He also serves as the Chief Investment Officer of PPP Power and Water Projects (NEOM &amp; JAWC), and is a member of several key committees at Alfanar Projects.</p></div></details>
+    </div>
+
+    <div class="lab-card glass mgmt-card">
+      <div class="media" style="margin-top:0;"><img src="https://www.senvion.in/wp-content/uploads/2023/09/mishal.jpg" alt="Mishal Al Mutlaq" style="width:100%;height:320px;object-fit:cover;"></div>
+      <h3 style="font-size:1rem;margin-top:16px;">Mishal Al Mutlaq</h3>
+      <p style="color:var(--green-ink);font-weight:600;font-size:.85rem;margin-bottom:8px;">Chief Investment Officer, Alfanar<br>Board Member,<br>Senvion Wind Technology Private Limited</p>
+      <details class="mgmt-bio"><summary class="btn btn-ghost btn-sm">Read Bio →</summary><div class="acc-body"><p>In his role as the Chief Investment Officer at Alfanar Projects, Mishal has been successful in closing deals worth over $1.6 billion in non-recourse financing. He also serves as a Director for Alfanar Energy in UK, and Alfanar Energia in Spain; and is part of the investment board for corporate level capital allocation.</p></div></details>
+    </div>
+
+    <div class="lab-card glass mgmt-card">
+      <div class="media" style="margin-top:0;"><img src="https://www.senvion.in/wp-content/uploads/2025/09/C-Level-Executives-Photoshoot-1957-Edit.jpg" alt="Mohammed Al Mutlaq" style="width:100%;height:320px;object-fit:cover;"></div>
+      <h3 style="font-size:1rem;margin-top:16px;">Mohammed Al Mutlaq</h3>
+      <p style="color:var(--green-ink);font-weight:600;font-size:.85rem;margin-bottom:8px;">Deputy Managing Director, Alfanar Projects<br>Board Member,<br>Senvion Wind Technology Private Limited</p>
+      <details class="mgmt-bio"><summary class="btn btn-ghost btn-sm">Read Bio →</summary><div class="acc-body"><p>Currently serving as the Deputy Managing Director of Alfanar Projects, Mohammed Al Mutlaq leads the company's transformative strategy and oversees its expansive business portfolio. Under his leadership, the company has achieved unprecedented growth, managing a turnover exceeding multi-billion USD and overseeing more than 10 diverse business units. In recent years, Mohammed has spearheaded the execution of Alfanar's corporate strategy, ensuring alignment across subsidiaries while forging strong partnerships with key government stakeholders. He guided the company through complex global challenges, maintaining operational resilience and continuity. His market insights and commercial strategies have opened significant growth opportunities, further strengthening Alfanar's leadership in the regional and global power sectors.</p></div></details>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ HISTORY ============ -->
+<section id="history" class="panel">
+  <div class="sec-head photo" style="--photo:url('assets/home-banner.jpg')"><span class="kicker">03 — A LEGACY OF ENGINEERING EXCELLENCE</span><h2>Our wind <span class="grad">energy journey.</span></h2></div>
+  <div class="timeline">
+    <div class="tline"><b>2001</b><span>REpower established in Germany</span></div>
+    <div class="tline"><b>2014</b><span>REpower re-branded as Senvion</span></div>
+    <div class="tline"><b>2016</b><span>Senvion India commences operations</span></div>
+    <div class="tline"><b>2017</b><span>Acquisition of Kenersys technology &amp; nacelle plant · first order awarded to Senvion by Engie</span></div>
+    <div class="tline"><b>2018</b><span>Order book touches 1 GW · launch of new product for commercial sale in India</span></div>
+    <div class="tline"><b>2019</b><span>Senvion India carved out as an independent entity · prototype installed in Gujarat</span></div>
+    <div class="tline"><b>2021</b><span>alfanar completes acquisition of Senvion India · largest order of 591 MW from JSW Energy · M130 rating upgraded to 2.7 MW</span></div>
+    <div class="tline"><b>2022</b><span>First state-of-the-art blade factory in Trichy · 2.7M130 added to RLMM · 100 MW Tata Power order · backlog crosses 1 GW</span></div>
+    <div class="tline"><b>2023</b><span>Operational fleet crosses 500 MW · first 140 m hub height M130 commissioned · 100th 2.7M130 dispatched</span></div>
+    <div class="tline"><b>2024</b><span>M130 uprated to 3.1 MW · 4XM platform launched · operational fleet crosses 750 MW</span></div>
+    <div class="tline hot"><b>2025</b><span>4XM for commercial sale in India &amp; low-wind international markets · operational fleet crosses 1000 MW (as on March 2025)</span></div>
+  </div>
+</section>
+
+
+
+<!-- ============ IMPACT ============ -->
+<section id="impact" class="panel">
+  <div class="sec-head photo" style="--photo:url('assets/banner-02.jpg')"><span class="kicker">04 — IMPACT</span><h2>Customised solutions for <span class="grad">individual success.</span></h2></div>
+  <div class="lab-grid">
+    <div class="lab-card glass">
+      <h3>🎯 Continuous improvement</h3>
+      <ul class="ticks">
+        <li><b>Customer feedback</b> embedded into product and service loops</li>
+        <li><b>Local R&amp;O setup</b> for fast engineering response</li>
+        <li><b>Robust local manufacturing</b> across four facilities</li>
+        <li><b>High level of localisation</b> in the supply chain</li>
+        <li><b>Diversity footprint</b> across the workforce</li>
+      </ul>
+    </div>
+    <div class="lab-card glass">
+      <h3>🏆 Technology leadership</h3>
+      <p class="lead">Deliver world-class technology with German heritage — proven platforms engineered for Indian site conditions and grid codes.</p>
+      <ul class="ticks"><li>2XM, 3XM and 4XM turbine platforms</li><li>IEC 61400-22 type-tested designs</li><li>ISO 9001:2015 certified processes</li></ul>
+    </div>
+    <div class="lab-card glass">
+      <h3>📊 High performance asset management</h3>
+      <ul class="ticks">
+        <li><b>Performance diagnostic</b> against contractual indicators</li>
+        <li><b>State-of-the-art analytics</b> on the FleetPro® SCADA platform</li>
+        <li>24/7 monitoring from the Turbine Control Centre</li>
+        <li>Regular maintenance audits for every asset</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLIENTELE ============ -->
+<section id="clientele" class="panel">
+  <div class="sec-head photo" style="--photo:url('assets/hero-banner.jpg')"><span class="kicker">05 — CLIENTELE</span><h2>Wind energy solutions <span class="grad">that the industry trusts.</span></h2></div>
+  <div class="logo-strip glass">
+    <img src="assets/cl-tata.jpg" alt="Tata Power">
+    <img src="assets/cl-jsw.jpg" alt="JSW Energy">
+    <img src="assets/cl-continuum.png" alt="Continuum Green Energy">
+    <img src="assets/cl-renew.png" alt="ReNew Power">
+    <img src="assets/cl-engie.png" alt="Engie">
+    <img src="assets/cl-alfanar.png" alt="alfanar">
+    <img src="assets/cl-kp.png" alt="KP Group">
+    <img src="assets/cl-sembcorp.png" alt="Sembcorp">
+    <img src="assets/cl-icc.png" alt="ICC">
+    <img src="assets/cl-german.png" alt="German TMT">
+  </div>
+  <p class="mini">Clientele logos served locally from senvion.in · Illustrative of Senvion India's served customer base.</p>
+
+  <div class="tech-grid">
+    <div class="tech glass"><div class="tico">⚡</div><h3>JSW Energy</h3><p>Record 591 MW order · Tuticorin 324 MW · 120 × 2.7M130 turning in Tamil Nadu.</p></div>
+    <div class="tech glass"><div class="tico">🔆</div><h3>Tata Power Renewables</h3><p>83.7 MW repeat order · 38 WTG / 100 MW commissioned at Osmanabad, Maharashtra.</p></div>
+    <div class="tech glass"><div class="tico">🌊</div><h3>Continuum Energy</h3><p>44 WTG · 118 MW at Bhavnagar, Gujarat — commissioned Q2-2023.</p></div>
+    <div class="tech glass"><div class="tico">🏛️</div><h3>Engie &amp; ReNew</h3><p>First order awarded to Senvion by Engie · ReNew 27 WTG / 62 MW at Bhuvad, Gujarat.</p></div>
+  </div>
+</section>
+
+<!-- ============ CAREER ============ -->
+<section id="career" class="panel">
+  <div class="sec-head photo" style="--photo:url('assets/life-senvion.jpg')"><span class="kicker">05 — CAREER · SHAPE THE FUTURE</span>
+    <h2>Windshapers <span class="grad">wanted.</span></h2>
+    <p>Senvion is committed to a thriving workplace that values engagement, diversity and women's empowerment. Through the <b>Senvion One Team Concept</b> we encourage cross-functional cooperation, ensuring every team member's skill and expertise is utilised effectively.</p>
+  </div>
+  <div class="tech-grid">
+    <div class="tech glass"><div class="media sq"><img src="assets/people-senvion.jpg" alt="Senvion team"></div><h3>One Team Concept</h3><p>Cross-functional cooperation and communication in a supportive, cohesive environment where ideas are shared freely.</p></div>
+    <div class="tech glass"><div class="media sq"><img src="assets/life-senvion.jpg" alt="Life at Senvion"></div><h3>Global workforce</h3><p>Individuals from diverse backgrounds and cultures bringing a wide range of perspectives to the table.</p></div>
+    <div class="tech glass"><div class="media sq"><img src="assets/openings.jpg" alt="Careers at Senvion"></div><h3>Women @ Wind</h3><p>Mentorship programmes, leadership development opportunities and networking events to support growth.</p></div>
+    <div class="tech glass"><div class="media sq"><img src="assets/about-02.jpg" alt="Skill development"></div><h3>Skill development</h3><p>Technical workshops and soft-skills training so employees have the tools to reach their full potential.</p></div>
+  </div>
+  <div class="hero-cta" style="margin-top:22px">
+    <a href="connect.html" class="btn btn-glow">Explore opportunities →</a>
+    <a href="#about" class="btn btn-ghost">Life @Senvion</a>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-col">
+      <img class="foot-logo" src="image/REtech-and-Senvion-Logo-footer.png" alt="REtechnology | Senvion" width="250" height="52" />
+      <p class="foot-claim">Let's drive the future of clean energy, together!</p>
+      <p>📞 +91 22-6908 0000 · ✉️ info@senvion.in</p>
+    </div>
+    <div class="foot-col">
+      <h4>PRODUCTS</h4>
+      <a href="products.html">2.3M120</a>
+      <a href="products.html">2.7M130</a>
+      <a href="products.html">3.1M130</a>
+      <a href="products.html">4.2M160</a>
+    </div>
+    <div class="foot-col">
+      <h4>SERVICES</h4>
+      <a href="services.html">Operations &amp; Maintenance</a>
+      <a href="services.html">FleetPro®</a>
+      <a href="manufacturing.html">Manufacturing Units</a>
+    </div>
+    <div class="foot-col">
+      <h4>COMPANY</h4>
+      <a href="#about">About</a>
+      <a href="#history">History</a>
+      <a href="news.html">News</a>
+      <a href="connect.html">Contact</a>
+      <a href="#career">Career</a>
+    </div>
+    <div class="foot-col">
+      <h4>OFFICES</h4>
+      <p><b>INDIA</b><br>501-Wing B, Delphi Hiranandani Business Park, Powai, Mumbai – 400076, Maharashtra</p>
+      <p><b>GERMANY</b><br>Hamburger Straße 11, 22083, Hamburg</p>
+    </div>
+  </div>
+
+  <details class="fraud">
+    <summary>⚠️ Recruitment Fraud Alert</summary>
+    <div>
+      <p>It has come to our notice that certain persons are falsely claiming association with Senvion through fake job postings, spoofed emails and other fraudulent means with the intent to mislead job seekers and solicit payments. Please note:</p>
+      <ul>
+        <li>Senvion never demands payment, deposits, or fees at any stage of the recruitment process.</li>
+        <li>All genuine correspondence will be from official Senvion domains, not free email services such as Gmail, Yahoo, Hotmail or Rediffmail.</li>
+        <li>Senvion has not authorised any consultancy or individual to collect money, issue job offers, or provide internships on its behalf.</li>
+        <li>Senvion accepts no responsibility for any loss or damage suffered by individuals dealing with unauthorised parties. Such dealings are at the individual's own risk.</li>
+        <li>Senvion reserves the right to pursue civil and criminal remedies under applicable Indian laws against any misuse of its name, trademarks or recruitment process.</li>
+        <li>We urge candidates to remain vigilant and verify any recruitment-related communication directly through Senvion's official website or HR contacts.</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="foot-bar">
+    <p>© 2026 Senvion India · All Rights Reserved</p>
+    <div class="foot-links">
+      <a href="connect.html">Policies &amp; Disclosures</a>
+      <a href="connect.html">Privacy Policy</a>
+      <a href="connect.html">Use of terms</a>
+      <a href="connect.html">Code of Conduct</a>
+    </div>
+  </div>
+
+  <p class="disclaimer"><b>Disclaimer:</b> RETechnologies GmbH &amp; Senvion Wind Technology Pvt. Ltd. together with all its affiliates in India including Senvion India Pvt. Ltd. and Senvion India Wind Power Services LLP (collectively “Senvion India”) have rights over trademark SENVION in India. Outside India, this trademark belongs to a third party which is not an affiliate of Senvion India. Content sourced from senvion.in · Interactive 3D concept rebuild.</p>
+</footer>
+
+</main>
+
+<script src="js/data.js?v=20261001h"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="module" src="js/scene.js?v=20261009f"></script>
+<script>
+(function () {
+  if (document.getElementById('webgl')) return;
+  var hide = function () { var p = document.getElementById('preloader'); if (p) p.classList.add('done'); };
+  setTimeout(hide, 1400);
+  addEventListener('load', function () { setTimeout(hide, 250); });
+})();
+</script>
+<script src="js/ui.js?v=20261001h"></script>
+<script>
+/* Image self-heal — if a request fails (dev-server restart, transient network
+   error, stale cache) the image retries instead of staying stuck on alt text. */
+(function () {
+  function heal(img) {
+    var n = +(img.dataset.healed || 0);
+    if (n >= 3 || !img.getAttribute('src')) return;
+    img.dataset.healed = n + 1;
+    setTimeout(function () {
+      var u = new URL(img.currentSrc || img.src, location.href);
+      u.searchParams.set('r', Date.now() + '-' + n);
+      img.src = u.href;
+    }, 700 * (n + 1));
+  }
+  function watch(img) {
+    if (img.dataset.watched) return;
+    img.dataset.watched = '1';
+    img.addEventListener('error', function () { heal(img); });
+    // already failed before this script was parsed
+    if (img.complete && img.naturalWidth === 0) heal(img);
+  }
+  document.querySelectorAll('img').forEach(watch);
+  if (window.MutationObserver) {
+    new MutationObserver(function (muts) {
+      muts.forEach(function (m) {
+        m.addedNodes.forEach(function (n) {
+          if (!n || n.nodeType !== 1) return;
+          if (n.tagName === 'IMG') watch(n);
+          else if (n.querySelectorAll) n.querySelectorAll('img').forEach(watch);
+        });
+      });
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  }
+})();
+</script>
+<style>
+/* Management section */
+.mgmt-card{overflow:hidden}
+.mgmt-card .media{margin:0 0 14px;border:0;border-radius:14px;overflow:hidden}
+.mgmt-card .media img{display:block}
+.mgmt-bio{margin-top:10px}
+.mgmt-bio summary{list-style:none;cursor:pointer;display:inline-block}
+.mgmt-bio summary::-webkit-details-marker{display:none}
+.mgmt-bio[open] summary{background:var(--green);color:#fff}
+.mgmt-bio .acc-body{padding-top:10px;font-size:.87rem;line-height:1.7;color:var(--mut)}
+@media(max-width:1024px){
+  #management .lab-grid{grid-template-columns:repeat(2,1fr)!important}
+}
+@media(max-width:640px){
+  #management .lab-grid{grid-template-columns:1fr!important}
+}
+</style>
+</body>
+</html>

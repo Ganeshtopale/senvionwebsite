@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Operations &amp; Maintenance and FleetPro® SCADA | Senvion India</title>
+<meta name="description" content="In-house O&amp;M, remote monitoring and FleetPro® SCADA keeping Senvion wind farms available, productive and warranty-compliant across India." />
+<link rel="icon" href="assets/favicon.png" type="image/png" />
+<link rel="apple-touch-icon" href="assets/logo-color.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20261013a" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body class="bgonly" data-bg="1" data-page="services">
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="loader-turbine">
+    <div class="loader-blades"><span></span><span></span><span></span></div>
+    <div class="loader-tower"></div>
+  </div>
+  <p>WE ARE WINDSHAPERS&trade;&hellip;</p>
+  <div class="loader-bar"><div id="loaderFill"></div></div>
+</div>
+
+
+<!-- FIXED 3D CANVAS -->
+<canvas id="webgl"></canvas>
+<div id="photoBg"></div>
+<div id="vignette"></div>
+<div id="grain"></div>
+<div id="scrollProgress"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-badge">
+        <img class="logo-img" src="image/REtech-and-Senvion-Logo.png" alt="REtechnology | Senvion" width="250" height="52" />
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Products</a>
+      <a href="lab.html">3D Lab</a>
+      <a class="is-active" href="#services">Services</a>
+      <a href="manufacturing.html">Manufacturing</a>
+      <a href="sustainability.html">Sustainability</a>
+      <a href="news.html">News</a>
+      <a href="connect.html" class="btn btn-sm btn-glow">Connect</a>
+    </div>
+    <button id="menuBtn" aria-label="menu"><span></span><span></span><span></span></button>
+  </div>
+  <div id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="products.html">Products</a>
+    <a href="lab.html">3D Lab</a>
+    <a class="is-active" href="#services">Services</a>
+    <a href="manufacturing.html">Manufacturing</a>
+    <a href="about.html#history">History</a>
+    <a href="sustainability.html">Sustainability</a>
+    <a href="news.html">News</a>
+    <a href="connect.html">Connect</a>
+  </div>
+</nav>
+<main>
+<!-- ============ SERVICES ============ -->
+<section id="services" class="panel">
+  <nav class="svc-tabs" aria-label="Services sections">
+    <a href="#services" class="on">All Services</a>
+    <a href="#om">O&amp;M</a>
+    <a href="#fleetpro">FleetPro</a>
+  </nav>
+
+  <div class="sec-head photo" id="om" style="scroll-margin-top:96px;--photo:url('assets/o-m.jpg')">
+    <span class="kicker">04 — SERVICES · HARNESSING THE POWER OF FLEXIBILITY</span>
+    <h2>Operations And <span class="grad">Maintenance</span></h2>
+    <p>Senvion India has a highly efficient in-house Operation and Maintenance (O&amp;M) team that is actively managing Wind Farm Power Projects in multiple Indian states. Our team serves a prestigious clientele, including the industry's leading Independent Power Producers (IPPs).</p>
+  </div>
+
+  <div class="about-intro" style="margin-bottom:34px">
+    <div>
+      <span class="kicker">WHAT WE DO</span>
+      <h3 style="margin-top:8px">What we do</h3>
+      <p>Senvion India takes pride in providing flexible services that are tailored to our customers' specific needs and expectations. We developed FleetPro, a cutting-edge digital platform that enables efficient monitoring and control of wind farm fleets. Our digitised platform ensures optimal operations for maximum productivity by focusing on performance and machine availability.</p>
+    </div>
+    <div class="about-scope">
+      <div class="scope-box">
+        <span class="kicker">SERVICES OFFERED</span>
+        <p><b>Operations and Maintenance · Experience and Capabilities · Service philosophy · Turbine Control Center (TCC) · Repair Solutions · QHSE Initiatives</b></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="lab-grid" style="margin-bottom:6px">
+    <div class="lab-card glass"><h3>🔧 Operations &amp; Maintenance</h3>
+      <div class="media ratio"><img src="assets/o-m.jpg" alt="Senvion O&amp;M technicians at a wind farm"><span class="media-tag">O&amp;M</span></div>
+      <ul class="ticks">
+        <li><b>Over a decade</b> of expertise in O&amp;M of wind turbines</li>
+        <li>Comprehensive and customised contracts from <b>10 to 25 years</b></li>
+        <li>Performance-driven approach maximising asset yield and <b>ROI</b></li>
+        <li>Genuine <b>original spare parts</b> with regional stock at every site</li>
+        <li>Dedicated in-house maintenance team &amp; <b>craneless</b> solutions</li>
+        <li>Lost Production Factor tracked continuously against contract</li>
+      </ul>
+    </div>
+    <div class="lab-card glass"><h3>📡 FleetPro®</h3>
+      <div class="media ratio"><img src="assets/fleetpro.jpg" alt="FleetPro SCADA dashboard"><span class="media-tag">SCADA</span></div>
+      <p class="lead">Senvion India's own proprietary SCADA system — a web-based human-machine interface for wind turbine process data acquisition, monitoring, remote control and data integration. No additional hardware installation or administration required.</p>
+      <ul class="ticks"><li><img class="tick-ico" src="assets/data-analytics.png" alt="">Data analytics &amp; diagnostics tool</li><li><img class="tick-ico" src="assets/dashboard.png" alt="">Performance dashboards</li><li><img class="tick-ico" src="assets/diagnostic.png" alt="">Diagnostics reports</li><li><img class="tick-ico" src="assets/historical.png" alt="">Historical performance analysis</li></ul>
+    </div>
+    <div class="lab-card glass"><h3>🏭 Turbine Control Centre</h3>
+      <div class="media ratio"><img src="assets/wind-farm.png" alt="Wind farm monitored from the Turbine Control Centre" style="object-fit:contain;padding:14px;background:#0a1322"><span class="media-tag">24/7 TCC</span></div>
+      <ul class="ticks">
+        <li>Dedicated <b>TCC in Baramati</b> for 24/7 asset monitoring</li>
+        <li>In-house <b>repair centre</b> for electronic spare parts</li>
+        <li>Dedicated blade technician team with manlifts for up-tower work</li>
+        <li><b>ISO 45001 &amp; ISO 14001</b> aligned QHSE: PTW, TBT, LOTO</li>
+        <li>Safety-first culture with a clear goal: <b>Zero Harm</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="tbl-title">Service Results</h3>
+  <div class="tbl-wrap glass">
+    <table class="spec-table">
+      <thead><tr><th>Maintenance</th><th>Quantity</th><th>MW</th><th>Comment</th></tr></thead>
+      <tbody>
+        <tr><td>Total combined capacity under service</td><td>629</td><td>1600</td><td>As of July 2026</td></tr>
+        <tr><td>Service technicians</td><td>300</td><td>&nbsp;</td><td>As of July 2026</td></tr>
+        <tr><td>Markets with service presence</td><td>47</td><td>&nbsp;</td><td>47 sites located in 5 states of India</td></tr>
+        <tr><td>Lost Time Injuries Rate (LTIR)</td><td>0</td><td>&nbsp;</td><td>As of July 2026</td></tr>
+        <tr><td>Lost Production Factor (LPF)</td><td>&lt; 2</td><td>&nbsp;</td><td>As of July 2026</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="tbl-title">Services</h3>
+  <div class="svc-acc">
+
+    <details open>
+      <summary>Operations and Maintenance</summary>
+      <div class="acc-body">
+        <p>Senvion India has a highly efficient in-house Operation and Maintenance (O&amp;M) team that is actively managing Wind Farm Power Projects in multiple Indian states. Our team serves a prestigious clientele, including the industry's leading Independent Power Producers (IPPs).</p>
+      </div>
+    </details>
+
+    <details open>
+      <summary>Experience and Capabilities</summary>
+      <div class="acc-body">
+        <ul>
+          <li><b>Over a Decade of Expertise:</b> Senvion brings more than ten years of experience in the operation and maintenance (O&amp;M) of wind turbines, backed by a team of highly skilled professionals dedicated to managing and optimising wind assets.</li>
+          <li><b>Flexible Service Offerings:</b> We provide both comprehensive and customised O&amp;M services, tailored to customer needs, with contract durations ranging from 10 to 25 years.</li>
+          <li><b>Performance-Driven Approach:</b> Our O&amp;M team is committed to maximising asset yield to ensure the best possible return on investment (ROI).</li>
+          <li><b>Use of Original Spare Parts:</b> We prioritise the use of genuine spare parts to maintain reliability and performance.</li>
+          <li><b>Dedicated In-House Maintenance Team:</b> Our internal team handles all aspects of maintenance, ensuring consistent quality and responsiveness.</li>
+          <li><b>Innovative Craneless Solutions:</b> We&rsquo;ve developed craneless maintenance techniques to reduce costs and minimise right-of-way (ROW) challenges.</li>
+          <li><b>Value-Added Services:</b> We offer additional services aimed at enhancing asset performance and reliability.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details open>
+      <summary>Service philosophy</summary>
+      <div class="acc-body">
+        <ul>
+          <li><b>Dedicated Asset Management:</b> Each wind farm is supported by dedicated personnel who perform regular troubleshooting, maintenance, and inspections.</li>
+          <li><b>Strategic Spare Parts Inventory:</b> All sites are equipped with sufficient stock of original spare parts, supported by regional stores for rapid response.</li>
+          <li><b>Continuous Improvement:</b> We apply lessons learned through retrofit solutions to enhance safety and operational efficiency.</li>
+          <li><b>24/7 Monitoring:</b> All assets are continuously monitored from our Turbine Control Centre (TCC) to ensure optimal performance.</li>
+          <li><b>Maintenance Audits:</b> Regular audits are conducted to assess and maintain the health of each asset.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details open>
+      <summary>Turbine Control Center (TCC)</summary>
+      <div class="acc-body">
+        <ul>
+          <li>Senvion operates a dedicated Turbine Control Centre (TCC) in Baramati for 24/7 asset monitoring.</li>
+          <li>Developed its own proprietary SCADA system &ndash; FleetPro®, designed for high-level data integration.</li>
+          <li>FleetPro® offers a comprehensive solution for monitoring, remote control, and data management.</li>
+          <li>Web-based platform that requires no additional hardware installation or administration.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details open>
+      <summary>Repair Solutions</summary>
+      <div class="acc-body">
+        <ul>
+          <li>In-house repair centre in Baramati for electronic spare parts.</li>
+          <li>Established rate contracts with OEM suppliers for high-quality repairs within defined timelines.</li>
+          <li>Strong Standard Operating Procedures (SOPs) in place for supplier onboarding to ensure repair quality.</li>
+          <li>Dedicated blade technician team, supported by engineering staff and manlifts for up-tower blade maintenance.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details open>
+      <summary>QHSE Initiatives</summary>
+      <div class="acc-body">
+        <ul>
+          <li><b>Safety First Culture:</b> At Senvion, safety is our highest priority. We foster a culture of safety with a clear goal: Zero Harm.</li>
+          <li><b>ISO-Aligned Systems:</b> Our processes align with ISO 45001 and ISO 14001 standards, ensuring structured risk assessments, safe work procedures, and continuous improvement. We strictly adhere to best practices such as Permit to Work (PTW), Toolbox Talks (TBT), and Lockout/Tagout (LOTO).</li>
+          <li><b>Subcontractor Safety Oversight:</b> We conduct regular safety audits of our subcontractors to ensure compliance and promote a shared safety culture.</li>
+          <li><b>Training &amp; Awareness:</b> Safety campaigns, training sessions, and mock drills are regularly organised to reinforce safety awareness across all teams.</li>
+        </ul>
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<!-- ============ FLEETPRO ============ -->
+<section id="fleetpro" class="panel" style="scroll-margin-top:80px">
+  <nav class="svc-tabs" aria-label="Services sections">
+    <a href="#services">All Services</a>
+    <a href="#om">O&amp;M</a>
+    <a href="#fleetpro" class="on">FleetPro</a>
+  </nav>
+  <div class="sec-head photo">
+    <span class="kicker">04B — FLEETPRO® · DATA ANALYTICS AND DIAGNOSTICS TOOL</span>
+    <h2>FleetPro<span class="grad">®</span></h2>
+    <p>Senvion India has designed its own proprietary SCADA System (FleetPro®) to deliver high level of data integration. It has full solution with a cascade of possibilities in monitoring, remote control, and data integration. It is a human-machine interface in the wind turbine process data acquisition i.e., processing data that has been measured for various analysis, reports. This web-based product function does not require any installation or administration of additional hardware.</p>
+  </div>
+
+  <div class="about-intro" style="margin-bottom:34px">
+    <div>
+      <span class="kicker">DATA ANALYTICS AND DIAGNOSTICS TOOL</span>
+      <h3 style="margin-top:8px">Data Analytics and Diagnostics Tool</h3>
+      <p>FleetPro®, Senvion India's SCADA platform, enables users to operate and monitor turbines remotely. With a comprehensive and intuitive AI and machine learning solution for wind turbine analysis, this powerful analytics platform empowers users to make informed decisions and maximise renewable energy generation. The platform seamlessly integrates multiple renewable asset platforms through various protocols, employing cutting-edge software technologies to simplify security and service for our customers. This platform's scalable architecture makes adding features easy.</p>
+    </div>
+    
+    <div class="about-scope">
+      <div class="media sq" style="margin:0">
+        <img src="assets/fleetpro.jpg" alt="FleetPro® SCADA dashboard — data analytics and diagnostics tool">
+        <span class="media-tag">FLEETPRO® SCADA DASHBOARD</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="fp-band">
+    <span class="fp-band-kicker">DATA ANALYTICS AND DIAGNOSTICS TOOL</span>
+    <div class="fp-feat">
+      <div><img src="assets/data-analytics.png" alt=""><span>Data Analytics</span></div>
+      <div><img src="assets/wind-farm.png" alt=""><span>Comparison of WTG and windfarms</span></div>
+      <div><img src="assets/diagnostic.png" alt=""><span>Diagnostics reports</span></div>
+      <div><img src="assets/dashboard.png" alt=""><span>Windfarm Performance Dashboards</span></div>
+      <div><img src="assets/historical.png" alt=""><span>Analysis of historical performance</span></div>
+      <div><img src="assets/customer-business.png" alt=""><span>Customer Business case Evaluation</span></div>
+    </div>
+  </div>
+
+  <div class="about-intro" style="margin-bottom:34px">
+    <div>
+      <span class="kicker">WHAT WE DO</span>
+      <h3 style="margin-top:8px">What we do</h3>
+      <p>Fleetpro is a cutting-edge Software-as-a-Service (SaaS) solution that provides intelligent asset management capabilities to improve renewable asset performance and health. This comprehensive platform enables the seamless integration of multiple renewable asset platforms and protocols. Fleetpro's comprehensive toolkit of analytical Key Performance Indicators (KPIs) and advanced algorithms enables asset managers to make informed decisions and optimise asset performance. Fleetpro, which is built on a highly scalable architecture, ensures efficient throughput while performing complex analytical tasks with precision and quality.</p>
+      <p>Along with the Asset Management software the site team is backed by experienced In house expert Service professionals in Mumbai and Engineering team in Bengaluru to support the O &amp; M operations in delivering best in class and Quality Services to customers.</p>
+    </div>
+    <div class="about-scope">
+      <div class="scope-box">
+        <span class="kicker">FOR A FREE DEMO</span>
+        <p>Contact us — <b>info@senvion.in</b></p>
+      </div>
+      <div class="scope-box">
+        <span class="kicker">DOWNLOAD THE BROCHURE</span>
+        <p>FleetPro® SCADA — features, dashboards and diagnostics.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-col">
+      <img class="foot-logo" src="image/REtech-and-Senvion-Logo-footer.png" alt="REtechnology | Senvion" width="250" height="52" />
+      <p class="foot-claim">Let's drive the future of clean energy, together!</p>
+      <p>📞 +91 22-6908 0000 · ✉️ info@senvion.in</p>
+    </div>
+    <div class="foot-col">
+      <h4>PRODUCTS</h4>
+      <a href="products.html">2.3M120</a>
+      <a href="products.html">2.7M130</a>
+      <a href="products.html">3.1M130</a>
+      <a href="products.html">4.2M160</a>
+    </div>
+    <div class="foot-col">
+      <h4>SERVICES</h4>
+      <a href="#services">Operations &amp; Maintenance</a>
+      <a href="#fleetpro">FleetPro®</a>
+      <a href="manufacturing.html">Manufacturing Units</a>
+    </div>
+    <div class="foot-col">
+      <h4>COMPANY</h4>
+      <a href="about.html">About</a>
+      <a href="about.html#history">History</a>
+      <a href="news.html">News</a>
+      <a href="connect.html">Contact</a>
+      <a href="about.html#career">Career</a>
+    </div>
+    <div class="foot-col">
+      <h4>OFFICES</h4>
+      <p><b>INDIA</b><br>501-Wing B, Delphi Hiranandani Business Park, Powai, Mumbai – 400076, Maharashtra</p>
+      <p><b>GERMANY</b><br>Hamburger Straße 11, 22083, Hamburg</p>
+    </div>
+  </div>
+
+  <details class="fraud">
+    <summary>⚠️ Recruitment Fraud Alert</summary>
+    <div>
+      <p>It has come to our notice that certain persons are falsely claiming association with Senvion through fake job postings, spoofed emails and other fraudulent means with the intent to mislead job seekers and solicit payments. Please note:</p>
+      <ul>
+        <li>Senvion never demands payment, deposits, or fees at any stage of the recruitment process.</li>
+        <li>All genuine correspondence will be from official Senvion domains, not free email services such as Gmail, Yahoo, Hotmail or Rediffmail.</li>
+        <li>Senvion has not authorised any consultancy or individual to collect money, issue job offers, or provide internships on its behalf.</li>
+        <li>Senvion accepts no responsibility for any loss or damage suffered by individuals dealing with unauthorised parties. Such dealings are at the individual's own risk.</li>
+        <li>Senvion reserves the right to pursue civil and criminal remedies under applicable Indian laws against any misuse of its name, trademarks or recruitment process.</li>
+        <li>We urge candidates to remain vigilant and verify any recruitment-related communication directly through Senvion's official website or HR contacts.</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="foot-bar">
+    <p>© 2026 Senvion India · All Rights Reserved</p>
+    <div class="foot-links">
+      <a href="connect.html">Policies &amp; Disclosures</a>
+      <a href="connect.html">Privacy Policy</a>
+      <a href="connect.html">Use of terms</a>
+      <a href="connect.html">Code of Conduct</a>
+    </div>
+  </div>
+
+  <p class="disclaimer"><b>Disclaimer:</b> RETechnologies GmbH &amp; Senvion Wind Technology Pvt. Ltd. together with all its affiliates in India including Senvion India Pvt. Ltd. and Senvion India Wind Power Services LLP (collectively “Senvion India”) have rights over trademark SENVION in India. Outside India, this trademark belongs to a third party which is not an affiliate of Senvion India. Content sourced from senvion.in · Interactive 3D concept rebuild.</p>
+</footer>
+
+</main>
+
+<script src="js/data.js?v=20261001h"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="module" src="js/scene.js?v=20261009f"></script>
+<script>
+(function () {
+  if (document.getElementById('webgl')) return;
+  var hide = function () { var p = document.getElementById('preloader'); if (p) p.classList.add('done'); };
+  setTimeout(hide, 1400);
+  addEventListener('load', function () { setTimeout(hide, 250); });
+})();
+</script>
+<script src="js/ui.js?v=20261001h"></script>
+<script>
+/* Image self-heal — if a request fails (dev-server restart, transient network
+   error, stale cache) the image retries instead of staying stuck on alt text. */
+(function () {
+  function heal(img) {
+    var n = +(img.dataset.healed || 0);
+    if (n >= 3 || !img.getAttribute('src')) return;
+    img.dataset.healed = n + 1;
+    setTimeout(function () {
+      var u = new URL(img.currentSrc || img.src, location.href);
+      u.searchParams.set('r', Date.now() + '-' + n);
+      img.src = u.href;
+    }, 700 * (n + 1));
+  }
+  function watch(img) {
+    if (img.dataset.watched) return;
+    img.dataset.watched = '1';
+    img.addEventListener('error', function () { heal(img); });
+    // already failed before this script was parsed
+    if (img.complete && img.naturalWidth === 0) heal(img);
+  }
+  document.querySelectorAll('img').forEach(watch);
+  if (window.MutationObserver) {
+    new MutationObserver(function (muts) {
+      muts.forEach(function (m) {
+        m.addedNodes.forEach(function (n) {
+          if (!n || n.nodeType !== 1) return;
+          if (n.tagName === 'IMG') watch(n);
+          else if (n.querySelectorAll) n.querySelectorAll('img').forEach(watch);
+        });
+      });
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  }
+})();
+</script>
+</body>
+</html>
