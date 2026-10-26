@@ -4,7 +4,7 @@ node_modules/
 3d_view/node_modules/
 
 # Large CAD files
-
+3d_view/Solidworks Files/
 3d_view/STEP Files/
 3d_view/STL Files/
 
