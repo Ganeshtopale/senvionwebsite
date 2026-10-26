@@ -660,31 +660,40 @@ const sharedBladeGeo = masterBlade.geometry;
 
 for (let i = 0; i < 3; i++) {
   const pivot = new THREE.Group();
+  pivot.rotation.z = (i / 3) * Math.PI * 2;
+  pivot.userData.part = 'blade';
+
   const boss = new THREE.Mesh(bossGeo, bodyMat.clone());
   boss.position.y = 0.875; boss.castShadow = true; boss.userData.part = 'hub';
   pivot.add(boss);
+
   const brg = new THREE.Mesh(ringGeo, accentMat.clone());
   brg.rotation.x = Math.PI / 2;
   brg.position.y = 1.15;
   pivot.add(brg); accentParts.push(brg);
+
   const pitchRing = new THREE.Mesh(new THREE.TorusGeometry(0.5, 0.05, 10, 44), gearMat);
   pitchRing.rotation.x = Math.PI / 2;
   pitchRing.position.y = 0.6;
   pitchRing.userData.part = 'pitch';
   pivot.add(pitchRing);
+
   const pitchDrive = new THREE.Mesh(new RoundedBoxGeometry(0.2, 0.28, 0.32, 3, 0.06), gearMat);
   pitchDrive.position.set(0.3, 0.4, 0.08);
   pitchDrive.userData.part = 'pitch';
   pivot.add(pitchDrive);
+
+  const pitchGroup = new THREE.Group();
+  pitchGroup.position.y = 0.85;
+  pivot.add(pitchGroup);
+
   const b = (i === 0) ? masterBlade : makeBlade(13);
-  b.position.y = 0.85;
-  b.rotation.x = THREE.MathUtils.degToRad(state.pitch) * 0.4;
-  pivot.add(b);
-  pivot.rotation.z = (i / 3) * Math.PI * 2;
-  pivot.userData.part = 'blade';
+  b.position.set(0,0,0);
   b.userData.part = 'blade';
+  pitchGroup.add(b);
+
   rotor.add(pivot);
-  blades.push(pivot);
+  blades.push(pitchGroup); 
 }
 
 /* ================= BACKGROUND WIND FARM ================= */
@@ -848,7 +857,9 @@ const FOCUS = {
   overview: { pos: [44, 23, 55], tgt: [0, 18, 0] },
   blades: { pos: [7, 27, 15], tgt: [0, 23, 2] },
   nacelle: { pos: [10, 26, 11], tgt: [0, 23.5, -1] },
-  tower: { pos: [11, 8, 18], tgt: [0, 11, 0] }
+  tower: { pos: [11, 8, 18], tgt: [0, 11, 0] },
+  staircase: { pos: [8, 4, 14], tgt: [0, 1.5, 0] } // <-- NEW
+
 };
 let camGoal = null;
 let focusName = 'overview';
@@ -999,6 +1010,23 @@ $('yawSlider')?.addEventListener('input', e => state.yaw = +e.target.value);
 $('partSlider')?.addEventListener('input', e => { state.particles = +e.target.value / 100; $('partOut').textContent = e.target.value + '%'; });
 $('birdsToggle')?.addEventListener('change', e => state.birds = e.target.checked);
 $('farmToggle')?.addEventListener('change', e => { state.farm = e.target.checked; farmGroup.visible = state.farm; });
+
+// --- AUTO-ORBIT FIX ---
+const autoBtn = $('autoRotateBtn');
+function syncAutoOrbitUI() {
+  if (!autoBtn) return;
+  autoBtn.classList.toggle('active', state.autoRotate);
+  autoBtn.textContent = state.autoRotate ? 'Auto-orbit ON' : 'Auto-orbit OFF';
+  controls.autoRotate = state.autoRotate;
+}
+autoBtn?.addEventListener('click', () => {
+  state.autoRotate = !state.autoRotate;
+  syncAutoOrbitUI();
+});
+syncAutoOrbitUI();
+// --- END FIX ---
+
+
 document.querySelectorAll('[data-focus]').forEach(b => b.addEventListener('click', () => focus(b.dataset.focus)));
 document.querySelectorAll('.modelchip').forEach(b => b.addEventListener('click', () => {
   window.__scene.setModel(b.dataset.model);
@@ -1056,7 +1084,8 @@ function animate() {
   const omega = rpmTarget * (Math.PI * 2 / 60);
   rotorAngle += omega * dt;
   rotor.rotation.z = -rotorAngle;
-  blades.forEach(p => p.rotation.x = THREE.MathUtils.degToRad(state.pitch) * 0.4);
+  blades.forEach(pitchGroup => {
+  pitchGroup.rotation.y = THREE.MathUtils.degToRad(state.pitch); });
   yawGroup.rotation.y = THREE.MathUtils.degToRad(state.yaw);
 
   const e = state.explode;

@@ -343,7 +343,15 @@
           <p class="mini">Every figure below is recalculated from the selected machine's own rating, rotor and swept area.</p>
         </div>
         <div class="ctrl"><div class="ctrl-row"><label>🌬 Wind speed</label><output id="windOut">8.5 m/s</output></div><input id="windSlider" type="range" min="0" max="25" step="0.1" value="8.5"></div>
-        <div class="ctrl-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0"><button class="chip" data-focus="overview">◈ Overview</button><button class="chip" data-focus="blades">✦ Blades</button><button class="chip" data-focus="nacelle">⬣ Nacelle</button><button class="chip" data-focus="tower">⬒ Tower</button></div>
+        
+        <!-- <div class="ctrl-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0"><button class="chip" data-focus="overview">◈ Overview</button><button class="chip" data-focus="blades">✦ Blades</button><button class="chip" data-focus="nacelle">⬣ Nacelle</button><button class="chip" data-focus="tower">⬒ Tower</button></div> -->
+        <div class="ctrl-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0">
+  <button class="chip" data-focus="overview">◈ Overview</button>
+  <button class="chip" data-focus="blades">✦ Blades</button>
+  <button class="chip" data-focus="nacelle">⬣ Nacelle</button>
+  <button class="chip" data-focus="tower">⬒ Tower</button>
+  <button class="chip" data-focus="staircase">☰ Base / Staircase</button>
+</div>
         <div class="ctrl"><div class="ctrl-row"><label>💥 Exploded view</label><output id="explodeOut">0%</output></div><input id="explodeSlider" type="range" min="0" max="100" value="0"><p class="hint">0% = normal. Slide up and the <b>nacelle housing lifts off</b> and the <b>hub nose swings open</b>.</p></div>
         <div class="ctrl-row btns" style="display:flex;gap:8px;margin:10px 0"><button id="dayNightBtn" class="btn btn-ghost btn-sm">🌙 Night mode</button><button id="spinBurstBtn" class="btn btn-ghost btn-sm">💨 Gust!</button></div>
         <div class="powerbar" style="height:6px;background:rgba(11,33,116,.12);border-radius:99px;margin-top:12px"><div id="powerFill" style="height:100%;width:60%;background:#0B2174;border-radius:99px"></div></div>
