@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>STL Assembly Viewer</title>
+<style>
+body { margin:0; font-family:Arial; background:#17202d; color:white; }
+header { padding:12px; background:#26364a; }
+#layout { display:flex; height:calc(100vh - 55px); }
+aside { width:300px; padding:15px; overflow:auto; background:#202c3c; }
+#viewer { flex:1; min-width:0; position:relative; }
+input, button { margin:5px 0; padding:8px; max-width:100%; }
+button { cursor:pointer; background:#2679ed; color:white; border:0; border-radius:4px; }
+.part { padding:10px; margin:8px 0; background:#304055; border-radius:6px; }
+.part input[type=number] { width:65px; }
+small { color:#bdcadd; }
+@media(max-width:650px) {
+ #layout { flex-direction:column; height:auto; }
+ aside { width:auto; }
+ #viewer { height:60vh; min-height:350px; }
+}
+</style>
+<script type="importmap">
+{
+ "imports": {
+  "three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+  "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+ }
+}
+</script>
+</head>
+<body>
+<header><b>3D STL Assembly Viewer</b></header>
+
+<div id="layout">
+<aside>
+<h3>Load STL parts</h3>
+<input id="files" type="file" accept=".stl" multiple>
+<p><small>Select all your individual STL files.</small></p>
+
+<h3>Assembly view</h3>
+<label>Explode parts</label><br>
+<input id="explode" type="range" min="0" max="5000" value="0">
+<br>
+<button id="assemble">Assemble</button>
+<button id="fit">Fit model</button>
+<button id="wire">Wireframe</button>
+
+<h3>Part positions</h3>
+<div id="parts">Upload STL files to begin.</div>
+</aside>
+<div id="viewer"></div>
+</div>
+
+<script type="module">
+import * as THREE from 'three';
+import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const root = document.getElementById('viewer');
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x17202d);
+
+const camera = new THREE.PerspectiveCamera(45,1,0.1,100000);
+camera.position.set(150,120,150);
+
+const renderer = new THREE.WebGLRenderer({antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+root.appendChild(renderer.domElement);
+
+const controls = new OrbitControls(camera,renderer.domElement);
+controls.enableDamping = true;
+
+scene.add(new THREE.HemisphereLight(0xffffff,0x526078,2));
+const light = new THREE.DirectionalLight(0xffffff,3);
+light.position.set(100,150,100);
+scene.add(light);
+
+scene.add(new THREE.GridHelper(300,30));
+const assembly = new THREE.Group();
+scene.add(assembly);
+
+const loader = new STLLoader();
+const parts = [];
+const colors = [0x4595ff,0xffa64d,0x4ed6a0,0xff667a,
+                0xb19aff,0xf0db62,0x49d7dc,0xffffff];
+
+let wireframe = false;
+
+function resize() {
+  const w=root.clientWidth, h=root.clientHeight;
+  if (!w || !h) return;
+  camera.aspect=w/h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w,h);
+}
+new ResizeObserver(resize).observe(root);
+window.addEventListener('resize',resize);
+resize();
+
+document.getElementById('files').addEventListener('change',async e=>{
+  for (const file of e.target.files) {
+    try {
+      const geometry=loader.parse(await file.arrayBuffer());
+      geometry.computeVertexNormals();
+      geometry.computeBoundingBox();
+
+      const center=geometry.boundingBox.getCenter(new THREE.Vector3());
+      const mesh=new THREE.Mesh(geometry,new THREE.MeshStandardMaterial({
+        color:colors[parts.length%colors.length],
+        metalness:0.2,roughness:0.5,
+        side:THREE.DoubleSide,wireframe
+      }));
+
+      mesh.position.copy(center).negate();
+
+      const group=new THREE.Group();
+      group.add(mesh);
+      group.position.copy(center);
+      assembly.add(group);
+
+      const part={
+        name:file.name,group,geometry,mesh,
+        base:center.clone(),direction:new THREE.Vector3()
+      };
+      parts.push(part);
+    } catch(err) {
+      alert('Could not load '+file.name);
+      console.error(err);
+    }
+  }
+  updateDirections();
+  renderParts();
+  fitCamera();
+  e.target.value='';
+});
+
+function updateDirections() {
+  if (!parts.length) return;
+  const center=new THREE.Vector3();
+  parts.forEach(p=>center.add(p.base));
+  center.divideScalar(parts.length);
+
+  parts.forEach((p,i)=>{
+    p.direction.copy(p.base).sub(center);
+    if (p.direction.lengthSq()<1e-8) {
+      const a=i*2.4;
+      p.direction.set(Math.cos(a),0.5,Math.sin(a));
+    }
+    p.direction.normalize();
+  });
+  applyExplode();
+}
+
+function applyExplode() {
+  const amount=Number(document.getElementById('explode').value);
+  parts.forEach(p=>{
+    p.group.position.copy(p.base)
+      .addScaledVector(p.direction,amount);
+  });
+}
+
+document.getElementById('explode').addEventListener('input',applyExplode);
+document.getElementById('assemble').onclick=()=>{
+  document.getElementById('explode').value=0;
+  applyExplode();
+};
+
+function fitCamera() {
+  if (!parts.length) return;
+  const bounds=new THREE.Box3().setFromObject(assembly);
+  const center=bounds.getCenter(new THREE.Vector3());
+  const size=bounds.getSize(new THREE.Vector3());
+  const max=Math.max(size.x,size.y,size.z,1);
+  controls.target.copy(center);
+  camera.position.set(center.x+max*1.8,center.y+max*1.4,center.z+max*1.8);
+  camera.near=Math.max(max/10000,0.001);
+  camera.far=max*100;
+  camera.updateProjectionMatrix();
+  controls.update();
+}
+document.getElementById('fit').onclick=fitCamera;
+
+document.getElementById('wire').onclick=()=>{
+  wireframe=!wireframe;
+  parts.forEach(p=>p.mesh.material.wireframe=wireframe);
+};
+
+function renderParts() {
+  const container=document.getElementById('parts');
+  container.replaceChildren();
+
+  parts.forEach((p,i)=>{
+    const card=document.createElement('div');
+    card.className='part';
+
+    const title=document.createElement('b');
+    title.textContent=p.name;
+    card.appendChild(title);
+
+    const visibility=document.createElement('p');
+    const check=document.createElement('input');
+    check.type='checkbox';
+    check.checked=true;
+    check.onchange=()=>p.group.visible=check.checked;
+    visibility.append(check,document.createTextNode(' Visible'));
+    card.appendChild(visibility);
+
+    ['X','Y','Z'].forEach(axis=>{
+      const key=axis.toLowerCase();
+      const label=document.createElement('label');
+      label.textContent=axis+' position ';
+      const input=document.createElement('input');
+      input.type='number';
+      input.step='1';
+      input.value=p.base[key].toFixed(2);
+      input.onchange=()=>{
+        const v=Number(input.value);
+        if (!Number.isFinite(v)) return;
+        p.base[key]=v;
+        updateDirections();
+        renderParts();
+      };
+      label.appendChild(input);
+      card.appendChild(label);
+    });
+
+    ['X','Y','Z'].forEach(axis=>{
+      const key=axis.toLowerCase();
+      const label=document.createElement('label');
+      label.textContent=axis+' rotation (degrees) ';
+      const input=document.createElement('input');
+      input.type='number';
+      input.value=THREE.MathUtils.radToDeg(p.group.rotation[key]);
+      input.onchange=()=>{
+        const v=Number(input.value);
+        if (Number.isFinite(v)) {
+          p.group.rotation[key]=THREE.MathUtils.degToRad(v);
+        }
+      };
+      label.appendChild(input);
+      card.appendChild(label);
+    });
+
+    const reset=document.createElement('button');
+    reset.textContent='Reset part';
+    reset.onclick=()=>{
+      p.base.copy(p.geometry.boundingBox.getCenter(new THREE.Vector3()));
+      p.group.rotation.set(0,0,0);
+      updateDirections();
+      renderParts();
+    };
+    card.appendChild(reset);
+    container.appendChild(card);
+  });
+}
+
+function animate() {
+  requestAnimationFrame(animate);
+  controls.update();
+  renderer.render(scene,camera);
+}
+animate();
+</script>
+</body>
+</html>

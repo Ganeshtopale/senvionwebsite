@@ -1,0 +1,17 @@
+
+# Node.js dependencies
+node_modules/
+3d_view/node_modules/
+
+# Large CAD files
+
+3d_view/STEP Files/
+3d_view/STL Files/
+
+# Environment and log files
+.env
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db

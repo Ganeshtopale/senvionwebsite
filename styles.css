@@ -647,3 +647,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
 }
+/* ===== REAL 4XM CAD MODEL SWITCH + LOAD STATUS ===== */
+.cad-switch{position:fixed;right:18px;bottom:18px;z-index:96;display:flex;align-items:center;gap:6px;padding:7px 9px;border-radius:99px;background:rgba(255,255,255,.92);border:1px solid rgba(11,111,180,.22);box-shadow:0 8px 26px rgba(14,47,76,.16);backdrop-filter:blur(14px);font-family:'Space Grotesk',system-ui,sans-serif}
+.cad-switch-tag{font-size:.58rem;letter-spacing:.16em;color:#5b6b7d;font-weight:700;padding:0 4px}
+.cad-opt{border:0;cursor:pointer;padding:7px 12px;border-radius:99px;font-size:.72rem;font-weight:700;letter-spacing:.04em;color:#334155;background:transparent;transition:.25s;font-family:inherit}
+.cad-opt.active{background:linear-gradient(135deg,#0b6fb4,#00874a);color:#fff;box-shadow:0 4px 14px rgba(11,111,180,.35)}
+.cad-opt:hover:not(.active){background:rgba(11,111,180,.08)}
+.cad-pill{position:fixed;right:18px;bottom:74px;z-index:96;transform:translateY(8px);opacity:0;pointer-events:none;transition:.35s;padding:8px 14px;border-radius:99px;background:rgba(14,47,76,.9);color:#dff5ea;font-size:.7rem;letter-spacing:.06em;font-weight:600;box-shadow:0 8px 24px rgba(14,47,76,.25);font-family:'Space Grotesk',system-ui,sans-serif}
+.cad-pill.show{opacity:1;transform:translateY(0)}
+.cad-pill.is-warn{background:#7a2e1d}
+@media(max-width:640px){.cad-switch{right:10px;bottom:10px;padding:5px 7px}.cad-opt{padding:6px 9px;font-size:.65rem}.cad-switch-tag{display:none}.cad-pill{right:10px;bottom:60px;font-size:.64rem}}
